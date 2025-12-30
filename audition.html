@@ -3,147 +3,411 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AUDITION — TIKOONZ</title>
-  <meta name="description" content="Audition / Collaboration — TIKOONZ" />
+  <title>Audition — TIKOONZ</title>
+  <meta name="description" content="Audition — TIKOONZ" />
+
   <link rel="stylesheet" href="./assets/style.css" />
+
+  <style>
+    :root{
+      --max:1120px;
+      --bg:#0b0b0f;
+      --card:#141420;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.16);
+      --text2:rgba(255,255,255,.78);
+      --radius:16px;
+
+      --text:rgba(255,255,255,.94);
+      --muted:rgba(255,255,255,.68);
+    }
+
+    body{ background:var(--bg); color:var(--text); }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(11,11,15,.72);
+      border-bottom:1px solid var(--line);
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .headInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand img{ height:28px; display:block; }
+
+    nav.primaryNav{
+      display:flex;
+      gap:16px;
+      font-size:14px;
+      color:var(--text2);
+    }
+    nav.primaryNav a{
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+    }
+    nav.primaryNav a:hover{
+      border-color:var(--line2);
+      background:rgba(255,255,255,.03);
+    }
+
+    /* index와 동일한 spacing */
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:44px 24px 24px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+    }
+
+    .inner{
+      max-width:820px;
+      padding:34px 26px 32px;
+    }
+
+    .kicker{
+      color:var(--text2);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin:0 0 14px;
+    }
+
+    h1{
+      margin:0 0 18px;
+      font-size:22px;
+      line-height:1.38;
+      letter-spacing:.02em;
+      font-weight:600;
+    }
+
+    .langToggle{
+      margin:14px 0 22px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .langToggle button{
+      appearance:none;
+      border:1px solid var(--line2);
+      background:rgba(255,255,255,.02);
+      color:var(--text2);
+      padding:8px 10px;
+      border-radius:12px;
+      font-size:13px;
+      letter-spacing:.06em;
+      cursor:pointer;
+    }
+    .langToggle button[aria-pressed="true"]{
+      color:var(--text);
+      border-color:rgba(255,255,255,.28);
+      background:rgba(255,255,255,.06);
+    }
+
+    .copy p{
+      margin:0 0 18px;
+      font-size:16px;
+      line-height:1.85;
+      letter-spacing:.01em;
+    }
+    .copy p.muted{ color:var(--muted); }
+
+    .sectionTitle{
+      margin:28px 0 10px;
+      color:var(--text2);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .miniCard{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px 14px 12px;
+      background:rgba(255,255,255,.02);
+    }
+
+    .miniCard .t{
+      color:var(--text);
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin:0 0 8px;
+    }
+    .miniCard .d{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      margin:0;
+    }
+
+    .bullet{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+    }
+    .bullet li{
+      padding-left:14px;
+      position:relative;
+    }
+    .bullet li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      color:rgba(255,255,255,.42);
+    }
+
+    .ctaRow{
+      margin-top:22px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:.04em;
+    }
+    .btn:hover{
+      border-color:rgba(255,255,255,.32);
+      background:rgba(255,255,255,.06);
+    }
+    .btn.ghost{
+      color:var(--text2);
+      border-color:var(--line2);
+      background:rgba(255,255,255,.02);
+    }
+
+    /* desktop 줄바꿈 / mobile 자연스러운 흐름 */
+    .br-d{ display:inline; }
+    .br-m{ display:none; }
+
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px){
+      .inner{ padding:26px 18px 22px; }
+      h1{ font-size:20px; }
+      .copy p{ font-size:15px; }
+
+      .br-d{ display:none; }
+      .br-m{ display:inline; }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="topbar">
-      <a class="brand" href="./index.html>TIKOONZ</a>
-      <div class="lang-toggle" data-lang-toggle>
-        <button type="button" data-lang="ko" aria-pressed="true">KR</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-    </div>
 
-    <h1 class="page-title">AUDITION</h1>
-    <p class="lead" data-i18n="audition_lead"></p>
-
-    <div class="card">
-      <form data-audition-form>
-        <div class="grid">
-          <div class="field">
-            <label for="name" data-i18n="f_name"></label>
-            <input id="name" name="name" type="text" autocomplete="name"
-                   data-i18n="ph_name" data-i18n-attr="placeholder" />
-            <div class="error"></div>
-          </div>
-
-          <div class="field">
-            <label for="field" data-i18n="f_field"></label>
-            <select id="field" name="field">
-              <option value="" data-i18n="opt_select"></option>
-              <option value="DJ">DJ</option>
-              <option value="Singer">Singer</option>
-              <option value="Model">Model</option>
-              <option value="Actor">Actor</option>
-            </select>
-            <div class="error"></div>
-          </div>
-
-          <div class="field">
-            <label for="instagram">Instagram URL</label>
-            <input id="instagram" name="instagram" type="url" inputmode="url"
-                   placeholder="https://instagram.com/..." />
-            <div class="error"></div>
-          </div>
-
-          <div class="field">
-            <label for="facebook">Facebook URL</label>
-            <input id="facebook" name="facebook" type="url" inputmode="url"
-                   placeholder="https://facebook.com/..." />
-            <div class="error"></div>
-          </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="youtube">YouTube URL</label>
-            <input id="youtube" name="youtube" type="url" inputmode="url"
-                   placeholder="https://youtube.com/..." />
-            <div class="error"></div>
-          </div>
-
-          <div class="field" style="grid-column:1/-1">
-            <label for="contact_email" data-i18n="f_contact_email"></label>
-            <input id="contact_email" name="contact_email" type="email" autocomplete="email"
-                   data-i18n="ph_contact_email" data-i18n-attr="placeholder" />
-            <div class="hint" data-i18n="contact_email_hint"></div>
-            <div class="error"></div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn" type="submit" data-i18n="btn_submit"></button>
-          <div class="status" data-form-status></div>
-        </div>
-
-        <p class="hint" style="margin-top:16px" data-i18n="audition_note"></p>
-      </form>
-    </div>
-
-    <div class="nav" style="padding-left:0">
-      <a href="./about.html>ABOUT</a>
-            <a href="./artist.html>ARTIST</a>
-<a href="./contact.html>CONTACT</a>
-    </div>
-
-    <footer class="footer-links">
-      <div class="split">
-        <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
-        <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
-      </div>
-      <a href="./index.html>HOME</a>
-    </footer>
+<header>
+  <div class="headInner">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="TIKOONZ">
+    </a>
+    <nav class="primaryNav">
+      <a href="./about.html">About</a>
+      <a href="./artist.html">Artist</a>
+      <a href="./audition.html">Audition</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
   </div>
+</header>
 
-  <script>
-    window.__i18n = {
-      ko: {
-        audition_lead:
-          "TIKOONZ는 무대를 중심으로 함께할 아티스트와 퍼포머를 찾습니다. 이메일 접수는 받지 않습니다. 아래 링크를 남겨주시면 검토 후 필요 시 연락드립니다.",
-        f_name: "NAME / ARTIST NAME",
-        ph_name: "예: Kim / Artist Name",
-        f_field: "FIELD",
-        opt_select: "선택",
-        f_contact_email: "CONTACT EMAIL",
-        ph_contact_email: "연락 가능한 이메일 주소",
-        contact_email_hint: "제출된 정보는 검토 목적이며, 진행이 필요한 경우에만 연락드립니다.",
-        btn_submit: "SUBMIT",
-        audition_note:
-          "제출된 링크를 검토 후, 선정된 경우에만 개별 연락드립니다. 모든 제안에 답변드리기는 어렵습니다.",
-        err_required: "필수 입력 항목입니다.",
-        err_url: "유효한 URL(https://...)을 입력해주세요.",
-        err_email: "유효한 이메일 주소를 입력해주세요.",
-        sending: "제출 중…",
-        sent_ok: "제출이 완료되었습니다.",
-        sent_fail: "제출에 실패했습니다. 잠시 후 다시 시도해주세요."
-      },
-      en: {
-        audition_lead:
-          "TIKOONZ is looking for artists and performers to collaborate with on stage. We do not accept email submissions. Please leave your links below; we will contact you if we move forward.",
-        f_name: "NAME / ARTIST NAME",
-        ph_name: "e.g., Kim / Artist Name",
-        f_field: "FIELD",
-        opt_select: "Select",
-        f_contact_email: "CONTACT EMAIL",
-        ph_contact_email: "Email for us to reach you",
-        contact_email_hint: "Used only to contact you if we decide to proceed.",
-        btn_submit: "SUBMIT",
-        audition_note:
-          "We review submitted links and will contact selected collaborators directly. We may not be able to respond to all submissions.",
-        err_required: "This field is required.",
-        err_url: "Please enter a valid URL (https://...).",
-        err_email: "Please enter a valid email address.",
-        sending: "Sending…",
-        sent_ok: "Submitted successfully.",
-        sent_fail: "Submission failed. Please try again."
-      }
-    };
-  </script>
+<main class="wrap">
+  <section class="card">
+    <div class="inner">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./assets/config.js"></script>
-  <script src="./assets/site.js"></script>
-  <script src="./assets/audition.js"></script>
+      <div class="kicker">Audition</div>
+
+      <h1>
+        완성된 사람을 찾기보다,<span class="br-d"><br></span><span class="br-m"> </span>
+        함께 완성해 갈 작업을 찾습니다.
+      </h1>
+
+      <div class="langToggle" role="group" aria-label="Language toggle">
+        <button id="btnKo" type="button" aria-pressed="true">KOR</button>
+        <button id="btnEn" type="button" aria-pressed="false">ENG</button>
+      </div>
+
+      <!-- KOREAN -->
+      <div id="ko" class="copy">
+        <p>
+          TIKOONZ의 오디션은 경쟁보다 협업에 가깝습니다.<span class="br-d"><br></span><span class="br-m"> </span>
+          우리는 ‘누가 더 낫나’를 보기보다, 함께 작업할 때 무엇이 생기는지 봅니다.
+        </p>
+
+        <p class="muted">
+          음악, 영상, 방송은 분리된 일이 아니라 연결된 언어입니다.<span class="br-d"><br></span><span class="br-m"> </span>
+          당신의 감각이 그 연결을 견딜 수 있다면, 시작할 이유는 충분합니다.
+        </p>
+
+        <div class="sectionTitle">Who We’re Looking For</div>
+        <ul class="bullet">
+          <li>자기 언어가 분명한 사람 (장르/형식 무관)</li>
+          <li>과정을 공유할 수 있는 사람 (피드백과 수정에 열려 있는 태도)</li>
+          <li>무대와 카메라 앞에서 ‘자기 자신’으로 서고 싶은 사람</li>
+        </ul>
+
+        <div class="sectionTitle">What to Send</div>
+        <div class="grid">
+          <div class="miniCard">
+            <div class="t">1) Basic</div>
+            <p class="d">이름 / 활동명, 연락처, SNS 또는 채널 링크</p>
+          </div>
+          <div class="miniCard">
+            <div class="t">2) Portfolio</div>
+            <p class="d">음원/데모 1~3곡 또는 퍼포먼스 영상 1~3개 (링크)</p>
+          </div>
+          <div class="miniCard">
+            <div class="t">3) Note</div>
+            <p class="d">당신이 지금 만들고 싶은 것, 그리고 함께 하고 싶은 이유 (짧게)</p>
+          </div>
+          <div class="miniCard">
+            <div class="t">4) Optional</div>
+            <p class="d">작업 가능한 장르/역할(보컬·랩·댄스·작곡·프로듀싱 등), 협업 경험</p>
+          </div>
+        </div>
+
+        <div class="sectionTitle">How It Works</div>
+        <ul class="bullet">
+          <li>서류/링크 검토 후, 필요한 경우 짧은 미팅을 진행합니다</li>
+          <li>테스트 세션(작업/촬영/리허설)로 협업 호흡을 확인할 수 있습니다</li>
+          <li>방향이 맞으면, 앨범·MV·방송 콘텐츠까지 함께 설계합니다</li>
+        </ul>
+
+        <div class="ctaRow">
+          <a class="btn" href="./contact.html">Contact</a>
+          <a class="btn ghost" href="./about.html">About TIKOONZ</a>
+        </div>
+
+        <p class="muted" style="margin-top:18px;">
+          메일 접수 문구/주소는 contact 페이지에서 안내해 주세요.<span class="br-d"><br></span><span class="br-m"> </span>
+          (현재는 연결만 해두었습니다.)
+        </p>
+      </div>
+
+      <!-- ENGLISH -->
+      <div id="en" class="copy" style="display:none;">
+        <p>
+          TIKOONZ auditions are closer to collaboration than competition.<span class="br-d"><br></span><span class="br-m"> </span>
+          We look for what happens when we work together — not who looks better on paper.
+        </p>
+
+        <p class="muted">
+          Music, visuals, and broadcasting are connected languages.<span class="br-d"><br></span><span class="br-m"> </span>
+          If your sensibility can hold that connection, that’s enough to begin.
+        </p>
+
+        <div class="sectionTitle">Who We’re Looking For</div>
+        <ul class="bullet">
+          <li>A clear voice and identity (any genre / format)</li>
+          <li>Openness to process (feedback, revision, shared responsibility)</li>
+          <li>Someone who wants to be real on stage and on camera</li>
+        </ul>
+
+        <div class="sectionTitle">What to Send</div>
+        <div class="grid">
+          <div class="miniCard">
+            <div class="t">1) Basic</div>
+            <p class="d">Name / Artist name, contact, social or channel links</p>
+          </div>
+          <div class="miniCard">
+            <div class="t">2) Portfolio</div>
+            <p class="d">1–3 demos/tracks or 1–3 performance videos (links)</p>
+          </div>
+          <div class="miniCard">
+            <div class="t">3) Note</div>
+            <p class="d">What you want to create now, and why you want to collaborate (brief)</p>
+          </div>
+          <div class="miniCard">
+            <div class="t">4) Optional</div>
+            <p class="d">Roles/skills (vocal/rap/dance/compose/produce), collaboration experience</p>
+          </div>
+        </div>
+
+        <div class="sectionTitle">How It Works</div>
+        <ul class="bullet">
+          <li>We review your links and may invite you for a short meeting</li>
+          <li>A test session (work/shoot/rehearsal) can be used to check chemistry</li>
+          <li>If aligned, we co-design the path across album, MV, and media content</li>
+        </ul>
+
+        <div class="ctaRow">
+          <a class="btn" href="./contact.html">Contact</a>
+          <a class="btn ghost" href="./about.html">About TIKOONZ</a>
+        </div>
+
+        <p class="muted" style="margin-top:18px;">
+          Please place submission email/text on the contact page.<span class="br-d"><br></span><span class="br-m"> </span>
+          (This page currently links there.)
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer-links">
+    <div>© 2025 TIKOONZ</div>
+    <div class="split">
+      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+      <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+    </div>
+  </footer>
+</main>
+
+<script>
+  const btnKo = document.getElementById('btnKo');
+  const btnEn = document.getElementById('btnEn');
+  const ko = document.getElementById('ko');
+  const en = document.getElementById('en');
+
+  function setLang(lang){
+    const isKo = lang === 'ko';
+    ko.style.display = isKo ? '' : 'none';
+    en.style.display = isKo ? 'none' : '';
+    btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
+    btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
+    document.documentElement.lang = isKo ? 'ko' : 'en';
+  }
+
+  btnKo.addEventListener('click', () => setLang('ko'));
+  btnEn.addEventListener('click', () => setLang('en'));
+</script>
+
 </body>
 </html>
