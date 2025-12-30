@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TIKOONZ</title>
+  <meta name="description" content="TIKOONZ" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">TIKOONZ</div>
+      <div class="lang-toggle" data-lang-toggle id="langToggleIndex">
+        <button type="button" data-lang="ko" aria-pressed="true">KR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+
+    <section class="hero" aria-label="Hero video">
+      <div class="video">
+        <!-- ✅ Replace the YouTube ID in BOTH places below -->
+        <iframe
+          src="https://www.youtube.com/embed/REPLACE_WITH_YOUTUBE_ID?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&loop=1&playlist=REPLACE_WITH_YOUTUBE_ID"
+          title="TIKOONZ video"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="hero-caption">
+        <div class="headline">2025 SBS 가요대전 헤드라이너 무대와 함께한 TIKOONZ</div>
+        <span class="badge" style="display:none" id="indexLangHint">KR | EN</span>
+      </div>
+    </section>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/about.html">ABOUT</a>
+            <a href="/artist.html">ARTIST</a>
+<a href="/audition.html">AUDITION</a>
+      <a href="/contact.html">CONTACT</a>
+    </nav>
+
+    <footer class="footer-links" aria-label="Footer links">
+      <div>© <span id="y"></span> TIKOONZ</div>
+      <div class="split">
+        <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+        <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/assets/config.js"></script>
+  <script src="/assets/site.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Optional: hide index language toggle if desired
+    const cfg = window.TIKOONZ_CONFIG || {};
+    if (cfg.HIDE_LANG_TOGGLE_ON_INDEX) {
+      const el = document.getElementById("langToggleIndex");
+      if (el) el.style.display = "none";
+    }
+  </script>
+</body>
+</html>
