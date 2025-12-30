@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Audition — TIKOONZ</title>
   <meta name="description" content="Audition — TIKOONZ" />
+
   <link rel="stylesheet" href="./assets/style.css" />
   <style>
 
@@ -19,6 +20,7 @@
 
       --text:rgba(255,255,255,.94);
       --muted:rgba(255,255,255,.68);
+      --danger:rgba(255,120,120,.95);
     }
 
     body{ background:var(--bg); color:var(--text); }
@@ -58,7 +60,6 @@
       background:rgba(255,255,255,.03);
     }
 
-    /* index와 동일한 spacing */
     .wrap{
       max-width:var(--max);
       margin:0 auto;
@@ -73,10 +74,9 @@
       box-shadow:0 18px 60px rgba(0,0,0,.35);
     }
 
-    /* 미세 조정: 본문 가독성(줄간격/자간/패딩)만 통일 */
     .inner{
       padding:32px 26px 30px;
-      max-width: 860px;
+      max-width: 900px;
     }
 
     .kicker{
@@ -134,35 +134,6 @@
       background:rgba(255,255,255,.06);
     }
 
-    .bullet{
-      margin:10px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:8px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-    }
-    .bullet li{
-      padding-left:14px;
-      position:relative;
-    }
-    .bullet li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      color:rgba(255,255,255,.42);
-    }
-
-    .divider{
-      margin:18px 0 16px;
-      height:1px;
-      background:var(--line);
-      border:0;
-    }
-
     .ctaRow{
       margin-top:18px;
       display:flex;
@@ -181,6 +152,7 @@
       text-decoration:none;
       font-size:14px;
       letter-spacing:.04em;
+      cursor:pointer;
     }
     .btn:hover{
       border-color:rgba(255,255,255,.32);
@@ -192,6 +164,13 @@
       background:rgba(255,255,255,.02);
     }
 
+    .panel{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+      padding:14px;
+    }
+
     @media (max-width: 640px){
       .inner{ padding:26px 18px 22px; }
       h1{ font-size:22px; }
@@ -199,37 +178,66 @@
     }
 
 
-    .grid {
+    /* form */
+    form.auditionForm {
+      margin-top: 10px;
+    }
+    .formGrid {
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:10px;
+      gap:12px;
     }
-    .miniCard {
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:14px 14px 12px;
-      background:rgba(255,255,255,.02);
+    .field {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
     }
-    .miniCard .t {
-      color:var(--text);
+    .field.full { grid-column: 1 / -1; }
+    label {
+      color:var(--text2);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      margin:0 0 8px;
     }
-    .miniCard .d {
-      color:var(--muted);
+    input, textarea {
+      width:100%;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius:12px;
+      padding:12px 12px;
       font-size:14px;
-      line-height:1.7;
-      margin:0;
+      line-height:1.6;
+      outline:none;
     }
+    input:focus, textarea:focus {
+      border-color:rgba(255,255,255,.32);
+      background:rgba(255,255,255,.05);
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .hint {
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+      margin-top:10px;
+    }
+    .warn {
+      color:var(--danger);
+      font-size:13px;
+      line-height:1.7;
+      margin-top:10px;
+    }
+
     @media (max-width: 820px){
-      .grid{ grid-template-columns: 1fr; }
+      .formGrid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
 
 <header>
   <div class="headInner">
@@ -245,6 +253,7 @@
   </div>
 </header>
 
+
 <main class="wrap">
   <section class="card">
     <div class="inner">
@@ -257,118 +266,138 @@
         <button id="btnEn" type="button" aria-pressed="false">ENG</button>
       </div>
 
+      <!-- KOR -->
       <div id="ko" class="copy">
-        <p>
-          TIKOONZ의 오디션은 경쟁보다 협업에 가깝습니다. 우리는 ‘누가 더 낫나’를 보기보다,
-          함께 작업할 때 무엇이 생기는지 봅니다.
-        </p>
-
         <p class="muted">
-          음악, 영상, 방송은 분리된 일이 아니라 연결된 언어입니다.
-          당신의 감각이 그 연결을 견딜 수 있다면, 시작할 이유는 충분합니다.
+          아래 폼으로 접수하면, 제출 내용은 저장되고 새 접수 시 <strong>info@akenm.com</strong>으로 알림이 오도록 구성할 수 있습니다.
         </p>
 
-        <div class="sectionTitle">Who We’re Looking For</div>
-        <ul class="bullet">
-          <li>자기 언어가 분명한 사람 (장르/형식 무관)</li>
-          <li>과정을 공유할 수 있는 사람 (피드백과 수정에 열려 있는 태도)</li>
-          <li>무대와 카메라 앞에서 ‘자기 자신’으로 서고 싶은 사람</li>
-        </ul>
+        <div class="sectionTitle">Submit</div>
 
-        <div class="sectionTitle">What to Send</div>
-        <div class="grid">
-          <div class="miniCard">
-            <div class="t">Basic</div>
-            <p class="d">이름/활동명, 연락처, SNS 또는 채널 링크</p>
-          </div>
-          <div class="miniCard">
-            <div class="t">Portfolio</div>
-            <p class="d">음원/데모 1~3곡 또는 퍼포먼스 영상 1~3개 (링크)</p>
-          </div>
-          <div class="miniCard">
-            <div class="t">Note</div>
-            <p class="d">지금 만들고 싶은 것, 그리고 함께 하고 싶은 이유 (짧게)</p>
-          </div>
-          <div class="miniCard">
-            <div class="t">Optional</div>
-            <p class="d">가능한 역할(보컬·랩·댄스·작곡·프로듀싱 등), 협업 경험</p>
-          </div>
+        <div class="panel">
+          <!-- IMPORTANT:
+               1) Formspree에서 새 폼을 만든 뒤 action URL을 교체하세요.
+               2) 그러면 제출 시 info@akenm.com으로 알림이 옵니다.
+          -->
+          <form class="auditionForm" method="POST" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
+            <input type="hidden" name="_subject" value="[AUDITION] New submission — TIKOONZ" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="formGrid">
+              <div class="field">
+                <label for="name">Name / Artist Name *</label>
+                <input id="name" name="name" type="text" placeholder="이름 / 활동명" required />
+              </div>
+
+              <div class="field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" placeholder="답장 받을 이메일" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone (Optional)</label>
+                <input id="phone" name="phone" type="text" placeholder="연락처(선택)" />
+              </div>
+
+              <div class="field">
+                <label for="instagram">Instagram / Social</label>
+                <input id="instagram" name="social" type="text" placeholder="인스타/틱톡 등 링크" />
+              </div>
+
+              <div class="field full">
+                <label for="links">Portfolio Links *</label>
+                <input id="links" name="portfolio_links" type="text" placeholder="YouTube / SoundCloud / Spotify / Drive 등 링크 (여러 개면 콤마 또는 줄바꿈)" required />
+              </div>
+
+              <div class="field full">
+                <label for="message">Note *</label>
+                <textarea id="message" name="note" placeholder="지금 만들고 싶은 것 / 함께 작업하고 싶은 이유 / 작업 가능한 역할 등" required></textarea>
+              </div>
+            </div>
+
+            <div class="ctaRow">
+              <button class="btn" type="submit">Submit</button>
+              <a class="btn ghost" href="./contact.html">Contact</a>
+            </div>
+
+            <div class="hint">
+              개인정보는 오디션 검토 목적 외로 사용하지 않습니다. 제출 후 수정이 필요하면 이메일로 연락 주세요.
+            </div>
+
+            <div class="warn">
+              현재는 폼 서비스 연동을 위해 <strong>Formspree action URL</strong>을 한 번만 교체하면 완성됩니다.
+            </div>
+          </form>
         </div>
-
-        <div class="sectionTitle">How It Works</div>
-        <ul class="bullet">
-          <li>서류/링크 검토 후, 필요한 경우 짧은 미팅을 진행합니다</li>
-          <li>테스트 세션(작업/촬영/리허설)로 협업 호흡을 확인할 수 있습니다</li>
-          <li>방향이 맞으면, 앨범·MV·방송 콘텐츠까지 함께 설계합니다</li>
-        </ul>
-
-        <div class="ctaRow">
-          <a class="btn" href="./contact.html">Contact</a>
-          <a class="btn ghost" href="./about.html">About TIKOONZ</a>
-        </div>
-
-        <p class="muted" style="margin-top:16px;">
-          접수 이메일/제출 폼은 Contact 페이지에 연결됩니다.
-        </p>
       </div>
 
+      <!-- ENG -->
       <div id="en" class="copy" style="display:none;">
-        <p>
-          TIKOONZ auditions are closer to collaboration than competition.
-          We look for what happens when we work together — not who looks better on paper.
-        </p>
-
         <p class="muted">
-          Music, visuals, and broadcasting are connected languages.
-          If your sensibility can hold that connection, that’s enough to begin.
+          Submit the form below. Submissions can be stored, and notifications can be sent to <strong>info@akenm.com</strong>.
         </p>
 
-        <div class="sectionTitle">Who We’re Looking For</div>
-        <ul class="bullet">
-          <li>A clear voice and identity (any genre / format)</li>
-          <li>Openness to process (feedback, revision, shared responsibility)</li>
-          <li>Someone who wants to be real on stage and on camera</li>
-        </ul>
+        <div class="sectionTitle">Submit</div>
 
-        <div class="sectionTitle">What to Send</div>
-        <div class="grid">
-          <div class="miniCard">
-            <div class="t">Basic</div>
-            <p class="d">Name/Artist name, contact, social or channel links</p>
-          </div>
-          <div class="miniCard">
-            <div class="t">Portfolio</div>
-            <p class="d">1–3 demos/tracks or 1–3 performance videos (links)</p>
-          </div>
-          <div class="miniCard">
-            <div class="t">Note</div>
-            <p class="d">What you want to create now, and why you want to collaborate (brief)</p>
-          </div>
-          <div class="miniCard">
-            <div class="t">Optional</div>
-            <p class="d">Roles/skills (vocal/rap/dance/compose/produce), collaboration experience</p>
-          </div>
+        <div class="panel">
+          <!-- IMPORTANT:
+               Create a form on Formspree and replace the action URL.
+          -->
+          <form class="auditionForm" method="POST" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
+            <input type="hidden" name="_subject" value="[AUDITION] New submission — TIKOONZ" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="formGrid">
+              <div class="field">
+                <label for="name2">Name / Artist Name *</label>
+                <input id="name2" name="name" type="text" placeholder="Name / Artist Name" required />
+              </div>
+
+              <div class="field">
+                <label for="email2">Email *</label>
+                <input id="email2" name="email" type="email" placeholder="Your email" required />
+              </div>
+
+              <div class="field">
+                <label for="phone2">Phone (Optional)</label>
+                <input id="phone2" name="phone" type="text" placeholder="Phone (optional)" />
+              </div>
+
+              <div class="field">
+                <label for="social2">Instagram / Social</label>
+                <input id="social2" name="social" type="text" placeholder="Social link" />
+              </div>
+
+              <div class="field full">
+                <label for="links2">Portfolio Links *</label>
+                <input id="links2" name="portfolio_links" type="text" placeholder="YouTube / SoundCloud / Spotify / Drive links" required />
+              </div>
+
+              <div class="field full">
+                <label for="note2">Note *</label>
+                <textarea id="note2" name="note" placeholder="What you want to create / why you want to collaborate / roles" required></textarea>
+              </div>
+            </div>
+
+            <div class="ctaRow">
+              <button class="btn" type="submit">Submit</button>
+              <a class="btn ghost" href="./contact.html">Contact</a>
+            </div>
+
+            <div class="hint">
+              We use your information only for audition review. If you need to update anything, contact us by email.
+            </div>
+
+            <div class="warn">
+              Replace the <strong>Formspree action URL</strong> once to activate submissions.
+            </div>
+          </form>
         </div>
-
-        <div class="sectionTitle">How It Works</div>
-        <ul class="bullet">
-          <li>We review your links and may invite you for a short meeting</li>
-          <li>A test session (work/shoot/rehearsal) can be used to check chemistry</li>
-          <li>If aligned, we co-design the path across album, MV, and media content</li>
-        </ul>
-
-        <div class="ctaRow">
-          <a class="btn" href="./contact.html">Contact</a>
-          <a class="btn ghost" href="./about.html">About TIKOONZ</a>
-        </div>
-
-        <p class="muted" style="margin-top:16px;">
-          Submission email/form will be provided on the Contact page.
-        </p>
       </div>
 
     </div>
   </section>
+
 
   <footer class="footer-links">
     <div>© 2025 TIKOONZ</div>
@@ -379,6 +408,7 @@
   </footer>
 
 </main>
+
 
 <script>
   const btnKo = document.getElementById('btnKo');
@@ -398,6 +428,7 @@
   btnKo.addEventListener('click', () => setLang('ko'));
   btnEn.addEventListener('click', () => setLang('en'));
 </script>
+
 
 </body>
 </html>
