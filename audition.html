@@ -8,7 +8,6 @@
 
   <link rel="stylesheet" href="./assets/style.css" />
   <style>
-
     :root{
       --max:1120px;
       --bg:#0b0b0f;
@@ -20,7 +19,6 @@
 
       --text:rgba(255,255,255,.94);
       --muted:rgba(255,255,255,.68);
-      --danger:rgba(255,120,120,.95);
     }
 
     body{ background:var(--bg); color:var(--text); }
@@ -171,35 +169,22 @@
       padding:14px;
     }
 
-    @media (max-width: 640px){
-      .inner{ padding:26px 18px 22px; }
-      h1{ font-size:22px; }
-      .copy p{ font-size:15px; }
-    }
-
-
     /* form */
-    form.auditionForm {
-      margin-top: 10px;
-    }
-    .formGrid {
+    form.auditionForm { margin-top: 10px; }
+    .formGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
-    .field {
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .field.full { grid-column: 1 / -1; }
-    label {
+    .field{ display:flex; flex-direction:column; gap:8px; }
+    .field.full{ grid-column: 1 / -1; }
+    label{
       color:var(--text2);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
     }
-    input, textarea {
+    input, textarea{
       width:100%;
       border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.03);
@@ -210,22 +195,13 @@
       line-height:1.6;
       outline:none;
     }
-    input:focus, textarea:focus {
+    input:focus, textarea:focus{
       border-color:rgba(255,255,255,.32);
       background:rgba(255,255,255,.05);
     }
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    .hint {
+    textarea{ min-height: 120px; resize: vertical; }
+    .hint{
       color:var(--muted);
-      font-size:13px;
-      line-height:1.7;
-      margin-top:10px;
-    }
-    .warn {
-      color:var(--danger);
       font-size:13px;
       line-height:1.7;
       margin-top:10px;
@@ -234,10 +210,14 @@
     @media (max-width: 820px){
       .formGrid{ grid-template-columns: 1fr; }
     }
+    @media (max-width: 640px){
+      .inner{ padding:26px 18px 22px; }
+      h1{ font-size:22px; }
+      .copy p{ font-size:15px; }
+    }
   </style>
 </head>
 <body>
-
 
 <header>
   <div class="headInner">
@@ -252,7 +232,6 @@
     </nav>
   </div>
 </header>
-
 
 <main class="wrap">
   <section class="card">
@@ -275,11 +254,10 @@
         <div class="sectionTitle">Submit</div>
 
         <div class="panel">
-          <!-- IMPORTANT:
-               1) Formspree에서 새 폼을 만든 뒤 action URL을 교체하세요.
-               2) 그러면 제출 시 info@akenm.com으로 알림이 옵니다.
-          -->
-          <form class="auditionForm" method="POST" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
+          <!-- ✅ 여기 한 줄만 바꾸면 됩니다.
+               Formspree에서 받은 URL이 https://formspree.io/f/abcdwxyz 라면
+               아래 __FORM_ID__ 자리에 abcdwxyz 를 넣으세요. -->
+          <form class="auditionForm" method="POST" action="https://formspree.io/f/maqyznbe">
             <input type="hidden" name="_subject" value="[AUDITION] New submission — TIKOONZ" />
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -323,10 +301,6 @@
             <div class="hint">
               개인정보는 오디션 검토 목적 외로 사용하지 않습니다. 제출 후 수정이 필요하면 이메일로 연락 주세요.
             </div>
-
-            <div class="warn">
-              현재는 폼 서비스 연동을 위해 <strong>Formspree action URL</strong>을 한 번만 교체하면 완성됩니다.
-            </div>
           </form>
         </div>
       </div>
@@ -340,10 +314,7 @@
         <div class="sectionTitle">Submit</div>
 
         <div class="panel">
-          <!-- IMPORTANT:
-               Create a form on Formspree and replace the action URL.
-          -->
-          <form class="auditionForm" method="POST" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
+          <form class="auditionForm" method="POST" action="https://formspree.io/f/maqyznbe">
             <input type="hidden" name="_subject" value="[AUDITION] New submission — TIKOONZ" />
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -387,17 +358,12 @@
             <div class="hint">
               We use your information only for audition review. If you need to update anything, contact us by email.
             </div>
-
-            <div class="warn">
-              Replace the <strong>Formspree action URL</strong> once to activate submissions.
-            </div>
           </form>
         </div>
       </div>
 
     </div>
   </section>
-
 
   <footer class="footer-links">
     <div>© 2025 TIKOONZ</div>
@@ -406,9 +372,7 @@
       <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
     </div>
   </footer>
-
 </main>
-
 
 <script>
   const btnKo = document.getElementById('btnKo');
@@ -428,7 +392,6 @@
   btnKo.addEventListener('click', () => setLang('ko'));
   btnEn.addEventListener('click', () => setLang('en'));
 </script>
-
 
 </body>
 </html>
