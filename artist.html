@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Artist — TIKOONZ</title>
   <meta name="description" content="TIKOONZ Artist — ICE UNICORN" />
-
   <link rel="stylesheet" href="./assets/style.css" />
-
   <style>
+
     :root{
       --max:1120px;
       --bg:#0b0b0f;
@@ -59,6 +58,7 @@
       background:rgba(255,255,255,.03);
     }
 
+    /* index와 동일한 spacing */
     .wrap{
       max-width:var(--max);
       margin:0 auto;
@@ -73,32 +73,10 @@
       box-shadow:0 18px 60px rgba(0,0,0,.35);
     }
 
+    /* 미세 조정: 본문 가독성(줄간격/자간/패딩)만 통일 */
     .inner{
-      padding:30px 26px 28px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      gap:22px;
-      align-items:start;
-    }
-
-    .logoBox{
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.02);
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .logoBox img{
-      width:100%;
-      max-width:260px;
-      height:auto;
-      display:block;
-      filter:contrast(1.02);
+      padding:32px 26px 30px;
+      max-width: 860px;
     }
 
     .kicker{
@@ -106,56 +84,54 @@
       font-size:12px;
       letter-spacing:.22em;
       text-transform:uppercase;
-      margin:0 0 12px;
+      margin:0 0 14px;
     }
 
     h1{
-      margin:0 0 12px;
+      margin:0 0 14px;
       font-size:24px;
-      line-height:1.25;
+      line-height:1.28;
       letter-spacing:.02em;
       font-weight:650;
-    }
-
-    .tagRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin:12px 0 18px;
-    }
-
-    .tag{
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--text2);
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.03);
-      padding:8px 10px;
-      border-radius:999px;
     }
 
     .copy p{
       margin:0 0 16px;
       font-size:16px;
-      line-height:1.85;
+      line-height:1.88;
       letter-spacing:.01em;
     }
     .copy p.muted{ color:var(--muted); }
 
-    .divider{
-      margin:18px 0 16px;
-      height:1px;
-      background:var(--line);
-      border:0;
-    }
-
     .sectionTitle{
-      margin:20px 0 10px;
+      margin:24px 0 10px;
       color:var(--text2);
       font-size:12px;
       letter-spacing:.22em;
       text-transform:uppercase;
+    }
+
+    .langToggle{
+      margin:14px 0 16px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .langToggle button{
+      appearance:none;
+      border:1px solid var(--line2);
+      background:rgba(255,255,255,.02);
+      color:var(--text2);
+      padding:8px 10px;
+      border-radius:12px;
+      font-size:13px;
+      letter-spacing:.06em;
+      cursor:pointer;
+    }
+    .langToggle button[aria-pressed="true"]{
+      color:var(--text);
+      border-color:rgba(255,255,255,.28);
+      background:rgba(255,255,255,.06);
     }
 
     .bullet{
@@ -180,27 +156,11 @@
       color:rgba(255,255,255,.42);
     }
 
-    .langToggle{
-      margin:14px 0 10px;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .langToggle button{
-      appearance:none;
-      border:1px solid var(--line2);
-      background:rgba(255,255,255,.02);
-      color:var(--text2);
-      padding:8px 10px;
-      border-radius:12px;
-      font-size:13px;
-      letter-spacing:.06em;
-      cursor:pointer;
-    }
-    .langToggle button[aria-pressed="true"]{
-      color:var(--text);
-      border-color:rgba(255,255,255,.28);
-      background:rgba(255,255,255,.06);
+    .divider{
+      margin:18px 0 16px;
+      height:1px;
+      background:var(--line);
+      border:0;
     }
 
     .ctaRow{
@@ -232,19 +192,89 @@
       background:rgba(255,255,255,.02);
     }
 
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-      .logoBox img{ max-width:220px; }
-    }
-
     @media (max-width: 640px){
-      .inner{ padding:24px 18px 22px; }
+      .inner{ padding:26px 18px 22px; }
       h1{ font-size:22px; }
       .copy p{ font-size:15px; }
     }
+
+
+    .grid {
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .logoBox {
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .logoBox img {
+      width:100%;
+      max-width:260px;
+      height:auto;
+      display:block;
+      filter:contrast(1.02);
+    }
+
+    .tagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:12px 0 18px;
+    }
+    .tag{
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--text2);
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.03);
+      padding:8px 10px;
+      border-radius:999px;
+    }
+
+    .table {
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .table th, .table td {
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size:14px;
+      line-height:1.65;
+      color:var(--muted);
+    }
+    .table th {
+      width:160px;
+      color:var(--text2);
+      font-weight:500;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .table tr:last-child th, .table tr:last-child td {
+      border-bottom:0;
+    }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .logoBox img{ max-width:220px; }
+      .inner{ max-width: 100%; }
+    }
   </style>
 </head>
-
 <body>
 
 <header>
@@ -287,16 +317,14 @@
 
           <div id="ko" class="copy">
             <p>
-              ICE UNICORN은 TIKOONZ의 첫 번째 아티스트 그룹입니다.<br>
+              ICE UNICORN은 TIKOONZ의 첫 번째 아티스트 그룹입니다.
               우리는 ‘완성된 팀’을 소개하기보다, 함께 만들어 갈 장면을 먼저 꺼냅니다.
             </p>
 
             <p class="muted">
-              EDM을 중심으로 한 DJ 그룹으로서, 무대의 에너지와 사운드의 밀도를 가장 중요하게 생각합니다.<br>
+              EDM을 중심으로 한 DJ 그룹으로서, 무대의 에너지와 사운드의 밀도를 가장 중요하게 생각합니다.
               클럽과 페스티벌, 라이브 콘텐츠까지 — 음악이 도달하는 방식 전체를 설계합니다.
             </p>
-
-            <hr class="divider">
 
             <div class="sectionTitle">In Progress</div>
             <ul class="bullet">
@@ -305,24 +333,31 @@
               <li>라이브 셋과 쇼 구성(공연/방송/콘텐츠)</li>
             </ul>
 
+            <div class="sectionTitle">Debut Release (Placeholder)</div>
+            <table class="table" role="table" aria-label="Debut release placeholder">
+              <tr><th>Title</th><td>ICE UNICORN — Debut EP (TBA)</td></tr>
+              <tr><th>Release</th><td>TBA</td></tr>
+              <tr><th>Tracks</th><td>Tracklist will be revealed.</td></tr>
+              <tr><th>Visual</th><td>Music video & key visuals in development.</td></tr>
+            </table>
+
             <div class="ctaRow">
               <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">Watch on tikoonz.tv</a>
               <a class="btn ghost" href="https://tikoonz.shop" target="_blank" rel="noopener">Explore tikoonz.shop</a>
+              <a class="btn" href="./contact.html">Booking / Contact</a>
             </div>
           </div>
 
           <div id="en" class="copy" style="display:none;">
             <p>
-              ICE UNICORN is TIKOONZ’s first artist group.<br>
+              ICE UNICORN is TIKOONZ’s first artist group.
               We’re not presenting a finished team — we’re opening the first scene we’ll build together.
             </p>
 
             <p class="muted">
-              An EDM-focused DJ group, driven by energy on stage and density in sound.<br>
+              An EDM-focused DJ group, driven by energy on stage and density in sound.
               From clubs and festivals to live media, we design the full path of how music arrives.
             </p>
-
-            <hr class="divider">
 
             <div class="sectionTitle">In Progress</div>
             <ul class="bullet">
@@ -331,9 +366,18 @@
               <li>Live set and show design (stage / broadcast / content)</li>
             </ul>
 
+            <div class="sectionTitle">Debut Release (Placeholder)</div>
+            <table class="table" role="table" aria-label="Debut release placeholder">
+              <tr><th>Title</th><td>ICE UNICORN — Debut EP (TBA)</td></tr>
+              <tr><th>Release</th><td>TBA</td></tr>
+              <tr><th>Tracks</th><td>Tracklist will be revealed.</td></tr>
+              <tr><th>Visual</th><td>Music video & key visuals in development.</td></tr>
+            </table>
+
             <div class="ctaRow">
               <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">Watch on tikoonz.tv</a>
               <a class="btn ghost" href="https://tikoonz.shop" target="_blank" rel="noopener">Explore tikoonz.shop</a>
+              <a class="btn" href="./contact.html">Booking / Contact</a>
             </div>
           </div>
 
@@ -350,6 +394,7 @@
       <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
     </div>
   </footer>
+
 </main>
 
 <script>

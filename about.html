@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About — TIKOONZ</title>
   <meta name="description" content="About TIKOONZ" />
-
   <link rel="stylesheet" href="./assets/style.css" />
-
   <style>
+
     :root{
       --max:1120px;
       --bg:#0b0b0f;
@@ -74,9 +73,10 @@
       box-shadow:0 18px 60px rgba(0,0,0,.35);
     }
 
-    .aboutInner{
-      max-width:780px;
-      padding:34px 26px 32px;
+    /* 미세 조정: 본문 가독성(줄간격/자간/패딩)만 통일 */
+    .inner{
+      padding:32px 26px 30px;
+      max-width: 860px;
     }
 
     .kicker{
@@ -88,15 +88,31 @@
     }
 
     h1{
-      margin:0 0 18px;
-      font-size:22px;
-      line-height:1.38;
+      margin:0 0 14px;
+      font-size:24px;
+      line-height:1.28;
       letter-spacing:.02em;
-      font-weight:600;
+      font-weight:650;
+    }
+
+    .copy p{
+      margin:0 0 16px;
+      font-size:16px;
+      line-height:1.88;
+      letter-spacing:.01em;
+    }
+    .copy p.muted{ color:var(--muted); }
+
+    .sectionTitle{
+      margin:24px 0 10px;
+      color:var(--text2);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
     }
 
     .langToggle{
-      margin:14px 0 22px;
+      margin:14px 0 16px;
       display:flex;
       gap:10px;
       align-items:center;
@@ -118,24 +134,8 @@
       background:rgba(255,255,255,.06);
     }
 
-    .copy p{
-      margin:0 0 18px;
-      font-size:16px;
-      line-height:1.85;
-      letter-spacing:.01em;
-    }
-    .copy p.muted{ color:var(--muted); }
-
-    .sectionTitle{
-      margin:28px 0 10px;
-      color:var(--text2);
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-    }
-
     .bullet{
-      margin:12px 0 0;
+      margin:10px 0 0;
       padding:0;
       list-style:none;
       display:grid;
@@ -156,21 +156,50 @@
       color:rgba(255,255,255,.42);
     }
 
-    /* desktop 줄바꿈 / mobile 자연스러운 흐름 */
-    .br-d{ display:inline; }
-    .br-m{ display:none; }
+    .divider{
+      margin:18px 0 16px;
+      height:1px;
+      background:var(--line);
+      border:0;
+    }
+
+    .ctaRow{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:.04em;
+    }
+    .btn:hover{
+      border-color:rgba(255,255,255,.32);
+      background:rgba(255,255,255,.06);
+    }
+    .btn.ghost{
+      color:var(--text2);
+      border-color:var(--line2);
+      background:rgba(255,255,255,.02);
+    }
 
     @media (max-width: 640px){
-      .aboutInner{ padding:26px 18px 22px; }
-      h1{ font-size:20px; }
+      .inner{ padding:26px 18px 22px; }
+      h1{ font-size:22px; }
       .copy p{ font-size:15px; }
-
-      .br-d{ display:none; }
-      .br-m{ display:inline; }
     }
+
   </style>
 </head>
-
 <body>
 
 <header>
@@ -189,44 +218,35 @@
 
 <main class="wrap">
   <section class="card">
-    <div class="aboutInner">
+    <div class="inner">
 
       <div class="kicker">About</div>
-
-      <h1>
-        우리는 ‘함께’라는 방식으로 작업합니다.<span class="br-d"><br></span><span class="br-m"> </span>
-        역할이 겹치는 지점에서 결과가 태어납니다.
-      </h1>
+      <h1>우리는 ‘함께’라는 방식으로 작업합니다.</h1>
 
       <div class="langToggle" role="group" aria-label="Language toggle">
         <button id="btnKo" type="button" aria-pressed="true">KOR</button>
         <button id="btnEn" type="button" aria-pressed="false">ENG</button>
       </div>
 
-      <!-- KOREAN -->
       <div id="ko" class="copy">
         <p>
-          TIKOONZ는 누군가를 위에서 이끄는 대신,<span class="br-d"><br></span><span class="br-m"> </span>
-          같은 방향을 바라보는 사람들과 나란히 걷습니다.
+          TIKOONZ는 누군가를 위에서 이끄는 대신, 같은 방향을 바라보는 사람들과 나란히 걷습니다.
         </p>
 
         <p class="muted">
-          음악은 혼자 완성되지 않습니다.<span class="br-d"><br></span><span class="br-m"> </span>
-          무대도, 카메라 앞의 순간도 그렇습니다.<span class="br-d"><br></span><span class="br-m"> </span>
+          음악은 혼자 완성되지 않습니다. 무대도, 카메라 앞의 순간도 그렇습니다.
           서로의 감각과 책임이 맞닿을 때, 다음 장면이 열립니다.
         </p>
 
         <div class="sectionTitle">tikoonz.shop</div>
         <p>
-          tikoonz.shop은 우리가 함께 만든 작업이<span class="br-d"><br></span><span class="br-m"> </span>
-          물성과 경험으로 이어지는 장소입니다.<span class="br-d"><br></span><span class="br-m"> </span>
+          tikoonz.shop은 우리가 함께 만든 작업이 물성과 경험으로 이어지는 장소입니다.
           여기서의 판매는 목적이 아니라, 관계가 남긴 흔적입니다.
         </p>
 
         <div class="sectionTitle">tikoonz.tv</div>
         <p>
-          tikoonz.tv는 협업의 시간을 기록합니다.<span class="br-d"><br></span><span class="br-m"> </span>
-          준비, 반복, 질문 — 그 과정 자체가 콘텐츠가 됩니다.<span class="br-d"><br></span><span class="br-m"> </span>
+          tikoonz.tv는 협업의 시간을 기록합니다. 준비, 반복, 질문 — 그 과정 자체가 콘텐츠가 됩니다.
           우리는 아티스트가 자기 목소리로 말할 수 있도록 옆에 섭니다.
         </p>
 
@@ -239,30 +259,25 @@
         </ul>
       </div>
 
-      <!-- ENGLISH -->
       <div id="en" class="copy" style="display:none;">
         <p>
-          TIKOONZ doesn’t lead from above.<span class="br-d"><br></span><span class="br-m"> </span>
-          We walk alongside people who share a direction.
+          TIKOONZ doesn’t lead from above. We walk alongside people who share a direction.
         </p>
 
         <p class="muted">
-          Music is never completed alone.<span class="br-d"><br></span><span class="br-m"> </span>
-          Neither is a stage — nor a moment in front of a camera.<span class="br-d"><br></span><span class="br-m"> </span>
-          When sensibility and responsibility meet, the next scene opens.
+          Music is never completed alone — neither is a stage, nor a moment in front of a camera.
+          New outcomes emerge where sensibility and responsibility meet.
         </p>
 
         <div class="sectionTitle">tikoonz.shop</div>
         <p>
-          tikoonz.shop is where our shared work becomes tangible —<span class="br-d"><br></span><span class="br-m"> </span>
-          objects and experiences that carry its texture.<span class="br-d"><br></span><span class="br-m"> </span>
+          tikoonz.shop is where our shared work becomes tangible — objects and experiences that carry its texture.
           Sales here are not the goal; they are traces of connection.
         </p>
 
         <div class="sectionTitle">tikoonz.tv</div>
         <p>
-          tikoonz.tv documents collaboration in motion.<span class="br-d"><br></span><span class="br-m"> </span>
-          Preparation, repetition, and questions are allowed to become content.<span class="br-d"><br></span><span class="br-m"> </span>
+          tikoonz.tv documents collaboration in motion. Preparation, repetition, and questions are allowed to become content.
           We stand beside artists so they can speak in their own voice.
         </p>
 
@@ -285,6 +300,7 @@
       <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
     </div>
   </footer>
+
 </main>
 
 <script>
