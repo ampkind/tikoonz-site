@@ -234,3 +234,10 @@ form{margin-top:8px}
 .danger{
   border-color: rgba(255,92,122,.55) !important;
 }
+
+
+.logo{
+  height:28px;
+  width:auto;
+  display:block;
+}

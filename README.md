@@ -27,3 +27,9 @@ Update `index.html`:
 - Replace `REPLACE_WITH_YOUTUBE_ID` with your actual YouTube video id (twice in the iframe URL).
 
 - `artist.html`: Artist section (currently: ICE UNICORN)
+
+## Logo
+Place your logo at `assets/logo.png` (included).
+
+## GitHub Pages
+This repo is configured with **relative paths** (`./assets/...`) so it works on GitHub Pages project sites.
