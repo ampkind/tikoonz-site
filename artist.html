@@ -3,92 +3,375 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ARTIST — TIKOONZ</title>
-  <meta name="description" content="Artists — TIKOONZ" />
+  <title>Artist — TIKOONZ</title>
+  <meta name="description" content="TIKOONZ Artist — ICE UNICORN" />
+
   <link rel="stylesheet" href="./assets/style.css" />
+
+  <style>
+    :root{
+      --max:1120px;
+      --bg:#0b0b0f;
+      --card:#141420;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.16);
+      --text2:rgba(255,255,255,.78);
+      --radius:16px;
+
+      --text:rgba(255,255,255,.94);
+      --muted:rgba(255,255,255,.68);
+    }
+
+    body{ background:var(--bg); color:var(--text); }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(11,11,15,.72);
+      border-bottom:1px solid var(--line);
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .headInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand img{ height:28px; display:block; }
+
+    nav.primaryNav{
+      display:flex;
+      gap:16px;
+      font-size:14px;
+      color:var(--text2);
+    }
+    nav.primaryNav a{
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+    }
+    nav.primaryNav a:hover{
+      border-color:var(--line2);
+      background:rgba(255,255,255,.03);
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:44px 24px 24px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+    }
+
+    .inner{
+      padding:30px 26px 28px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .logoBox{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .logoBox img{
+      width:100%;
+      max-width:260px;
+      height:auto;
+      display:block;
+      filter:contrast(1.02);
+    }
+
+    .kicker{
+      color:var(--text2);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin:0 0 12px;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.25;
+      letter-spacing:.02em;
+      font-weight:650;
+    }
+
+    .tagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:12px 0 18px;
+    }
+
+    .tag{
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--text2);
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.03);
+      padding:8px 10px;
+      border-radius:999px;
+    }
+
+    .copy p{
+      margin:0 0 16px;
+      font-size:16px;
+      line-height:1.85;
+      letter-spacing:.01em;
+    }
+    .copy p.muted{ color:var(--muted); }
+
+    .divider{
+      margin:18px 0 16px;
+      height:1px;
+      background:var(--line);
+      border:0;
+    }
+
+    .sectionTitle{
+      margin:20px 0 10px;
+      color:var(--text2);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    .bullet{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+    }
+    .bullet li{
+      padding-left:14px;
+      position:relative;
+    }
+    .bullet li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      color:rgba(255,255,255,.42);
+    }
+
+    .langToggle{
+      margin:14px 0 10px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .langToggle button{
+      appearance:none;
+      border:1px solid var(--line2);
+      background:rgba(255,255,255,.02);
+      color:var(--text2);
+      padding:8px 10px;
+      border-radius:12px;
+      font-size:13px;
+      letter-spacing:.06em;
+      cursor:pointer;
+    }
+    .langToggle button[aria-pressed="true"]{
+      color:var(--text);
+      border-color:rgba(255,255,255,.28);
+      background:rgba(255,255,255,.06);
+    }
+
+    .ctaRow{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:.04em;
+    }
+    .btn:hover{
+      border-color:rgba(255,255,255,.32);
+      background:rgba(255,255,255,.06);
+    }
+    .btn.ghost{
+      color:var(--text2);
+      border-color:var(--line2);
+      background:rgba(255,255,255,.02);
+    }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .logoBox img{ max-width:220px; }
+    }
+
+    @media (max-width: 640px){
+      .inner{ padding:24px 18px 22px; }
+      h1{ font-size:22px; }
+      .copy p{ font-size:15px; }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="topbar">
-      <a class="brand" href="./index.html>TIKOONZ</a>
-      <div class="lang-toggle" data-lang-toggle>
-        <button type="button" data-lang="ko" aria-pressed="true">KR</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-    </div>
 
-    <h1 class="page-title">ARTIST</h1>
+<header>
+  <div class="headInner">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="TIKOONZ">
+    </a>
+    <nav class="primaryNav">
+      <a href="./about.html">About</a>
+      <a href="./artist.html">Artist</a>
+      <a href="./audition.html">Audition</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
-    <p class="lead" data-i18n="artist_lead"></p>
+<main class="wrap">
+  <section class="card">
+    <div class="inner">
 
-    <div class="card" style="margin-bottom:14px;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;">
-        <div>
-          <div class="badge" style="margin-bottom:10px;" data-i18n="artist_badge"></div>
-          <div style="font-size:22px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;">ICE UNICORN</div>
-          <p class="lead" style="margin-top:10px;margin-bottom:0;" data-i18n="iceunicorn_desc"></p>
+      <div class="grid">
+        <div class="logoBox">
+          <img src="./assets/iceunicorn.png" alt="ICE UNICORN logo">
         </div>
-        <div class="badge" data-i18n="managed_by"></div>
-      </div>
 
-      <div style="margin-top:16px;border-top:1px solid rgba(242,242,242,.12);padding-top:14px;">
-        <div class="grid">
-          <div class="field">
-            <label data-i18n="members"></label>
-            <div class="hint" data-i18n="members_hint"></div>
+        <div>
+          <div class="kicker">First Artist</div>
+          <h1>ICE UNICORN</h1>
+
+          <div class="tagRow">
+            <span class="tag">EDM</span>
+            <span class="tag">DJ Group</span>
+            <span class="tag">TIKOONZ</span>
           </div>
-          <div class="field">
-            <label data-i18n="links"></label>
-            <div class="hint" data-i18n="links_hint"></div>
-            <div class="nav" style="padding:10px 0 0;">
-              <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
-              <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+
+          <div class="langToggle" role="group" aria-label="Language toggle">
+            <button id="btnKo" type="button" aria-pressed="true">KOR</button>
+            <button id="btnEn" type="button" aria-pressed="false">ENG</button>
+          </div>
+
+          <!-- KOREAN -->
+          <div id="ko" class="copy">
+            <p>
+              ICE UNICORN은 TIKOONZ의 첫 번째 아티스트 그룹입니다.<br>
+              우리는 ‘완성된 팀’을 소개하기보다, 함께 만들어 갈 장면을 먼저 꺼냅니다.
+            </p>
+
+            <p class="muted">
+              EDM을 중심으로 한 DJ 그룹으로서, 무대의 에너지와 사운드의 밀도를 가장 중요하게 생각합니다.<br>
+              클럽과 페스티벌, 라이브 콘텐츠까지 — 음악이 도달하는 방식 전체를 설계합니다.
+            </p>
+
+            <hr class="divider">
+
+            <div class="sectionTitle">In Progress</div>
+            <ul class="bullet">
+              <li>데뷔 앨범 제작 및 프로덕션 준비</li>
+              <li>뮤직비디오/비주얼 콘텐츠 개발</li>
+              <li>라이브 셋과 쇼 구성(공연/방송/콘텐츠)</li>
+            </ul>
+
+            <div class="ctaRow">
+              <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">Watch on tikoonz.tv</a>
+              <a class="btn ghost" href="https://tikoonz.shop" target="_blank" rel="noopener">Explore tikoonz.shop</a>
             </div>
           </div>
+
+          <!-- ENGLISH -->
+          <div id="en" class="copy" style="display:none;">
+            <p>
+              ICE UNICORN is TIKOONZ’s first artist group.<br>
+              We’re not presenting a finished team — we’re opening the first scene we’ll build together.
+            </p>
+
+            <p class="muted">
+              An EDM-focused DJ group, driven by energy on stage and density in sound.<br>
+              From clubs and festivals to live media, we design the full path of how music arrives.
+            </p>
+
+            <hr class="divider">
+
+            <div class="sectionTitle">In Progress</div>
+            <ul class="bullet">
+              <li>Debut album production and release preparation</li>
+              <li>Music video & visual content development</li>
+              <li>Live set and show design (stage / broadcast / content)</li>
+            </ul>
+
+            <div class="ctaRow">
+              <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">Watch on tikoonz.tv</a>
+              <a class="btn ghost" href="https://tikoonz.shop" target="_blank" rel="noopener">Explore tikoonz.shop</a>
+            </div>
+          </div>
+
         </div>
       </div>
+
     </div>
+  </section>
 
-    <div class="nav" style="padding-left:0">
-      <a href="./about.html>ABOUT</a>
-      <a href="./audition.html>AUDITION</a>
-      <a href="./contact.html>CONTACT</a>
+  <footer class="footer-links">
+    <div>© 2025 TIKOONZ</div>
+    <div class="split">
+      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+      <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
     </div>
+  </footer>
+</main>
 
-    <footer class="footer-links">
-      <div class="split">
-        <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
-        <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
-      </div>
-      <a href="./index.html>HOME</a>
-    </footer>
-  </div>
+<script>
+  const btnKo = document.getElementById('btnKo');
+  const btnEn = document.getElementById('btnEn');
+  const ko = document.getElementById('ko');
+  const en = document.getElementById('en');
 
-  <script>
-    window.__i18n = {
-      ko: {
-        artist_lead: "TIKOONZ와 함께하는 아티스트를 소개합니다.",
-        artist_badge: "ARTIST GROUP",
-        iceunicorn_desc: "ICE UNICORN은 TIKOONZ가 함께하는 아티스트 그룹입니다. 무대와 퍼포먼스를 중심으로 활동하며, TIKOONZ의 비주얼과 스타일링 철학을 공유합니다.",
-        managed_by: "WITH TIKOONZ",
-        members: "MEMBERS",
-        members_hint: "멤버/프로필 정보는 순차적으로 업데이트됩니다.",
-        links: "OFFICIAL",
-        links_hint: "영상과 무드는 tikoonz.tv에서 확인하세요."
-      },
-      en: {
-        artist_lead: "Meet the artists collaborating with TIKOONZ.",
-        artist_badge: "ARTIST GROUP",
-        iceunicorn_desc: "ICE UNICORN is an artist group collaborating with TIKOONZ—built around stage presence, performance, and a shared visual language.",
-        managed_by: "WITH TIKOONZ",
-        members: "MEMBERS",
-        members_hint: "Member profiles will be updated.",
-        links: "OFFICIAL",
-        links_hint: "For video and mood, visit tikoonz.tv."
-      }
-    };
-  </script>
-  <script src="./assets/config.js"></script>
-  <script src="./assets/site.js"></script>
+  function setLang(lang){
+    const isKo = lang === 'ko';
+    ko.style.display = isKo ? '' : 'none';
+    en.style.display = isKo ? 'none' : '';
+    btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
+    btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
+    document.documentElement.lang = isKo ? 'ko' : 'en';
+  }
+
+  btnKo.addEventListener('click', () => setLang('ko'));
+  btnEn.addEventListener('click', () => setLang('en'));
+</script>
+
 </body>
 </html>
