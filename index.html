@@ -8,38 +8,44 @@
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand"><img src="./assets/logo.png" alt="TIKOONZ" class="logo"></div>
-      <div class="lang-toggle" data-lang-toggle id="langToggleIndex">
-        <button type="button" data-lang="ko" aria-pressed="true">KR</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
+  <!-- Fixed top navigation (no KR/EN on index) -->
+  <header class="header" aria-label="Header navigation">
+    <div class="header-inner">
+      <a class="brand" href="./index.html" aria-label="TIKOONZ home">
+        <img src="./assets/logo.png" alt="TIKOONZ" class="logo">
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="./about.html">ABOUT</a>
+        <a href="./artist.html">ARTIST</a>
+        <a href="./audition.html">AUDITION</a>
+        <a href="./contact.html">CONTACT</a>
+      </nav>
     </div>
+  </header>
 
+  <main class="container">
     <section class="hero" aria-label="Hero video">
       <div class="video">
-        <!-- ✅ Replace the YouTube ID in BOTH places below -->
+        <!-- Best-effort: autoplay with sound may be blocked by browsers.
+             We try unmuted first; if blocked, the SOUND ON button lets the user enable audio with a click. -->
         <iframe
-          src="https://www.youtube.com/embed/REPLACE_WITH_YOUTUBE_ID?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&loop=1&playlist=REPLACE_WITH_YOUTUBE_ID"
+          id="heroVideo"
+          src="https://www.youtube.com/embed/n4cj1gDTuVA?autoplay=1&mute=0&controls=0&rel=0&playsinline=1&loop=1&playlist=n4cj1gDTuVA"
           title="TIKOONZ video"
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
+
+        <button class="sound-toggle" id="soundToggle" type="button" aria-label="Enable sound">
+          SOUND ON
+        </button>
       </div>
+
       <div class="hero-caption">
         <div class="headline">2025 SBS 가요대전 헤드라이너 무대와 함께한 TIKOONZ</div>
-        <span class="badge" style="display:none" id="indexLangHint">KR | EN</span>
       </div>
     </section>
-
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="./about.html>ABOUT</a>
-            <a href="./artist.html>ARTIST</a>
-<a href="./audition.html>AUDITION</a>
-      <a href="./contact.html>CONTACT</a>
-    </nav>
 
     <footer class="footer-links" aria-label="Footer links">
       <div>© <span id="y"></span> TIKOONZ</div>
@@ -48,19 +54,37 @@
         <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
       </div>
     </footer>
-  </div>
+  </main>
 
   <script src="./assets/config.js"></script>
   <script src="./assets/site.js"></script>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Optional: hide index language toggle if desired
-    const cfg = window.TIKOONZ_CONFIG || {};
-    if (cfg.HIDE_LANG_TOGGLE_ON_INDEX) {
-      const el = document.getElementById("langToggleIndex");
-      if (el) el.style.display = "none";
+    // Best-effort audio behavior:
+    // - Many browsers block autoplay with sound.
+    // - Provide a button that re-loads the iframe muted=0 after a user gesture.
+    const btn = document.getElementById("soundToggle");
+    const iframe = document.getElementById("heroVideo");
+    const base = "https://www.youtube.com/embed/n4cj1gDTuVA?autoplay=1&controls=0&rel=0&playsinline=1&loop=1&playlist=n4cj1gDTuVA";
+
+    function enableSound() {
+      // reload with sound
+      iframe.src = base + "&mute=0";
+      btn.style.display = "none";
     }
+
+    // If autoplay with sound is blocked, the user can click the button.
+    btn.addEventListener("click", enableSound);
+
+    // Also enable sound on the first click anywhere (optional, still user-initiated).
+    let armed = true;
+    window.addEventListener("pointerdown", () => {
+      if (!armed) return;
+      armed = false;
+      // Do not force; only hide button if user already clicked it.
+      // Keep button visible unless the user clicks it explicitly.
+    }, { once: true });
   </script>
 </body>
 </html>
