@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Audition — About TIKOONZ</title>
+  <meta name="description" content="Audition — About TIKOONZ" />
+
+  <link rel="stylesheet" href="./assets/style.css" />
+
+  <style>
+    :root{
+      --max:1120px;
+      --bg:#0b0b0f;
+      --card:#141420;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.16);
+      --text2:rgba(255,255,255,.78);
+      --radius:16px;
+
+      --text:rgba(255,255,255,.94);
+      --muted:rgba(255,255,255,.68);
+    }
+
+    body{ background:var(--bg); color:var(--text); }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(11,11,15,.72);
+      border-bottom:1px solid var(--line);
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .headInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand img{ height:28px; display:block; }
+
+    nav.primaryNav{
+      display:flex;
+      gap:16px;
+      font-size:14px;
+      color:var(--text2);
+    }
+    nav.primaryNav a{
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+    }
+    nav.primaryNav a:hover{
+      border-color:var(--line2);
+      background:rgba(255,255,255,.03);
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:44px 24px 24px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+    }
+
+    .inner{
+      max-width:760px;
+      padding:34px 26px 30px;
+    }
+
+    .kicker{
+      color:var(--text2);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin:0 0 14px;
+    }
+
+    h1{
+      margin:0 0 18px;
+      font-size:22px;
+      line-height:1.35;
+      letter-spacing:.02em;
+      font-weight:600;
+    }
+
+    .copy p{
+      margin:0 0 18px;
+      font-size:16px;
+      line-height:1.85;
+      letter-spacing:.01em;
+    }
+    .copy p.muted{ color:var(--muted); }
+
+    .cta{
+      margin-top:22px;
+      padding:14px 14px;
+      border:1px solid var(--line2);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      color:var(--text2);
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .cta a{
+      color:var(--text);
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.22);
+    }
+    .cta a:hover{
+      border-bottom-color:rgba(255,255,255,.40);
+    }
+
+    .br-d{ display:inline; }
+    .br-m{ display:none; }
+
+    @media (max-width: 640px){
+      .inner{ padding:26px 18px 22px; }
+      h1{ font-size:20px; }
+      .copy p{ font-size:15px; }
+      .br-d{ display:none; }
+      .br-m{ display:inline; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="headInner">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="TIKOONZ">
+    </a>
+    <nav class="primaryNav">
+      <a href="./about.html">About</a>
+      <a href="./artist.html">Artist</a>
+      <a href="./audition.html">Audition</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="inner">
+
+      <div class="kicker">Audition</div>
+      <h1>
+        혼자서 완성하려 애쓰지 않아도 됩니다.<span class="br-d"><br></span><span class="br-m"> </span>
+        우리는 ‘함께’라는 방식으로 작업합니다.
+      </h1>
+
+      <div class="copy">
+        <p>
+          TIKOONZ는 누군가를 평가하고 정답을 주는 곳이 아니라,<span class="br-d"><br></span><span class="br-m"> </span>
+          당신의 언어를 더 선명하게 만드는 협업을 지향합니다.
+        </p>
+
+        <p class="muted">
+          음악을 만들고, 무대를 준비하고, 카메라 앞에 서는 일까지 —<span class="br-d"><br></span><span class="br-m"> </span>
+          그 과정의 책임을 함께 나눌 수 있을 때,<span class="br-d"><br></span><span class="br-m"> </span>
+          성장은 자연스럽게 따라옵니다.
+        </p>
+
+        <p>
+          앨범 제작과 프로듀싱, 뮤직비디오/비주얼 콘텐츠 제작,<span class="br-d"><br></span><span class="br-m"> </span>
+          방송·미디어 콘텐츠까지.<span class="br-d"><br></span><span class="br-m"> </span>
+          우리는 결과보다 과정의 밀도를 먼저 봅니다.
+        </p>
+
+        <div class="cta">
+          준비가 완벽할 필요는 없습니다.<br>
+          다만, 함께 작업할 의지가 있다면 충분합니다.<br><br>
+          <a href="./audition.html">Go to Audition</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer-links">
+    <div>© 2025 TIKOONZ</div>
+    <div class="split">
+      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+      <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>
