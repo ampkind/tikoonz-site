@@ -5,48 +5,159 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TIKOONZ</title>
   <meta name="description" content="TIKOONZ" />
+
+  <!-- Keep your existing global stylesheet -->
   <link rel="stylesheet" href="./assets/style.css" />
+
+  <!-- Index-only polish (matches the tikoonz.tv about-page header style) -->
+  <style>
+    :root{
+      --max:1120px;
+      --bg:#0b0b0f;
+      --card:#141420;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.16);
+      --text2:rgba(255,255,255,.78);
+      --radius:16px;
+    }
+
+    body{
+      background:var(--bg);
+    }
+
+    /* Header (sticky + glass) */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      background:rgba(11,11,15,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .headInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand img{ height:28px; display:block; }
+
+    nav.primaryNav{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      font-size:14px;
+      color:var(--text2);
+    }
+    nav.primaryNav a{
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+      background:transparent;
+    }
+    nav.primaryNav a:hover{
+      border-color:var(--line2);
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Main wrapper */
+    .wrap{ max-width:var(--max); margin:0 auto; padding:24px; }
+
+    /* Hero card + 16:9 ratio like tikoonz.tv */
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    .ratio{
+      position:relative;
+      width:100%;
+      padding-top:56.25%; /* 16:9 */
+      background:#000;
+    }
+    iframe.video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .heroCaption{
+      padding:18px 22px;
+      border-top:1px solid var(--line);
+      color:var(--text2);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    /* SOUND button (best effort; autoplay with sound may be blocked) */
+    .soundToggle{
+      position:absolute;
+      right:16px;
+      bottom:16px;
+      z-index:10;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.22);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+    .soundToggle:hover{ background:rgba(0,0,0,.70); }
+  </style>
 </head>
+
 <body>
-  <!-- Fixed top navigation (no KR/EN on index) -->
-  <header class="header" aria-label="Header navigation">
-    <div class="header-inner">
-      <a class="brand" href="./index.html" aria-label="TIKOONZ home">
-        <img src="./assets/logo.png" alt="TIKOONZ" class="logo">
+  <!-- Top navigation (index has NO KR/EN) -->
+  <header>
+    <div class="headInner">
+      <a class="brand" href="./index.html" aria-label="TIKOONZ Home">
+        <img src="./assets/logo.png" alt="TIKOONZ" />
       </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="./about.html">ABOUT</a>
-        <a href="./artist.html">ARTIST</a>
-        <a href="./audition.html">AUDITION</a>
-        <a href="./contact.html">CONTACT</a>
+
+      <nav class="primaryNav" aria-label="Primary">
+        <a href="./about.html">About</a>
+        <a href="./artist.html">Artist</a>
+        <a href="./audition.html">Audition</a>
+        <a href="./contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero" aria-label="Hero video">
-      <div class="video">
-        <!-- Best-effort: autoplay with sound may be blocked by browsers.
-             We try unmuted first; if blocked, the SOUND ON button lets the user enable audio with a click. -->
+  <main class="wrap">
+    <section class="card" aria-label="Hero video">
+      <div class="ratio">
+        <!-- Best effort:
+             - We attempt autoplay with sound (mute=0).
+             - Browsers may block it; SOUND ON button reloads the embed after a user click. -->
         <iframe
           id="heroVideo"
+          class="video"
           src="https://www.youtube.com/embed/n4cj1gDTuVA?autoplay=1&mute=0&controls=0&rel=0&playsinline=1&loop=1&playlist=n4cj1gDTuVA"
           title="TIKOONZ video"
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+          allowfullscreen></iframe>
 
-        <button class="sound-toggle" id="soundToggle" type="button" aria-label="Enable sound">
+        <button class="soundToggle" id="soundToggle" type="button" aria-label="Enable sound">
           SOUND ON
         </button>
       </div>
 
-      <div class="hero-caption">
-        <div class="headline">2025 SBS 가요대전 헤드라이너 무대와 함께한 TIKOONZ</div>
-      </div>
+      <div class="heroCaption">2025 SBS 가요대전 헤드라이너 무대와 함께한 TIKOONZ</div>
     </section>
 
+    <!-- Keep your existing footer links style from the global CSS -->
     <footer class="footer-links" aria-label="Footer links">
       <div>© <span id="y"></span> TIKOONZ</div>
       <div class="split">
@@ -56,35 +167,18 @@
     </footer>
   </main>
 
-  <script src="./assets/config.js"></script>
-  <script src="./assets/site.js"></script>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Best-effort audio behavior:
-    // - Many browsers block autoplay with sound.
-    // - Provide a button that re-loads the iframe muted=0 after a user gesture.
+    // SOUND ON fallback (compliant user-gesture enable)
     const btn = document.getElementById("soundToggle");
     const iframe = document.getElementById("heroVideo");
     const base = "https://www.youtube.com/embed/n4cj1gDTuVA?autoplay=1&controls=0&rel=0&playsinline=1&loop=1&playlist=n4cj1gDTuVA";
 
-    function enableSound() {
-      // reload with sound
+    btn.addEventListener("click", () => {
       iframe.src = base + "&mute=0";
       btn.style.display = "none";
-    }
-
-    // If autoplay with sound is blocked, the user can click the button.
-    btn.addEventListener("click", enableSound);
-
-    // Also enable sound on the first click anywhere (optional, still user-initiated).
-    let armed = true;
-    window.addEventListener("pointerdown", () => {
-      if (!armed) return;
-      armed = false;
-      // Do not force; only hide button if user already clicked it.
-      // Keep button visible unless the user clicks it explicitly.
-    }, { once: true });
+    });
   </script>
 </body>
 </html>
