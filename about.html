@@ -168,6 +168,13 @@ nav.primaryNav a:hover{
       .poem{ font-size:15px; line-height:1.8; }
       .poem p{ margin-bottom:28px; }
     }
+
+/* Korean block: comfortable line length (prevents overly long lines) */
+.poem[data-lang-block="ko"]{
+  max-width: 48ch;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
 </style>
 </head>
 
