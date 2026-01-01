@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Audition — TIKOONZ</title>
-  <meta name="description" content="Audition — TIKOONZ" />
-
+  <meta name="description" content="TIKOONZ — Audition" />
   <link rel="stylesheet" href="./assets/style.css" />
   <style>
     :root{
@@ -16,12 +15,9 @@
       --line2:rgba(255,255,255,.16);
       --text2:rgba(255,255,255,.78);
       --radius:16px;
-
-      --text:rgba(255,255,255,.94);
-      --muted:rgba(255,255,255,.68);
     }
 
-    body{ background:var(--bg); color:var(--text); }
+    body{ background:var(--bg); }
 
     header{
       position:sticky;
@@ -33,32 +29,55 @@
       box-shadow:0 10px 30px rgba(0,0,0,.25);
     }
     .headInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:20px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .brand img{ height:28px; display:block; }
+  max-width:var(--max);
+  margin:0 auto;
+  padding:34px 24px 26px;
+  display:flex;
+  flex-direction:column;       /* 로고 위, 네비 아래 */
+  align-items:center;          /* 가운데 정렬 */
+  justify-content:center;
+  gap:22px;                    /* 로고-네비 간격 */
+}
 
-    nav.primaryNav{
-      display:flex;
-      gap:16px;
-      font-size:14px;
-      color:var(--text2);
-    }
-    nav.primaryNav a{
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid transparent;
-    }
-    nav.primaryNav a:hover{
-      border-color:var(--line2);
-      background:rgba(255,255,255,.03);
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.brand img{
+  height:82px;                 /* 로고 크게 */
+  width:auto;
+  display:block;
+}
 
-    .wrap{
+nav.primaryNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  font-size:16px;
+  color:var(--text2);
+  flex-wrap:wrap;
+}
+nav.primaryNav a{
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+}
+nav.primaryNav a:hover{
+  border-color:var(--line2);
+  background:rgba(255,255,255,.03);
+}
+
+/* Mobile */
+@media (max-width:640px){
+  .headInner{padding:18px 14px 14px; gap:12px;}
+  .brand img{height:56px;}
+  nav.primaryNav{gap:14px; font-size:13px;}
+  nav.primaryNav a{padding:6px 9px;}
+}
+
+.wrap{
       max-width:var(--max);
       margin:0 auto;
       padding:44px 24px 24px;
@@ -71,154 +90,142 @@
       overflow:hidden;
       box-shadow:0 18px 60px rgba(0,0,0,.35);
     }
-
-    .inner{
-      padding:32px 26px 30px;
-      max-width: 900px;
-    }
-
-    .kicker{
-      color:var(--text2);
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      margin:0 0 14px;
-    }
-
-    h1{
-      margin:0 0 14px;
-      font-size:24px;
-      line-height:1.28;
-      letter-spacing:.02em;
-      font-weight:650;
-    }
-
-    .copy p{
-      margin:0 0 16px;
-      font-size:16px;
-      line-height:1.88;
-      letter-spacing:.01em;
-    }
-    .copy p.muted{ color:var(--muted); }
-
-    .sectionTitle{
-      margin:24px 0 10px;
-      color:var(--text2);
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-    }
-
-    .langToggle{
-      margin:14px 0 16px;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .langToggle button{
-      appearance:none;
-      border:1px solid var(--line2);
-      background:rgba(255,255,255,.02);
-      color:var(--text2);
-      padding:8px 10px;
-      border-radius:12px;
-      font-size:13px;
-      letter-spacing:.06em;
-      cursor:pointer;
-    }
-    .langToggle button[aria-pressed="true"]{
-      color:var(--text);
-      border-color:rgba(255,255,255,.28);
-      background:rgba(255,255,255,.06);
-    }
-
-    .ctaRow{
-      margin-top:18px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      text-decoration:none;
-      font-size:14px;
-      letter-spacing:.04em;
-      cursor:pointer;
-    }
-    .btn:hover{
-      border-color:rgba(255,255,255,.32);
-      background:rgba(255,255,255,.06);
-    }
-    .btn.ghost{
-      color:var(--text2);
-      border-color:var(--line2);
-      background:rgba(255,255,255,.02);
-    }
-
-    .panel{
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.02);
-      padding:14px;
-    }
-
-    /* form */
-    form.auditionForm { margin-top: 10px; }
-    .formGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .field{ display:flex; flex-direction:column; gap:8px; }
-    .field.full{ grid-column: 1 / -1; }
-    label{
-      color:var(--text2);
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-    }
-    input, textarea{
+    .ratio{
+      position:relative;
       width:100%;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      border-radius:12px;
-      padding:12px 12px;
-      font-size:14px;
-      line-height:1.6;
-      outline:none;
+      padding-top:56.25%;
+      background:#000;
     }
-    input:focus, textarea:focus{
-      border-color:rgba(255,255,255,.32);
-      background:rgba(255,255,255,.05);
-    }
-    textarea{ min-height: 120px; resize: vertical; }
-    .hint{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.7;
-      margin-top:10px;
+    iframe.video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
 
-    @media (max-width: 820px){
-      .formGrid{ grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px){
-      .inner{ padding:26px 18px 22px; }
-      h1{ font-size:22px; }
-      .copy p{ font-size:15px; }
+    .caption{
+      padding:18px 22px;
+      border-top:1px solid var(--line);
+      color:var(--text2);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
   </style>
-</head>
-<body>
+  <style>
+/* Active nav */
+nav.primaryNav a.active{
+  border-color:rgba(255,255,255,.32);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.92);
+}
 
+/* Audition page specifics */
+.auditionInner{
+  padding:34px 26px 30px;
+  max-width: 920px;
+}
+.kicker{
+  color:var(--text2);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin:0 0 12px;
+}
+h1{
+  margin:0 0 10px;
+  font-size:24px;
+  line-height:1.28;
+  letter-spacing:.02em;
+  font-weight:650;
+}
+.lead{
+  margin:0 0 18px;
+  color:rgba(255,255,255,.90);
+  font-size:15.5px;
+  line-height:1.85;
+  letter-spacing:.01em;
+  max-width: 70ch;
+}
+.note{
+  margin:14px 0 0;
+  color:rgba(255,255,255,.68);
+  font-size:13px;
+  line-height:1.75;
+}
+.hr{
+  margin:18px 0 18px;
+  height:1px;
+  background:var(--line);
+  border:0;
+}
+
+.form{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px 14px;
+}
+.field{ display:flex; flex-direction:column; gap:8px; }
+label{
+  color:rgba(255,255,255,.78);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+input, textarea, select{
+  width:100%;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;
+  padding:10px 12px;
+  color:rgba(255,255,255,.92);
+  font-size:14px;
+  outline:none;
+}
+textarea{ min-height:120px; resize:vertical; grid-column:1/-1; }
+.full{ grid-column:1/-1; }
+
+.actions{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.94);
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.04em;
+  cursor:pointer;
+}
+.btn:hover{
+  border-color:rgba(255,255,255,.32);
+  background:rgba(255,255,255,.06);
+}
+.btn.ghost{
+  color:rgba(255,255,255,.78);
+  border-color:rgba(255,255,255,.16);
+  background:rgba(255,255,255,.02);
+}
+
+@media (max-width: 740px){
+  .auditionInner{ padding:26px 18px 22px; }
+  h1{ font-size:22px; }
+  .form{ grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body class="page-audition">
 <header>
   <div class="headInner">
     <a class="brand" href="./index.html">
@@ -235,133 +242,72 @@
 
 <main class="wrap">
   <section class="card">
-    <div class="inner">
-
+    <div class="auditionInner">
       <div class="kicker">Audition</div>
-      <h1>완성된 사람을 찾기보다, 함께 완성해 갈 작업을 찾습니다.</h1>
+      <h1>TIKOONZ Audition</h1>
+      <p class="lead">
+        함께 만들 장면을 찾고 있습니다. 보컬, 댄스, 프로듀싱, 디제잉, 퍼포먼스 등 분야와 상관없이
+        본인의 방향과 작업을 보여주세요. 제출 자료는 심사 외 용도로 사용하지 않습니다.
+      </p>
 
-      <div class="langToggle" role="group" aria-label="Language toggle">
-        <button id="btnKo" type="button" aria-pressed="true">KOR</button>
-        <button id="btnEn" type="button" aria-pressed="false">ENG</button>
-      </div>
+      <hr class="hr" />
 
-      <!-- KOR -->
-      <div id="ko" class="copy">
-        <p class="muted">
-          아래의 항목을 채워 보내주시면, 검토 후 필요 시 안내 메일을 드립니다.
-        </p>
-
-        <div class="sectionTitle">Submit</div>
-
-        <div class="panel">
-          <!-- ✅ 여기 한 줄만 바꾸면 됩니다.
-               Formspree에서 받은 URL이 https://formspree.io/f/abcdwxyz 라면
-               아래 __FORM_ID__ 자리에 abcdwxyz 를 넣으세요. -->
-          <form class="auditionForm" method="POST" action="https://formspree.io/f/maqyznbe">
-            <input type="hidden" name="_subject" value="[AUDITION] New submission — TIKOONZ" />
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-            <div class="formGrid">
-              <div class="field">
-                <label for="name">Name / Artist Name *</label>
-                <input id="name" name="name" type="text" placeholder="이름 / 활동명" required />
-              </div>
-
-              <div class="field">
-                <label for="email">Email *</label>
-                <input id="email" name="email" type="email" placeholder="답장 받을 이메일" required />
-              </div>
-
-              <div class="field">
-                <label for="phone">Phone (Optional)</label>
-                <input id="phone" name="phone" type="text" placeholder="연락처(선택)" />
-              </div>
-
-              <div class="field">
-                <label for="instagram">Instagram / Social</label>
-                <input id="instagram" name="social" type="text" placeholder="인스타/틱톡 등 링크" />
-              </div>
-
-              <div class="field full">
-                <label for="links">Portfolio Links *</label>
-                <input id="links" name="portfolio_links" type="text" placeholder="YouTube / SoundCloud / Spotify / Drive 등 링크 (여러 개면 콤마 또는 줄바꿈)" required />
-              </div>
-
-              <div class="field full">
-                <label for="message">Note *</label>
-                <textarea id="message" name="note" placeholder="지금 만들고 싶은 것 / 함께 작업하고 싶은 이유 / 작업 가능한 역할 등" required></textarea>
-              </div>
-            </div>
-
-            <div class="ctaRow">
-              <button class="btn" type="submit">Submit</button>
-              <a class="btn ghost" href="./contact.html">Contact</a>
-            </div>
-
-            <div class="hint">
-              제출하신 정보는 오디션 검토 목적에 한해 사용되며, 필요한 범위 내에서만 보관합니다. 수정이나 추가 자료가 필요하시면 이메일로 알려주세요.
-            </div>
-          </form>
+      <!--
+        NOTE:
+        - 정식 제출 방식(이메일/구글폼/업로드 링크)이 확정되면 form action만 교체하면 됩니다.
+        - 지금은 디자인/레이아웃 용도의 기본 폼(프론트)입니다.
+      -->
+      <form class="form" action="#" method="post">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
         </div>
-      </div>
 
-      <!-- ENG -->
-      <div id="en" class="copy" style="display:none;">
-        <p class="muted">
-          Fill out the form below. We’ll review your submission and contact you if we need anything else.
-        </p>
-
-        <div class="sectionTitle">Submit</div>
-
-        <div class="panel">
-          <form class="auditionForm" method="POST" action="https://formspree.io/f/maqyznbe">
-            <input type="hidden" name="_subject" value="[AUDITION] New submission — TIKOONZ" />
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-            <div class="formGrid">
-              <div class="field">
-                <label for="name2">Name / Artist Name *</label>
-                <input id="name2" name="name" type="text" placeholder="Name / Artist Name" required />
-              </div>
-
-              <div class="field">
-                <label for="email2">Email *</label>
-                <input id="email2" name="email" type="email" placeholder="Your email" required />
-              </div>
-
-              <div class="field">
-                <label for="phone2">Phone (Optional)</label>
-                <input id="phone2" name="phone" type="text" placeholder="Phone (optional)" />
-              </div>
-
-              <div class="field">
-                <label for="social2">Instagram / Social</label>
-                <input id="social2" name="social" type="text" placeholder="Social link" />
-              </div>
-
-              <div class="field full">
-                <label for="links2">Portfolio Links *</label>
-                <input id="links2" name="portfolio_links" type="text" placeholder="YouTube / SoundCloud / Spotify / Drive links" required />
-              </div>
-
-              <div class="field full">
-                <label for="note2">Note *</label>
-                <textarea id="note2" name="note" placeholder="What you want to create / why you want to collaborate / roles" required></textarea>
-              </div>
-            </div>
-
-            <div class="ctaRow">
-              <button class="btn" type="submit">Submit</button>
-              <a class="btn ghost" href="./contact.html">Contact</a>
-            </div>
-
-            <div class="hint">
-              We use your information only for audition review and keep it only as needed. If you need to update anything, please email us.
-            </div>
-          </form>
+        <div class="field">
+          <label for="contact">Contact</label>
+          <input id="contact" name="contact" type="text" placeholder="Email or Phone" required />
         </div>
-      </div>
 
+        <div class="field">
+          <label for="field">Category</label>
+          <select id="field" name="field" required>
+            <option value="" selected disabled>Select</option>
+            <option>Vocal</option>
+            <option>Dance</option>
+            <option>Producer</option>
+            <option>DJ</option>
+            <option>Performance</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="age">Age</label>
+          <input id="age" name="age" type="text" inputmode="numeric" />
+        </div>
+
+        <div class="field full">
+          <label for="links">Links</label>
+          <input id="links" name="links" type="url" placeholder="YouTube / SoundCloud / Instagram / Drive link" />
+          <div class="note">복수 링크는 쉼표로 구분하거나 한 줄로 붙여주세요.</div>
+        </div>
+
+        <div class="field full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="짧은 소개와 원하는 방향(레퍼런스/작업 목표 등)을 적어주세요."></textarea>
+        </div>
+
+        <div class="actions full">
+          <button class="btn" type="submit">Submit</button>
+          <a class="btn ghost" href="./contact.html">Contact</a>
+          <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+        </div>
+
+        <p class="note full">
+          제출 후 1–2주 내 연락을 드릴 수 있으며, 상황에 따라 개별 회신이 어려울 수 있습니다.
+          (정식 운영 문구로 확정되면 교체 가능합니다.)
+        </p>
+      </form>
     </div>
   </section>
 
@@ -373,25 +319,6 @@
     </div>
   </footer>
 </main>
-
-<script>
-  const btnKo = document.getElementById('btnKo');
-  const btnEn = document.getElementById('btnEn');
-  const ko = document.getElementById('ko');
-  const en = document.getElementById('en');
-
-  function setLang(lang){
-    const isKo = lang === 'ko';
-    ko.style.display = isKo ? '' : 'none';
-    en.style.display = isKo ? 'none' : '';
-    btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
-    btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
-    document.documentElement.lang = isKo ? 'ko' : 'en';
-  }
-
-  btnKo.addEventListener('click', () => setLang('ko'));
-  btnEn.addEventListener('click', () => setLang('en'));
-</script>
 
 </body>
 </html>
