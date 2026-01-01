@@ -6,22 +6,22 @@
   <title>About — TIKOONZ</title>
   <meta name="description" content="About TIKOONZ" />
   <link rel="stylesheet" href="./assets/style.css" />
-  <style>
 
+  <style>
     :root{
       --max:1120px;
       --bg:#0b0b0f;
       --card:#141420;
       --line:rgba(255,255,255,.10);
       --line2:rgba(255,255,255,.16);
-      --text2:rgba(255,255,255,.78);
-      --radius:16px;
-
-      --text:rgba(255,255,255,.94);
-      --muted:rgba(255,255,255,.68);
+      --text:rgba(255,255,255,.92);
+            --text2:rgba(255,255,255,.78);
+--radius:16px;
     }
 
-    body{ background:var(--bg); color:var(--text); }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    a{ color:inherit; text-decoration:none; }
 
     header{
       position:sticky;
@@ -30,297 +30,244 @@
       backdrop-filter:blur(10px);
       background:rgba(11,11,15,.72);
       border-bottom:1px solid var(--line);
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
     }
+
     .headInner{
       max-width:var(--max);
       margin:0 auto;
-      padding:20px 24px;
+      padding:34px 24px 26px;
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:space-between;
-    }
-    .brand img{ height:28px; display:block; }
-
-    nav.primaryNav{
-      display:flex;
-      gap:16px;
-      font-size:14px;
-      color:var(--text2);
-    }
-    nav.primaryNav a{
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid transparent;
-    }
-    nav.primaryNav a:hover{
-      border-color:var(--line2);
-      background:rgba(255,255,255,.03);
+      justify-content:center;
+      gap:22px;
+      position:relative;
     }
 
-    /* index와 동일한 spacing */
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:44px 24px 24px;
-    }
+    .brand{ display:flex; align-items:center; justify-content:center; }
+    .brand img{ height:82px; width:auto; display:block; }
+
+    
+/* ✅ Navigation (match index): centered under logo */
+nav.primaryNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  font-size:16px;
+  color:var(--text2);
+  flex-wrap:wrap;
+}
+nav.primaryNav a{
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+}
+nav.primaryNav a:hover{
+  border-color:var(--line2);
+  background:rgba(255,255,255,.03);
+}
+
+.wrap{ max-width:var(--max); margin:0 auto; padding:44px 24px 24px; }
 
     .card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       overflow:hidden;
-      box-shadow:0 18px 60px rgba(0,0,0,.35);
     }
 
-    /* 미세 조정: 본문 가독성(줄간격/자간/패딩)만 통일 */
-    .inner{
-      padding:32px 26px 30px;
-      max-width: 860px;
-    }
-
-    .kicker{
-      color:var(--text2);
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      margin:0 0 14px;
-    }
-
-    h1{
-      margin:0 0 14px;
-      font-size:24px;
-      line-height:1.28;
-      letter-spacing:.02em;
-      font-weight:650;
-    }
-
-    .copy p{
-      margin:0 0 16px;
-      font-size:16px;
-      line-height:1.88;
-      letter-spacing:.01em;
-    }
-    .copy p.muted{ color:var(--muted); }
-
-    .sectionTitle{
-      margin:24px 0 10px;
-      color:var(--text2);
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
+    /* ✅ Poem-like layout: centered, 30ch line length, uniform type */
+    .aboutInner{
+      padding:36px 22px 34px;
     }
 
     .langToggle{
-      margin:14px 0 16px;
       display:flex;
+      justify-content:center;
       gap:10px;
-      align-items:center;
+      margin:0 0 18px;
     }
     .langToggle button{
       appearance:none;
       border:1px solid var(--line2);
       background:rgba(255,255,255,.02);
-      color:var(--text2);
-      padding:8px 10px;
-      border-radius:12px;
-      font-size:13px;
-      letter-spacing:.06em;
+      color:rgba(255,255,255,.82);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.10em;
       cursor:pointer;
     }
     .langToggle button[aria-pressed="true"]{
       color:var(--text);
-      border-color:rgba(255,255,255,.28);
+      border-color:rgba(255,255,255,.30);
       background:rgba(255,255,255,.06);
     }
 
-    .bullet{
-      margin:10px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:8px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-    }
-    .bullet li{
-      padding-left:14px;
-      position:relative;
-    }
-    .bullet li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      color:rgba(255,255,255,.42);
+    
+.poem{
+  max-width:62ch;           /* ✅ 한 문장에 여유(30–40 words range) */
+  margin:0 auto;
+  text-align:center;        /* ✅ 가운데 정렬 */
+  font-size:17px;           /* ✅ 글자 조금 키움 */
+  font-weight:400;          /* ✅ 굵기 통일 */
+  line-height:1.95;         /* ✅ 문장-문장 간격(답답함 해소) */
+  color:var(--text);        /* ✅ 색 통일 */
+}
+
+    /* 모든 요소 굵기/크기 통일 (강조 제거) */
+    .poem h1,
+    .poem h2,
+    .poem h3,
+    .poem strong,
+    .poem b{
+      font-size:inherit;
+      font-weight:inherit;
+      color:inherit;
+      margin:0;
     }
 
-    .divider{
-      margin:18px 0 16px;
-      height:1px;
-      background:var(--line);
-      border:0;
-    }
+    .poem .stanza{ margin:0 0 34px; }
+    .poem .stanza:last-child{ margin-bottom:0; }
 
-    .ctaRow{
-      margin-top:18px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      text-decoration:none;
-      font-size:14px;
-      letter-spacing:.04em;
-    }
-    .btn:hover{
-      border-color:rgba(255,255,255,.32);
-      background:rgba(255,255,255,.06);
-    }
-    .btn.ghost{
-      color:var(--text2);
-      border-color:var(--line2);
-      background:rgba(255,255,255,.02);
-    }
+    /* 섹션 타이틀도 같은 톤으로(작품집 느낌) */
+    .poem .label{ margin:0 0 14px; letter-spacing:.18em; }
 
-    @media (max-width: 640px){
-      .inner{ padding:26px 18px 22px; }
-      h1{ font-size:22px; }
-      .copy p{ font-size:15px; }
-    }
+    /* ✅ English all caps */
+    [data-lang-block="en"]{ text-transform:uppercase; letter-spacing:.04em; }
 
+    /* 점(•) 제거: 리스트를 줄 텍스트처럼 */
+    .poem ul{ list-style:none; padding:0; margin:0; }
+    .poem li{ margin:12px 0; }
+
+    @media (max-width:640px){
+      .headInner{ padding:18px 14px 14px; gap:12px; }
+      .brand img{ height:56px; }
+      nav.primaryNav{gap:14px; font-size:13px;}
+      nav.primaryNav a{ padding:6px 9px; }
+
+      .wrap{ padding:24px 12px 18px; }
+      .aboutInner{ padding:26px 16px 24px; }
+      .poem{ font-size:15px; }
+    }
   </style>
 </head>
+
 <body>
+  <header>
+    <div class="headInner">
+      <a class="brand" href="./index.html" aria-label="TIKOONZ Home">
+        <img src="./assets/logo.png" alt="TIKOONZ" />
+      </a>
 
-<header>
-  <div class="headInner">
-    <a class="brand" href="./index.html">
-      <img src="./assets/logo.png" alt="TIKOONZ">
-    </a>
-    <nav class="primaryNav">
-      <a href="./about.html">About</a>
-      <a href="./artist.html">Artist</a>
-      <a href="./audition.html">Audition</a>
-      <a href="./contact.html">Contact</a>
-    </nav>
+      <nav class="primaryNav" aria-label="Primary">
+        <a href="./about.html">About</a>
+        <a href="./artist.html">Artist</a>
+        <a href="./audition.html">Audition</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="aboutInner">
+        <div class="langToggle" aria-label="Language">
+          <button type="button" class="langBtn" data-lang="ko" aria-pressed="false">KOR</button>
+          <button type="button" class="langBtn" data-lang="en" aria-pressed="true">ENG</button>
+        </div>
+
+        
+<!-- EN (default) -->
+<div class="poem" data-lang-block="en">
+  <p class="stanza label">ABOUT</p>
+
+  <p class="stanza">
+    WE WORK TOGETHER NOT AS A HIERARCHY, BUT AS A LINE OF PEOPLE MOVING IN THE SAME DIRECTION, SHARING DECISIONS, RESPONSIBILITY, AND THE QUIET TRUST THAT LETS THE NEXT SCENE APPEAR WITHOUT FORCE.
+  </p>
+
+  <p class="stanza">
+    MUSIC IS NEVER COMPLETED ALONE; A STAGE, A CAMERA, AND A ROOM OF PRACTICE BECOME REAL ONLY WHEN DIFFERENT SENSES MEET AT THE SAME TEMPO, AND EACH PERSON KEEPS THEIR PART UNTIL THE MOMENT OPENS.
+  </p>
+
+  <p class="stanza label">TIKOONZ.SHOP</p>
+  <p class="stanza">
+    TIKOONZ.SHOP IS WHERE OUR SHARED WORK BECOMES OBJECTS AND EXPERIENCES YOU CAN HOLD, AND WHERE A PURCHASE IS NOT A GOAL BUT A TRACE OF RELATIONSHIP—A SMALL RECORD OF WHAT WAS MADE TOGETHER AND CONTINUES.
+  </p>
+
+  <p class="stanza label">TIKOONZ.TV</p>
+  <p class="stanza">
+    TIKOONZ.TV KEEPS THE TIME OF COLLABORATION—PREPARATION, REPETITION, QUESTIONS—AND TURNS THE PROCESS ITSELF INTO CONTENT, WHILE WE STAND BESIDE ARTISTS SO THEY CAN SPEAK IN THEIR OWN VOICE WITHOUT TRANSLATION.
+  </p>
+
+  <p class="stanza label">WHAT WE SHARE</p>
+  <ul>
+    <li>ALBUM PLANNING &amp; PRODUCTION (FULL PRODUCING)</li>
+    <li>MUSIC VIDEO &amp; VISUAL CONTENT PRODUCTION</li>
+    <li>BROADCAST / MEDIA CONTENT PLANNING &amp; OPERATIONS</li>
+    <li>ARTIST BRANDING AND COMMERCE INTEGRATION</li>
+  </ul>
+</div>
+
+<!-- KO -->
+
+        
+  <div class="poem" data-lang-block="ko" hidden>
+    <p class="stanza label">ABOUT</p>
+
+    <p class="stanza">
+      우리는 ‘함께’라는 방식으로 작업합니다. 위에서 이끄는 구조가 아니라 같은 방향을 바라보는 사람들이 한 줄로 서서, 결정과 책임과 감각을 나누며 다음 장면이 자연스럽게 열리도록 움직입니다.
+    </p>
+
+    <p class="stanza">
+      음악은 혼자 완성되지 않습니다. 무대와 카메라, 연습실의 공기는 서로 다른 감각이 같은 템포로 맞닿을 때 비로소 현실이 되고, 각자가 자신의 몫을 끝까지 지킬 때 다음 순간이 도착합니다.
+    </p>
+
+    <p class="stanza label">TIKOONZ.SHOP</p>
+    <p class="stanza">
+      tikoonz.shop은 우리가 함께 만든 작업이 물성과 경험으로 이어지는 장소입니다. 여기서의 판매는 목표가 아니라 관계가 남긴 흔적이며, 함께 만든 것이 앞으로도 이어진다는 작은 기록입니다.
+    </p>
+
+    <p class="stanza label">TIKOONZ.TV</p>
+    <p class="stanza">
+      tikoonz.tv는 협업의 시간을 기록합니다—준비, 반복, 질문. 그 과정 자체가 콘텐츠가 되며, 우리는 아티스트가 번역 없이 자기 목소리로 말할 수 있도록 옆에서 함께 걷습니다.
+    </p>
+
+    <p class="stanza label">WHAT WE SHARE</p>
+    <ul>
+      <li>앨범 기획 및 제작(프로듀싱 전반)</li>
+      <li>뮤직비디오 및 비주얼 콘텐츠 제작</li>
+      <li>방송·미디어 콘텐츠 기획 및 운영</li>
+      <li>아티스트 브랜딩과 커머스 연계</li>
+    </ul>
   </div>
-</header>
+</div>
 
-<main class="wrap">
-  <section class="card">
-    <div class="inner">
+    </section>
+  </main>
 
-      <div class="kicker">About</div>
-      <h1>우리는 ‘함께’라는 방식으로 작업합니다.</h1>
+  <script>
+    (function(){
+      const btns = Array.from(document.querySelectorAll('.langBtn'));
+      const blocks = Array.from(document.querySelectorAll('[data-lang-block]'));
 
-      <div class="langToggle" role="group" aria-label="Language toggle">
-        <button id="btnKo" type="button" aria-pressed="true">KOR</button>
-        <button id="btnEn" type="button" aria-pressed="false">ENG</button>
-      </div>
+      function setLang(lang){
+        blocks.forEach(b => { b.hidden = (b.getAttribute('data-lang-block') !== lang); });
+        btns.forEach(btn => {
+          const on = btn.dataset.lang === lang;
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        try{ localStorage.setItem('tikoonz_lang', lang); }catch(e){}
+      }
 
-      <div id="ko" class="copy">
-        <p>
-          TIKOONZ는 누군가를 위에서 이끄는 대신, 같은 방향을 바라보는 사람들과 나란히 걷습니다.
-        </p>
+      btns.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
 
-        <p class="muted">
-          음악은 혼자 완성되지 않습니다. 무대도, 카메라 앞의 순간도 그렇습니다.
-          서로의 감각과 책임이 맞닿을 때, 다음 장면이 열립니다.
-        </p>
-
-        <div class="sectionTitle">tikoonz.shop</div>
-        <p>
-          tikoonz.shop은 우리가 함께 만든 작업이 물성과 경험으로 이어지는 장소입니다.
-          여기서의 판매는 목적이 아니라, 관계가 남긴 흔적입니다.
-        </p>
-
-        <div class="sectionTitle">tikoonz.tv</div>
-        <p>
-          tikoonz.tv는 협업의 시간을 기록합니다. 준비, 반복, 질문 — 그 과정 자체가 콘텐츠가 됩니다.
-          우리는 아티스트가 자기 목소리로 말할 수 있도록 옆에 섭니다.
-        </p>
-
-        <div class="sectionTitle">What We Share</div>
-        <ul class="bullet">
-          <li>앨범 기획 및 제작(프로듀싱 전반)</li>
-          <li>뮤직비디오 및 비주얼 콘텐츠 제작</li>
-          <li>방송·미디어 콘텐츠 기획 및 운영</li>
-          <li>아티스트 브랜딩과 커머스 연계</li>
-        </ul>
-      </div>
-
-      <div id="en" class="copy" style="display:none;">
-        <p>
-          TIKOONZ doesn’t lead from above. We walk alongside people who share a direction.
-        </p>
-
-        <p class="muted">
-          Music is never completed alone — neither is a stage, nor a moment in front of a camera.
-          New outcomes emerge where sensibility and responsibility meet.
-        </p>
-
-        <div class="sectionTitle">tikoonz.shop</div>
-        <p>
-          tikoonz.shop is where our shared work becomes tangible — objects and experiences that carry its texture.
-          Sales here are not the goal; they are traces of connection.
-        </p>
-
-        <div class="sectionTitle">tikoonz.tv</div>
-        <p>
-          tikoonz.tv documents collaboration in motion. Preparation, repetition, and questions are allowed to become content.
-          We stand beside artists so they can speak in their own voice.
-        </p>
-
-        <div class="sectionTitle">What We Share</div>
-        <ul class="bullet">
-          <li>Co-creating albums and full-scale music producing</li>
-          <li>Music video and visual content production</li>
-          <li>Broadcasting and media content planning</li>
-          <li>Artist branding and commerce integration</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <footer class="footer-links">
-    <div>© 2025 TIKOONZ</div>
-    <div class="split">
-      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
-      <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
-    </div>
-  </footer>
-
-</main>
-
-<script>
-  const btnKo = document.getElementById('btnKo');
-  const btnEn = document.getElementById('btnEn');
-  const ko = document.getElementById('ko');
-  const en = document.getElementById('en');
-
-  function setLang(lang){
-    const isKo = lang === 'ko';
-    ko.style.display = isKo ? '' : 'none';
-    en.style.display = isKo ? 'none' : '';
-    btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
-    btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
-    document.documentElement.lang = isKo ? 'ko' : 'en';
-  }
-
-  btnKo.addEventListener('click', () => setLang('ko'));
-  btnEn.addEventListener('click', () => setLang('en'));
-</script>
-
+      // default ENG
+      let lang = 'en';
+      try{ lang = localStorage.getItem('tikoonz_lang') || 'en'; }catch(e){}
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>
