@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Artist — TIKOONZ</title>
   <meta name="description" content="TIKOONZ Artist — ICE UNICORN" />
   <link rel="stylesheet" href="./assets/style.css" />
-  <style>
-
+<style>
     :root{
       --max:1120px;
       --bg:#0b0b0f;
@@ -16,12 +15,9 @@
       --line2:rgba(255,255,255,.16);
       --text2:rgba(255,255,255,.78);
       --radius:16px;
-
-      --text:rgba(255,255,255,.94);
-      --muted:rgba(255,255,255,.68);
     }
 
-    body{ background:var(--bg); color:var(--text); }
+    body{ background:var(--bg); }
 
     header{
       position:sticky;
@@ -33,33 +29,55 @@
       box-shadow:0 10px 30px rgba(0,0,0,.25);
     }
     .headInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:20px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .brand img{ height:28px; display:block; }
+  max-width:var(--max);
+  margin:0 auto;
+  padding:34px 24px 26px;
+  display:flex;
+  flex-direction:column;       /* 로고 위, 네비 아래 */
+  align-items:center;          /* 가운데 정렬 */
+  justify-content:center;
+  gap:22px;                    /* 로고-네비 간격 */
+}
 
-    nav.primaryNav{
-      display:flex;
-      gap:16px;
-      font-size:14px;
-      color:var(--text2);
-    }
-    nav.primaryNav a{
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid transparent;
-    }
-    nav.primaryNav a:hover{
-      border-color:var(--line2);
-      background:rgba(255,255,255,.03);
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.brand img{
+  height:82px;                 /* 로고 크게 */
+  width:auto;
+  display:block;
+}
 
-    /* index와 동일한 spacing */
-    .wrap{
+nav.primaryNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  font-size:16px;
+  color:var(--text2);
+  flex-wrap:wrap;
+}
+nav.primaryNav a{
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+}
+nav.primaryNav a:hover{
+  border-color:var(--line2);
+  background:rgba(255,255,255,.03);
+}
+
+/* Mobile */
+@media (max-width:640px){
+  .headInner{padding:18px 14px 14px; gap:12px;}
+  .brand img{height:56px;}
+  nav.primaryNav{gap:14px; font-size:13px;}
+  nav.primaryNav a{padding:6px 9px;}
+}
+
+.wrap{
       max-width:var(--max);
       margin:0 auto;
       padding:44px 24px 24px;
@@ -72,7 +90,39 @@
       overflow:hidden;
       box-shadow:0 18px 60px rgba(0,0,0,.35);
     }
+    .ratio{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:#000;
+    }
+    iframe.video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
 
+    .caption{
+      padding:18px 22px;
+      border-top:1px solid var(--line);
+      color:var(--text2);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+  </style>
+<style>
+/* Active nav */
+nav.primaryNav a.active{
+  border-color:rgba(255,255,255,.32);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.92);
+}
+
+/* Artist page specifics */
+/* index와 동일한 spacing */
     /* 미세 조정: 본문 가독성(줄간격/자간/패딩)만 통일 */
     .inner{
       padding:32px 26px 30px;
@@ -198,7 +248,6 @@
       .copy p{ font-size:15px; }
     }
 
-
     .grid {
       display:grid;
       grid-template-columns: 320px 1fr;
@@ -273,10 +322,10 @@
       .logoBox img{ max-width:220px; }
       .inner{ max-width: 100%; }
     }
-  </style>
+</style>
 </head>
-<body>
 
+<body class="page-artist">
 <header>
   <div class="headInner">
     <a class="brand" href="./index.html">
@@ -394,7 +443,6 @@
       <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
     </div>
   </footer>
-
 </main>
 
 <script>
@@ -415,6 +463,5 @@
   btnKo.addEventListener('click', () => setLang('ko'));
   btnEn.addEventListener('click', () => setLang('en'));
 </script>
-
 </body>
 </html>
