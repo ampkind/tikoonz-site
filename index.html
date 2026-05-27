@@ -125,7 +125,29 @@ nav.primaryNav a:hover{
       letter-spacing:.08em;
       text-transform:uppercase;
     }
-  </style>
+  
+    .sound-toggle{
+      position:absolute;
+      right:18px;
+      bottom:18px;
+      z-index:20;
+      padding:10px 16px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(0,0,0,.55);
+      color:#fff;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.12em;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      transition:.25s;
+    }
+
+    .sound-toggle:hover{
+      background:rgba(255,255,255,.12);
+    }
+
+</style>
 </head>
 
 <body>
@@ -149,12 +171,17 @@ nav.primaryNav a:hover{
     <div class="ratio">
       <!-- AUTOPLAY + LOOP + SOUND (best effort, no visible sound button) -->
       <iframe
+        id="vimeoPlayer"
         class="video"
-        src="https://player.vimeo.com/video/1195365525?autoplay=1&muted=1&loop=1&background=1"
+        src="https://player.vimeo.com/video/1195365525?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&api=1&background=0"
         title="ICE UNICORN BLUESKY"
-        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        allow="autoplay; fullscreen; picture-in-picture"
         allowfullscreen>
       </iframe>
+
+      <button class="sound-toggle" id="soundBtn">
+        SOUND ON
+      </button>
     </div>
 
     <div class="caption">
@@ -170,6 +197,36 @@ nav.primaryNav a:hover{
     </div>
   </footer>
 </main>
+
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script>
+  const iframe = document.getElementById('vimeoPlayer');
+  const player = new Vimeo.Player(iframe);
+  const btn = document.getElementById('soundBtn');
+
+  btn.addEventListener('click', async () => {
+    try {
+      await player.setVolume(1);
+      await player.setMuted(false);
+      btn.innerText = 'SOUND OFF';
+
+      btn.onclick = async () => {
+        await player.setMuted(true);
+        btn.innerText = 'SOUND ON';
+
+        btn.onclick = async () => {
+          await player.setMuted(false);
+          btn.innerText = 'SOUND OFF';
+        };
+      };
+
+    } catch(e){
+      console.log(e);
+    }
+  });
+</script>
 
 </body>
 </html>
