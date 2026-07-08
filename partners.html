@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Partners — TIKOONZ</title>
-<meta name="description" content="TIKOONZ Partners — Global distribution and partnership overview" />
+<meta name="description" content="TIKOONZ Partners — Artist IP Development beyond music" />
 <link rel="stylesheet" href="./assets/style.css" />
 <style>
 :root{
@@ -13,41 +13,208 @@
   --card:#141420;
   --line:rgba(255,255,255,.10);
   --line2:rgba(255,255,255,.16);
-  --text2:rgba(255,255,255,.78);
+  --text:rgba(255,255,255,.94);
+  --text2:rgba(255,255,255,.74);
+  --muted:rgba(255,255,255,.58);
   --radius:16px;
 }
-body{ background:var(--bg); }
-header{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(11,11,15,.72); border-bottom:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,.25);} 
-.headInner{max-width:var(--max); margin:0 auto; padding:34px 24px 26px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;}
-.brand{display:flex; align-items:center; justify-content:center;}
-.brand img{height:82px; width:auto; display:block;}
-nav.primaryNav{display:flex; align-items:center; justify-content:center; gap:28px; font-size:16px; color:var(--text2); flex-wrap:wrap;}
-nav.primaryNav a{padding:8px 10px; border-radius:10px; border:1px solid transparent;}
-nav.primaryNav a:hover, nav.primaryNav a.active{border-color:var(--line2); background:rgba(255,255,255,.03); color:rgba(255,255,255,.92);} 
-.wrap{max-width:var(--max); margin:0 auto; padding:44px 24px 24px;}
-.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 18px 60px rgba(0,0,0,.35); margin-bottom:18px;}
-.inner{padding:34px 28px 32px; max-width:940px;}
-.kicker{font-size:12px; letter-spacing:.22em; color:var(--text2); text-transform:uppercase; margin:0 0 14px;}
-h1{font-size:28px; line-height:1.25; margin:0 0 16px; letter-spacing:.01em;}
-h2{font-size:20px; margin:0 0 14px;}
-.copy p{font-size:16px; line-height:1.85; margin:0 0 16px; color:rgba(255,255,255,.88);}
-.copy p.muted{color:var(--text2);}
-.langToggle{margin:14px 0 20px; display:flex; gap:10px;}
-.langToggle button{appearance:none; border:1px solid var(--line2); background:rgba(255,255,255,.02); color:var(--text2); padding:8px 10px; border-radius:12px; font-size:13px; cursor:pointer;}
-.langToggle button[aria-pressed="true"]{border-color:rgba(255,255,255,.32); background:rgba(255,255,255,.06); color:#fff;}
-.flow{border:1px solid var(--line); border-radius:14px; padding:18px; margin:18px 0; background:rgba(255,255,255,.02);}
-.flow div{font-size:15px; line-height:1.9; color:rgba(255,255,255,.88);}
-.ctaRow{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;}
-.btn{display:inline-flex; align-items:center; justify-content:center; min-width:132px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.04); color:rgba(255,255,255,.94); text-decoration:none; font-size:14px; letter-spacing:.04em;}
-.btn:hover{border-color:rgba(255,255,255,.34); background:rgba(255,255,255,.07);}
-.btn.ghost{color:var(--text2); border-color:var(--line2); background:rgba(255,255,255,.02);}
-.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-.smallCard{border:1px solid var(--line); border-radius:14px; padding:16px; background:rgba(255,255,255,.02);}
-.smallCard strong{display:block; margin-bottom:8px;}
-.smallCard span{color:var(--text2); font-size:14px; line-height:1.7;}
-@media (max-width:740px){.headInner{padding:18px 14px 14px; gap:12px;} .brand img{height:56px;} nav.primaryNav{gap:14px; font-size:13px;} nav.primaryNav a{padding:6px 9px;} .inner{padding:26px 18px 22px;} h1{font-size:24px;} .grid2{grid-template-columns:1fr;}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);}
+a{text-decoration:none;color:inherit}
+
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(10px);
+  background:rgba(11,11,15,.72);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+.headInner{
+  max-width:var(--max);margin:0 auto;
+  padding:34px 24px 26px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:22px;
+}
+.brand{display:flex;align-items:center;justify-content:center}
+.brand img{height:82px;width:auto;display:block}
+nav.primaryNav{
+  display:flex;align-items:center;justify-content:center;
+  gap:28px;font-size:16px;color:var(--text2);flex-wrap:wrap;
+}
+nav.primaryNav a{padding:8px 10px;border-radius:10px;border:1px solid transparent}
+nav.primaryNav a:hover,nav.primaryNav a.active{
+  border-color:var(--line2);background:rgba(255,255,255,.03);color:var(--text);
+}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:44px 24px 24px}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 18px 60px rgba(0,0,0,.35);
+}
+.inner{padding:42px 32px 38px;max-width:980px;margin:0 auto}
+.kicker{
+  color:var(--text2);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin:0 0 12px;
+}
+h1{
+  margin:0 0 18px;
+  font-size:clamp(34px,5vw,64px);
+  line-height:1.02;
+  letter-spacing:-.05em;
+  font-weight:800;
+}
+.lead{
+  margin:0;
+  color:var(--text2);
+  font-size:clamp(17px,2vw,22px);
+  line-height:1.65;
+  max-width:780px;
+}
+.langToggle{
+  margin:26px 0 0;
+  display:flex;
+  gap:10px;
+}
+.langToggle button{
+  appearance:none;
+  border:1px solid var(--line2);
+  background:rgba(255,255,255,.02);
+  color:var(--text2);
+  padding:9px 12px;
+  border-radius:12px;
+  font-size:13px;
+  letter-spacing:.08em;
+  cursor:pointer;
+}
+.langToggle button[aria-pressed="true"]{
+  color:var(--text);
+  border-color:rgba(255,255,255,.32);
+  background:rgba(255,255,255,.06);
+}
+.section{
+  margin-top:28px;
+  padding-top:28px;
+  border-top:1px solid var(--line);
+}
+.sectionTitle{
+  color:var(--text2);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin:0 0 14px;
+}
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.miniCard{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
+  padding:18px;
+  min-height:120px;
+}
+.miniCard strong{
+  display:block;
+  font-size:19px;
+  line-height:1.25;
+  margin-bottom:10px;
+}
+.miniCard span{
+  display:block;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+}
+.flow{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:22px;
+  background:rgba(255,255,255,.02);
+  font-size:clamp(20px,3vw,34px);
+  line-height:1.35;
+  font-weight:750;
+  letter-spacing:-.035em;
+}
+.flow .arrow{
+  color:var(--muted);
+  display:block;
+  margin:8px 0;
+  font-weight:400;
+}
+.linkCards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.linkCard{
+  height:58px;
+  border:1px solid var(--line2);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.02);
+  color:var(--text);
+  font-size:15px;
+  letter-spacing:.03em;
+}
+.linkCard:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.34);
+}
+.cta{
+  margin-top:30px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:11px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:14px;
+  letter-spacing:.04em;
+}
+.btn.ghost{color:var(--text2);background:rgba(255,255,255,.02)}
+.footer-links{
+  color:var(--muted);
+  font-size:13px;
+}
+.footer-links .split{
+  display:flex;
+  gap:12px;
+}
+@media(max-width:760px){
+  .headInner{padding:18px 14px 14px;gap:12px}
+  .brand img{height:56px}
+  nav.primaryNav{gap:14px;font-size:13px}
+  nav.primaryNav a{padding:6px 9px}
+  .wrap{padding:28px 16px 20px}
+  .inner{padding:28px 18px 24px}
+  .grid3,.grid2,.linkCards{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body class="page-partners">
 <header>
   <div class="headInner">
@@ -63,103 +230,165 @@ h2{font-size:20px; margin:0 0 14px;}
 </header>
 
 <main class="wrap">
-  <section class="card">
-    <div class="inner">
-      <div class="kicker">For Partners</div>
-      <h1>TIKOONZ connects music, brand, and media.</h1>
+<section class="card">
+  <div class="inner">
 
-      <div class="langToggle" role="group" aria-label="Language toggle">
-        <button id="btnEn" type="button" aria-pressed="true">ENG</button>
-        <button id="btnKo" type="button" aria-pressed="false">KOR</button>
+    <div class="kicker">For Future Partners</div>
+    <h1>Artist IP Development Beyond Music</h1>
+
+    <div class="langToggle" role="group" aria-label="Language toggle">
+      <button id="btnEn" type="button" aria-pressed="true">ENG</button>
+      <button id="btnKo" type="button" aria-pressed="false">KOR</button>
+    </div>
+
+    <div id="en">
+      <p class="lead">
+        TIKOONZ is a Korean creative label building artist IP through music, brand, media, and commerce.
+        Our first global artist project is ICE UNICORN.
+      </p>
+
+      <div class="section">
+        <div class="sectionTitle">What We Build</div>
+        <div class="grid3">
+          <div class="miniCard"><strong>Music</strong><span>Original releases, artist direction, and distribution-ready projects.</span></div>
+          <div class="miniCard"><strong>Brand</strong><span>Artist identity extended into jewelry, products, and visual worlds.</span></div>
+          <div class="miniCard"><strong>Commerce</strong><span>Official platforms that can connect audience, content, and products.</span></div>
+        </div>
       </div>
 
-      <div id="en" class="copy">
-        <p>TIKOONZ is a creative label built around music, brand, and media projects.</p>
-        <p class="muted">We are preparing our first global partnership project: worldwide distribution for ICE UNICORN.</p>
+      <div class="section">
+        <div class="sectionTitle">First Project</div>
+        <div class="flow">
+          ICE UNICORN
+          <span class="arrow">↓</span>
+          Global Music Distribution
+          <span class="arrow">↓</span>
+          Long-term Artist IP Growth
+        </div>
       </div>
 
-      <div id="ko" class="copy" style="display:none;">
-        <p>TIKOONZ는 음악, 브랜드, 미디어 프로젝트를 하나의 구조로 운영하는 크리에이티브 레이블입니다.</p>
-        <p class="muted">첫 번째 글로벌 협력 프로젝트로 ICE UNICORN의 해외 음원 유통을 준비하고 있습니다.</p>
+      <div class="section">
+        <div class="sectionTitle">Why TIKOONZ</div>
+        <div class="grid2">
+          <div class="miniCard"><strong>Not only a label</strong><span>TIKOONZ connects artist development with brand development.</span></div>
+          <div class="miniCard"><strong>Not only a product brand</strong><span>Music is the starting point for long-term artist IP.</span></div>
+          <div class="miniCard"><strong>Current foundation</strong><span>tikoonz.com, tikoonz.tv, tikoonz.shop, ICE UNICORN, and ICE KING.</span></div>
+          <div class="miniCard"><strong>Future platform</strong><span>OURBANG is planned as a platform for artist-owned brands.</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sectionTitle">Structure</div>
+        <div class="flow">
+          TIKOONZ
+          <span class="arrow">↓</span>
+          Artist
+          <span class="arrow">↓</span>
+          Music + Brand + Commerce
+          <span class="arrow">↓</span>
+          Future Platform
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="card">
-    <div class="inner">
-      <div class="kicker">Project</div>
-      <h1>ICE UNICORN</h1>
-      <div id="enProject" class="copy">
-        <p>ICE UNICORN is TIKOONZ’s first artist project, focused on electronic music, performance, and long-term identity building.</p>
+    <div id="ko" style="display:none;">
+      <p class="lead">
+        TIKOONZ는 음악, 브랜드, 미디어, 커머스를 통해 아티스트 IP를 성장시키는 한국 기반 크리에이티브 레이블입니다.
+        첫 번째 글로벌 아티스트 프로젝트는 ICE UNICORN입니다.
+      </p>
+
+      <div class="section">
+        <div class="sectionTitle">What We Build</div>
+        <div class="grid3">
+          <div class="miniCard"><strong>음악</strong><span>오리지널 음원, 아티스트 방향성, 글로벌 유통을 위한 프로젝트.</span></div>
+          <div class="miniCard"><strong>브랜드</strong><span>아티스트 정체성을 주얼리, 제품, 비주얼 세계관으로 확장.</span></div>
+          <div class="miniCard"><strong>커머스</strong><span>관객, 콘텐츠, 제품을 연결하는 공식 플랫폼 운영.</span></div>
+        </div>
       </div>
-      <div id="koProject" class="copy" style="display:none;">
-        <p>ICE UNICORN은 전자음악, 퍼포먼스, 장기적인 정체성 구축을 중심으로 하는 TIKOONZ의 첫 번째 아티스트 프로젝트입니다.</p>
+
+      <div class="section">
+        <div class="sectionTitle">First Project</div>
+        <div class="flow">
+          ICE UNICORN
+          <span class="arrow">↓</span>
+          글로벌 음원 유통
+          <span class="arrow">↓</span>
+          장기적인 아티스트 IP 성장
+        </div>
       </div>
-      <div class="flow">
-        <div>ICE UNICORN<br>↓<br>Global Distribution<br>↓<br>Long-term Partnership</div>
+
+      <div class="section">
+        <div class="sectionTitle">Why TIKOONZ</div>
+        <div class="grid2">
+          <div class="miniCard"><strong>레이블을 넘어</strong><span>TIKOONZ는 아티스트 개발과 브랜드 개발을 함께 연결합니다.</span></div>
+          <div class="miniCard"><strong>제품 브랜드를 넘어</strong><span>음악은 장기적인 아티스트 IP를 만드는 출발점입니다.</span></div>
+          <div class="miniCard"><strong>현재 기반</strong><span>tikoonz.com, tikoonz.tv, tikoonz.shop, ICE UNICORN, ICE KING.</span></div>
+          <div class="miniCard"><strong>미래 플랫폼</strong><span>OURBANG은 아티스트 브랜드를 위한 플랫폼으로 준비 중입니다.</span></div>
+        </div>
       </div>
-      <div class="ctaRow">
-        <a class="btn" href="./listen-stream.html">Releases</a>
-        <a class="btn ghost" href="./artist.html">Artist</a>
-        <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+
+      <div class="section">
+        <div class="sectionTitle">Structure</div>
+        <div class="flow">
+          TIKOONZ
+          <span class="arrow">↓</span>
+          아티스트
+          <span class="arrow">↓</span>
+          음악 + 브랜드 + 커머스
+          <span class="arrow">↓</span>
+          미래 플랫폼
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="card">
-    <div class="inner">
-      <div class="kicker">Future</div>
-      <h1>OURBANG</h1>
-      <div id="enFuture" class="copy">
-        <p>OURBANG is a future artist brand platform designed to connect artist identity, independent brand websites, and long-term brand growth.</p>
+    <div class="section">
+      <div class="sectionTitle">Official Platforms</div>
+      <div class="linkCards">
+        <a class="linkCard" href="https://tikoonz.com" target="_blank" rel="noopener">tikoonz.com</a>
+        <a class="linkCard" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+        <a class="linkCard" href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
       </div>
-      <div id="koFuture" class="copy" style="display:none;">
-        <p>OURBANG은 아티스트의 정체성, 독립 브랜드 사이트, 장기적인 브랜드 성장을 연결하기 위한 미래형 아티스트 브랜드 플랫폼입니다.</p>
-      </div>
-      <div class="flow">
-        <div>Artist<br>↓<br>Brand<br>↓<br>Official Website<br>↓<br>OURBANG</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="inner">
-      <div class="kicker">Official</div>
-      <h1>Platforms</h1>
-      <div class="ctaRow">
-        <a class="btn" href="https://tikoonz.com" target="_blank" rel="noopener">tikoonz.com</a>
-        <a class="btn" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
-        <a class="btn" href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
-      </div>
-      <div class="ctaRow">
+      <div class="cta">
+        <a class="btn" href="./artist.html">ICE UNICORN</a>
+        <a class="btn ghost" href="./listen-stream.html">Official Releases</a>
         <a class="btn ghost" href="./contact.html">Contact</a>
       </div>
     </div>
-  </section>
 
-  <footer class="footer-links"><div>© 2025 TIKOONZ</div></footer>
+  </div>
+</section>
+
+<footer class="footer-links">
+  <div>© 2025 TIKOONZ</div>
+  <div class="split">
+    <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+    <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+  </div>
+</footer>
 </main>
 
 <script>
 const btnEn = document.getElementById('btnEn');
 const btnKo = document.getElementById('btnKo');
-const pairs = [
-  ['en','ko'],
-  ['enProject','koProject'],
-  ['enFuture','koFuture']
-];
+const en = document.getElementById('en');
+const ko = document.getElementById('ko');
+
 function setLang(lang){
-  const isKo = lang === 'ko';
-  pairs.forEach(([enId,koId]) => {
-    document.getElementById(enId).style.display = isKo ? 'none' : '';
-    document.getElementById(koId).style.display = isKo ? '' : 'none';
-  });
-  btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
-  btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
-  document.documentElement.lang = isKo ? 'ko' : 'en';
+  const isEn = lang === 'en';
+  en.style.display = isEn ? '' : 'none';
+  ko.style.display = isEn ? 'none' : '';
+  btnEn.setAttribute('aria-pressed', isEn ? 'true' : 'false');
+  btnKo.setAttribute('aria-pressed', isEn ? 'false' : 'true');
+  document.documentElement.lang = isEn ? 'en' : 'ko';
+  try { localStorage.setItem('partners_lang', lang); } catch(e){}
 }
+
 btnEn.addEventListener('click', () => setLang('en'));
 btnKo.addEventListener('click', () => setLang('ko'));
+
+let saved = 'en';
+try { saved = localStorage.getItem('partners_lang') || 'en'; } catch(e){}
+setLang(saved);
 </script>
 </body>
 </html>
