@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Partners — TIKOONZ</title>
+<meta name="description" content="TIKOONZ Partners — Global distribution and partnership overview" />
+<link rel="stylesheet" href="./assets/style.css" />
+<style>
+:root{
+  --max:1120px;
+  --bg:#0b0b0f;
+  --card:#141420;
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(255,255,255,.16);
+  --text2:rgba(255,255,255,.78);
+  --radius:16px;
+}
+body{ background:var(--bg); }
+header{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(11,11,15,.72); border-bottom:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,.25);} 
+.headInner{max-width:var(--max); margin:0 auto; padding:34px 24px 26px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;}
+.brand{display:flex; align-items:center; justify-content:center;}
+.brand img{height:82px; width:auto; display:block;}
+nav.primaryNav{display:flex; align-items:center; justify-content:center; gap:28px; font-size:16px; color:var(--text2); flex-wrap:wrap;}
+nav.primaryNav a{padding:8px 10px; border-radius:10px; border:1px solid transparent;}
+nav.primaryNav a:hover, nav.primaryNav a.active{border-color:var(--line2); background:rgba(255,255,255,.03); color:rgba(255,255,255,.92);} 
+.wrap{max-width:var(--max); margin:0 auto; padding:44px 24px 24px;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 18px 60px rgba(0,0,0,.35); margin-bottom:18px;}
+.inner{padding:34px 28px 32px; max-width:940px;}
+.kicker{font-size:12px; letter-spacing:.22em; color:var(--text2); text-transform:uppercase; margin:0 0 14px;}
+h1{font-size:28px; line-height:1.25; margin:0 0 16px; letter-spacing:.01em;}
+h2{font-size:20px; margin:0 0 14px;}
+.copy p{font-size:16px; line-height:1.85; margin:0 0 16px; color:rgba(255,255,255,.88);}
+.copy p.muted{color:var(--text2);}
+.langToggle{margin:14px 0 20px; display:flex; gap:10px;}
+.langToggle button{appearance:none; border:1px solid var(--line2); background:rgba(255,255,255,.02); color:var(--text2); padding:8px 10px; border-radius:12px; font-size:13px; cursor:pointer;}
+.langToggle button[aria-pressed="true"]{border-color:rgba(255,255,255,.32); background:rgba(255,255,255,.06); color:#fff;}
+.flow{border:1px solid var(--line); border-radius:14px; padding:18px; margin:18px 0; background:rgba(255,255,255,.02);}
+.flow div{font-size:15px; line-height:1.9; color:rgba(255,255,255,.88);}
+.ctaRow{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; justify-content:center; min-width:132px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.04); color:rgba(255,255,255,.94); text-decoration:none; font-size:14px; letter-spacing:.04em;}
+.btn:hover{border-color:rgba(255,255,255,.34); background:rgba(255,255,255,.07);}
+.btn.ghost{color:var(--text2); border-color:var(--line2); background:rgba(255,255,255,.02);}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.smallCard{border:1px solid var(--line); border-radius:14px; padding:16px; background:rgba(255,255,255,.02);}
+.smallCard strong{display:block; margin-bottom:8px;}
+.smallCard span{color:var(--text2); font-size:14px; line-height:1.7;}
+@media (max-width:740px){.headInner{padding:18px 14px 14px; gap:12px;} .brand img{height:56px;} nav.primaryNav{gap:14px; font-size:13px;} nav.primaryNav a{padding:6px 9px;} .inner{padding:26px 18px 22px;} h1{font-size:24px;} .grid2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body class="page-partners">
+<header>
+  <div class="headInner">
+    <a class="brand" href="./index.html"><img src="./assets/logo.png" alt="TIKOONZ"></a>
+    <nav class="primaryNav">
+      <a href="./about.html">About</a>
+      <a href="./artist.html">Artist</a>
+      <a href="./listen-stream.html">Releases</a>
+      <a href="./partners.html" class="active">Partners</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="inner">
+      <div class="kicker">For Partners</div>
+      <h1>TIKOONZ connects music, brand, and media.</h1>
+
+      <div class="langToggle" role="group" aria-label="Language toggle">
+        <button id="btnEn" type="button" aria-pressed="true">ENG</button>
+        <button id="btnKo" type="button" aria-pressed="false">KOR</button>
+      </div>
+
+      <div id="en" class="copy">
+        <p>TIKOONZ is a creative label built around music, brand, and media projects.</p>
+        <p class="muted">We are preparing our first global partnership project: worldwide distribution for ICE UNICORN.</p>
+      </div>
+
+      <div id="ko" class="copy" style="display:none;">
+        <p>TIKOONZ는 음악, 브랜드, 미디어 프로젝트를 하나의 구조로 운영하는 크리에이티브 레이블입니다.</p>
+        <p class="muted">첫 번째 글로벌 협력 프로젝트로 ICE UNICORN의 해외 음원 유통을 준비하고 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="inner">
+      <div class="kicker">Project</div>
+      <h1>ICE UNICORN</h1>
+      <div id="enProject" class="copy">
+        <p>ICE UNICORN is TIKOONZ’s first artist project, focused on electronic music, performance, and long-term identity building.</p>
+      </div>
+      <div id="koProject" class="copy" style="display:none;">
+        <p>ICE UNICORN은 전자음악, 퍼포먼스, 장기적인 정체성 구축을 중심으로 하는 TIKOONZ의 첫 번째 아티스트 프로젝트입니다.</p>
+      </div>
+      <div class="flow">
+        <div>ICE UNICORN<br>↓<br>Global Distribution<br>↓<br>Long-term Partnership</div>
+      </div>
+      <div class="ctaRow">
+        <a class="btn" href="./listen-stream.html">Releases</a>
+        <a class="btn ghost" href="./artist.html">Artist</a>
+        <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="inner">
+      <div class="kicker">Future</div>
+      <h1>OURBANG</h1>
+      <div id="enFuture" class="copy">
+        <p>OURBANG is a future artist brand platform designed to connect artist identity, independent brand websites, and long-term brand growth.</p>
+      </div>
+      <div id="koFuture" class="copy" style="display:none;">
+        <p>OURBANG은 아티스트의 정체성, 독립 브랜드 사이트, 장기적인 브랜드 성장을 연결하기 위한 미래형 아티스트 브랜드 플랫폼입니다.</p>
+      </div>
+      <div class="flow">
+        <div>Artist<br>↓<br>Brand<br>↓<br>Official Website<br>↓<br>OURBANG</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="inner">
+      <div class="kicker">Official</div>
+      <h1>Platforms</h1>
+      <div class="ctaRow">
+        <a class="btn" href="https://tikoonz.com" target="_blank" rel="noopener">tikoonz.com</a>
+        <a class="btn" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+        <a class="btn" href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+      </div>
+      <div class="ctaRow">
+        <a class="btn ghost" href="./contact.html">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-links"><div>© 2025 TIKOONZ</div></footer>
+</main>
+
+<script>
+const btnEn = document.getElementById('btnEn');
+const btnKo = document.getElementById('btnKo');
+const pairs = [
+  ['en','ko'],
+  ['enProject','koProject'],
+  ['enFuture','koFuture']
+];
+function setLang(lang){
+  const isKo = lang === 'ko';
+  pairs.forEach(([enId,koId]) => {
+    document.getElementById(enId).style.display = isKo ? 'none' : '';
+    document.getElementById(koId).style.display = isKo ? '' : 'none';
+  });
+  btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
+  btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
+  document.documentElement.lang = isKo ? 'ko' : 'en';
+}
+btnEn.addEventListener('click', () => setLang('en'));
+btnKo.addEventListener('click', () => setLang('ko'));
+</script>
+</body>
+</html>
