@@ -264,6 +264,89 @@ h1{
   h1{ font-size:22px; }
   .productGrid{ grid-template-columns:1fr; }
 }
+
+/* TIKOONZ v2 final polish */
+nav.primaryNav a,
+.brand,
+.btn,
+.linkCard,
+.platformFooter a,
+.item,
+.langToggle button,
+.langInline button{
+  cursor:pointer;
+}
+
+.footer-links{
+  margin-top:22px;
+  padding:18px 0 8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  color:rgba(255,255,255,.58);
+  font-size:13px;
+}
+
+.footer-links .split,
+.platformFooter{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.platformFooter a{
+  min-width:118px;
+  height:38px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.02);
+  color:rgba(255,255,255,.78);
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:.02em;
+  transition:.16s ease;
+}
+
+.platformFooter a:hover{
+  border-color:rgba(255,255,255,.34);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.94);
+  transform:translateY(-1px);
+}
+
+.btn{
+  transition:.16s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+nav.primaryNav a{
+  transition:.16s ease;
+}
+
+@media (max-width:640px){
+  .footer-links{
+    display:block;
+    text-align:center;
+  }
+  .footer-links .split,
+  .platformFooter{
+    margin-top:12px;
+    justify-content:center;
+  }
+  .platformFooter a{
+    width:100%;
+    max-width:260px;
+  }
+}
+
 </style>
 </head>
 
@@ -307,15 +390,15 @@ h1{
         <aside class="sideCard">
           <div class="sectionTitle">Now Showing</div>
           <div class="time" id="nowTime">00:00</div>
-          <h2 class="productName" id="nowName">ICE UNICORN Ring</h2>
-          <p class="desc" id="nowDesc">영상 속 대표 제품입니다. 실제 타임코드 확인 후 정확한 제품명과 설명으로 교체하세요.</p>
+          <h2 class="productName" id="nowName">TIKOONZ ICED OUT SILVER 925 5mm SQUARE RING</h2>
+          <p class="desc" id="nowDesc">영상 초반에 등장하는 시그니처 5mm 스퀘어 링입니다.</p>
 
           <div class="ctaRow">
             <a class="btn" id="buyLink" href="https://tikoonz.shop" target="_blank" rel="noopener">제품 보기</a>
             <button class="btn ghost" id="sceneBtn" type="button">이 장면 보기</button>
           </div>
 
-          <div class="next" id="nextBox">Next: <strong>Aurora Crystal Ring</strong> at 00:30</div>
+          <div class="next" id="nextBox">Next: <strong>TIKOONZ ICED OUT SILVER 925 STAR RING</strong> at 00:30</div>
         </aside>
       </div>
 
@@ -325,12 +408,14 @@ h1{
   </section>
 
   <footer class="footer-links">
-    <div>© 2025 TIKOONZ</div>
-    <div class="split">
-      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+    <div>© 2026 TIKOONZ</div>
+    <div class="split platformFooter">
+      <a href="https://tikoonz.com" target="_blank" rel="noopener">tikoonz.com</a>
       <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
     </div>
   </footer>
+
 </main>
 
 <script>
@@ -345,23 +430,23 @@ const products = [
   {
     start: 0, end: 29,
     timeLabel: "00:00–00:29",
-    name: "ICE UNICORN Ring",
-    desc: "영상 초반에 등장하는 시그니처 반지. 실제 제품명으로 교체하세요.",
-    link: "https://tikoonz.shop"
+    name: "TIKOONZ ICED OUT SILVER 925 5mm SQUARE RING",
+    desc: "영상 초반에 등장하는 시그니처 5mm 스퀘어 링입니다.",
+    link: "https://tikoonz.shop/product/tikoonz-iced-out-silver-925-5mm-square-ring-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-5mm-%EC%8A%A4%ED%80%98%EC%96%B4-/702/category/26/display/1/"
   },
   {
     start: 30, end: 59,
     timeLabel: "00:30–00:59",
-    name: "Aurora Crystal Ring",
-    desc: "오로라 장면과 연결되는 크리스탈 무드의 반지.",
-    link: "https://tikoonz.shop"
+    name: "TIKOONZ ICED OUT SILVER 925 STAR RING",
+    desc: "스타 형태의 아이스아웃 실버 925 반지입니다.",
+    link: "https://tikoonz.shop/product/tikoonz-iced-out-silver-925-star-ring-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4-%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-%EC%8A%A4%ED%83%80-%EB%B0%98%EC%A7%80/960/category/369/display/1/"
   },
   {
     start: 60, end: 89,
     timeLabel: "01:00–01:29",
-    name: "ICE CRYSTAL Necklace",
-    desc: "뮤직비디오 세계관을 확장하는 목걸이 제품.",
-    link: "https://tikoonz.shop"
+    name: "TIKOONZ ICED OUT SILVER 925 TUPAC SHAKUR PENDANT",
+    desc: "투팍 샤커 모티브의 아이스아웃 실버 925 펜던트입니다.",
+    link: "https://tikoonz.shop/product/tikoonz-iced-out-silver-925-tupac-shakur-pendant-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-%ED%88%AC%ED%8C%8D-/70/category/90/display/1/"
   },
   {
     start: 90, end: 9999,

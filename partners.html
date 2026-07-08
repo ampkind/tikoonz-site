@@ -215,6 +215,89 @@ h1{
   .inner{padding:28px 18px 24px}
   .grid3,.grid2,.linkCards{grid-template-columns:1fr}
 }
+
+/* TIKOONZ v2 final polish */
+nav.primaryNav a,
+.brand,
+.btn,
+.linkCard,
+.platformFooter a,
+.item,
+.langToggle button,
+.langInline button{
+  cursor:pointer;
+}
+
+.footer-links{
+  margin-top:22px;
+  padding:18px 0 8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  color:rgba(255,255,255,.58);
+  font-size:13px;
+}
+
+.footer-links .split,
+.platformFooter{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.platformFooter a{
+  min-width:118px;
+  height:38px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.02);
+  color:rgba(255,255,255,.78);
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:.02em;
+  transition:.16s ease;
+}
+
+.platformFooter a:hover{
+  border-color:rgba(255,255,255,.34);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.94);
+  transform:translateY(-1px);
+}
+
+.btn{
+  transition:.16s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+nav.primaryNav a{
+  transition:.16s ease;
+}
+
+@media (max-width:640px){
+  .footer-links{
+    display:block;
+    text-align:center;
+  }
+  .footer-links .split,
+  .platformFooter{
+    margin-top:12px;
+    justify-content:center;
+  }
+  .platformFooter a{
+    width:100%;
+    max-width:260px;
+  }
+}
+
 </style>
 </head>
 
@@ -360,13 +443,15 @@ h1{
   </div>
 </section>
 
-<footer class="footer-links">
-  <div>© 2025 TIKOONZ</div>
-  <div class="split">
-    <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
-    <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
-  </div>
-</footer>
+  <footer class="footer-links">
+    <div>© 2026 TIKOONZ</div>
+    <div class="split platformFooter">
+      <a href="https://tikoonz.com" target="_blank" rel="noopener">tikoonz.com</a>
+      <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+    </div>
+  </footer>
+
 </main>
 
 <script>
