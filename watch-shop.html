@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Watch & Shop — TIKOONZ</title>
+<meta name="description" content="TIKOONZ Watch & Shop — ICE UNICORN" />
+<link rel="stylesheet" href="./assets/style.css" />
+<style>
+:root{
+  --max:1120px;
+  --bg:#0b0b0f;
+  --card:#141420;
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(255,255,255,.16);
+  --text:rgba(255,255,255,.94);
+  --text2:rgba(255,255,255,.78);
+  --muted:rgba(255,255,255,.58);
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{ background:var(--bg); color:var(--text); }
+a{ color:inherit; text-decoration:none; }
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(10px);
+  background:rgba(11,11,15,.72);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+.headInner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:34px 24px 26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+}
+.brand{
+  cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.brand img{ height:82px; width:auto; display:block; }
+nav.primaryNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  font-size:16px;
+  color:var(--text2);
+  flex-wrap:wrap;
+}
+nav.primaryNav a{
+  cursor:pointer;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+}
+nav.primaryNav a:hover,
+nav.primaryNav a.active{
+  border-color:var(--line2);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+}
+
+.wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:44px 24px 24px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 18px 60px rgba(0,0,0,.35);
+}
+.inner{
+  padding:32px 26px 30px;
+}
+.kicker{
+  color:var(--text2);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin:0 0 12px;
+}
+h1{
+  margin:0 0 10px;
+  font-size:24px;
+  line-height:1.28;
+  letter-spacing:.02em;
+  font-weight:650;
+}
+.lead{
+  margin:0 0 22px;
+  color:var(--text2);
+  font-size:16px;
+  line-height:1.82;
+  max-width:72ch;
+}
+.mainGrid{
+  display:grid;
+  grid-template-columns:minmax(320px,1.55fr) minmax(280px,.9fr);
+  gap:18px;
+  align-items:start;
+}
+.videoBox{
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  background:#000;
+}
+.videoWrap{
+  position:relative;
+  width:100%;
+  padding-top:56.25%;
+}
+#player{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.videoCaption{
+  padding:14px 16px;
+  color:var(--text2);
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-top:1px solid var(--line);
+}
+.sideCard{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  padding:18px;
+}
+.sectionTitle{
+  margin:0 0 12px;
+  color:var(--text2);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.time{
+  color:rgba(255,255,255,.76);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin:0 0 8px;
+}
+.productName{
+  margin:0 0 10px;
+  font-size:26px;
+  line-height:1.16;
+  letter-spacing:-.03em;
+}
+.desc{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+.ctaRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.04em;
+  cursor:pointer;
+}
+.btn:hover{
+  border-color:rgba(255,255,255,.32);
+  background:rgba(255,255,255,.06);
+}
+.btn.ghost{
+  color:var(--text2);
+  border-color:var(--line2);
+  background:rgba(255,255,255,.02);
+}
+.next{
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+.next strong{ color:var(--text); }
+.productGrid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(140px,1fr));
+  gap:12px;
+}
+.item{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:rgba(255,255,255,.02);
+  cursor:pointer;
+  transition:.15s ease;
+  min-height:118px;
+}
+.item:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.30);
+  background:rgba(255,255,255,.035);
+}
+.item .small{
+  color:var(--text2);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.item h3{
+  font-size:15px;
+  margin:0 0 6px;
+  line-height:1.32;
+}
+.item p{
+  margin:0;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.55;
+}
+.footer-links{
+  color:var(--muted);
+  font-size:13px;
+}
+.footer-links .split{
+  display:flex;
+  gap:12px;
+}
+
+@media(max-width:900px){
+  .mainGrid{ grid-template-columns:1fr; }
+  .productGrid{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:640px){
+  .headInner{ padding:18px 14px 14px; gap:12px; }
+  .brand img{ height:56px; }
+  nav.primaryNav{ gap:14px; font-size:13px; }
+  nav.primaryNav a{
+  cursor:pointer; padding:6px 9px; }
+  .wrap{ padding:28px 16px 20px; }
+  .inner{ padding:26px 18px 22px; }
+  h1{ font-size:22px; }
+  .productGrid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body class="page-watch-shop">
+<header>
+  <div class="headInner">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.png" alt="TIKOONZ">
+    </a>
+    <nav class="primaryNav">
+      <a href="./about.html">About</a>
+      <a href="./artist.html" class="active">Artists</a>
+      <a href="./partners.html">Partners</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="inner">
+      <div class="kicker">Interactive Commerce Prototype</div>
+      <h1>ICE UNICORN — Watch & Shop</h1>
+      <p class="lead">
+        뮤직비디오 장면과 제품을 연결하는 TIKOONZ의 인터랙티브 커머스 테스트입니다.
+        재생 시간에 따라 제품 카드가 자동으로 바뀌고, 원하는 장면으로 바로 이동할 수 있습니다.
+      </p>
+      <div class="ctaRow" style="margin-bottom:22px;">
+        <a class="btn ghost" href="./artist.html">Back to ICE UNICORN</a>
+        <a class="btn ghost" href="./listen-stream.html">Official Releases</a>
+      </div>
+
+      <div class="mainGrid">
+        <div class="videoBox">
+          <div class="videoWrap">
+            <div id="player"></div>
+          </div>
+          <div class="videoCaption">ICE UNICORN — Interactive MV Commerce</div>
+        </div>
+
+        <aside class="sideCard">
+          <div class="sectionTitle">Now Showing</div>
+          <div class="time" id="nowTime">00:00</div>
+          <h2 class="productName" id="nowName">ICE UNICORN Ring</h2>
+          <p class="desc" id="nowDesc">영상 속 대표 제품입니다. 실제 타임코드 확인 후 정확한 제품명과 설명으로 교체하세요.</p>
+
+          <div class="ctaRow">
+            <a class="btn" id="buyLink" href="https://tikoonz.shop" target="_blank" rel="noopener">제품 보기</a>
+            <button class="btn ghost" id="sceneBtn" type="button">이 장면 보기</button>
+          </div>
+
+          <div class="next" id="nextBox">Next: <strong>Aurora Crystal Ring</strong> at 00:30</div>
+        </aside>
+      </div>
+
+      <div class="sectionTitle" style="margin-top:24px;">Products in this MV</div>
+      <div class="productGrid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <footer class="footer-links">
+    <div>© 2025 TIKOONZ</div>
+    <div class="split">
+      <a href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+      <a href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+    </div>
+  </footer>
+</main>
+
+<script>
+const videoId = "1UTqafvnSNg";
+
+/*
+  제품과 장면 정보는 아래 products 배열에서 수정합니다.
+  start/end: 초 단위 타임코드
+  link: 제품 상세 또는 컬렉션 페이지 URL
+*/
+const products = [
+  {
+    start: 0, end: 29,
+    timeLabel: "00:00–00:29",
+    name: "ICE UNICORN Ring",
+    desc: "영상 초반에 등장하는 시그니처 반지. 실제 제품명으로 교체하세요.",
+    link: "https://tikoonz.shop"
+  },
+  {
+    start: 30, end: 59,
+    timeLabel: "00:30–00:59",
+    name: "Aurora Crystal Ring",
+    desc: "오로라 장면과 연결되는 크리스탈 무드의 반지.",
+    link: "https://tikoonz.shop"
+  },
+  {
+    start: 60, end: 89,
+    timeLabel: "01:00–01:29",
+    name: "ICE CRYSTAL Necklace",
+    desc: "뮤직비디오 세계관을 확장하는 목걸이 제품.",
+    link: "https://tikoonz.shop"
+  },
+  {
+    start: 90, end: 9999,
+    timeLabel: "01:30–End",
+    name: "Tikoonz MV Collection",
+    desc: "MV에 등장한 전체 제품 컬렉션 보기.",
+    link: "https://tikoonz.shop"
+  }
+];
+
+let player;
+let currentIndex = -1;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    videoId,
+    playerVars: {
+      rel: 0,
+      modestbranding: 1,
+      playsinline: 1
+    },
+    events: {
+      onReady: () => {
+        renderGrid();
+        updateProduct(0);
+        setInterval(syncWithVideo, 500);
+      }
+    }
+  });
+}
+
+function syncWithVideo(){
+  if(!player || typeof player.getCurrentTime !== "function") return;
+  const t = player.getCurrentTime();
+  const idx = products.findIndex(p => t >= p.start && t <= p.end);
+  if(idx !== -1 && idx !== currentIndex) updateProduct(idx);
+}
+
+function updateProduct(idx){
+  currentIndex = idx;
+  const p = products[idx];
+  document.getElementById("nowTime").textContent = p.timeLabel;
+  document.getElementById("nowName").textContent = p.name;
+  document.getElementById("nowDesc").textContent = p.desc;
+  document.getElementById("buyLink").href = p.link;
+
+  const next = products[idx+1];
+  document.getElementById("nextBox").innerHTML = next
+    ? `Next: <strong>${next.name}</strong> at ${formatTime(next.start)}`
+    : `Next: <strong>End of MV Collection</strong>`;
+
+  document.querySelectorAll(".item").forEach((el, i) => {
+    el.style.borderColor = i === idx ? "rgba(255,255,255,.42)" : "var(--line)";
+    el.style.background = i === idx ? "rgba(255,255,255,.05)" : "rgba(255,255,255,.02)";
+  });
+}
+
+function renderGrid(){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  products.forEach((p, idx) => {
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `
+      <div class="small">${p.timeLabel}</div>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+    `;
+    div.addEventListener("click", () => {
+      player.seekTo(p.start, true);
+      player.playVideo();
+      updateProduct(idx);
+    });
+    grid.appendChild(div);
+  });
+}
+
+function formatTime(seconds){
+  const m = Math.floor(seconds/60).toString().padStart(2,"0");
+  const s = Math.floor(seconds%60).toString().padStart(2,"0");
+  return `${m}:${s}`;
+}
+
+document.getElementById("sceneBtn").addEventListener("click", () => {
+  if(player && currentIndex >= 0){
+    player.seekTo(products[currentIndex].start, true);
+    player.playVideo();
+  }
+});
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>

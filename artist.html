@@ -31,7 +31,8 @@ header{
 }
 .brand img{ height:82px; }
 nav.primaryNav{ display:flex; gap:28px; color:var(--text2); }
-nav.primaryNav a{ padding:8px 10px; border-radius:10px; }
+nav.primaryNav a{
+  cursor:pointer; padding:8px 10px; border-radius:10px; }
 nav.primaryNav a.active{ border:1px solid var(--line2); }
 .wrap{ max-width:var(--max); margin:0 auto; padding:44px 24px 24px; }
 .card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); }
@@ -73,6 +74,12 @@ h1{ font-size:24px; margin:0 0 14px; }
 }
 
 @media (max-width:900px){ .grid{ grid-template-columns:1fr; } }
+
+.artistHub{ margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.hubCard{ border:1px solid var(--line); border-radius:14px; padding:16px; background:rgba(255,255,255,.02); }
+.hubCard strong{ display:block; font-size:18px; margin-bottom:8px; }
+.hubCard span{ display:block; color:var(--text2); font-size:14px; line-height:1.65; margin-bottom:14px; }
+@media (max-width:700px){ .artistHub{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body class="page-artist">
@@ -81,8 +88,7 @@ h1{ font-size:24px; margin:0 0 14px; }
     <a class="brand" href="./index.html"><img src="./assets/logo.png" alt="TIKOONZ"></a>
     <nav class="primaryNav">
       <a href="./about.html">About</a>
-      <a href="./artist.html" class="active">Artist</a>
-      <a href="./listen-stream.html">Releases</a>
+      <a href="./artist.html" class="active">Artists</a>
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
@@ -93,7 +99,7 @@ h1{ font-size:24px; margin:0 0 14px; }
 <div class="grid">
   <div class="logoBox"><img src="./assets/iceunicorn.png" alt="ICE UNICORN logo"></div>
   <div>
-    <div class="kicker">First Artist</div>
+    <div class="kicker">Artist 01</div>
     <h1>ICE UNICORN</h1>
     <div class="tagRow"><span class="tag">EDM</span><span class="tag">DJ Group</span><span class="tag">TIKOONZ</span></div>
 
@@ -112,18 +118,31 @@ h1{ font-size:24px; margin:0 0 14px; }
       <p>An EDM-focused DJ group, centered on stage energy and sound density, designing the full path of how music reaches audiences—from clubs and festivals to live content.</p>
     </div>
 
-    <div class="sectionTitle">Release</div>
+    
+    <div class="sectionTitle">Latest Release</div>
     <table class="table">
-      <tr><th>Title</th><td>ICE UNICORN — ICE EDM</td></tr>
+      <tr><th>Title</th><td>ICE UNICORN — ICE CRYSTAL <span class="tag" style="margin-left:8px;">Latest</span></td></tr>
       <tr><th>Status</th><td>Released</td></tr>
       <tr><th>Listen</th><td>Available via Ditto & major platforms</td></tr>
     </table>
 
+    <div class="artistHub">
+      <div class="hubCard">
+        <strong>Official Releases</strong>
+        <span>ICE CRYSTAL, ICE EDM, ICE COSMOSS 등 공식 발매 음원을 한곳에서 확인합니다.</span>
+        <a class="btn" href="./listen-stream.html">Releases</a>
+      </div>
+      <div class="hubCard">
+        <strong>Watch & Shop</strong>
+        <span>뮤직비디오 장면과 제품을 연결하는 인터랙티브 커머스 테스트 페이지입니다.</span>
+        <a class="btn" href="./watch-shop.html">Watch & Shop</a>
+      </div>
+    </div>
+
     <div class="ctaRow">
-      <a class="btn" href="./listen-stream.html">Listen / Stream</a>
-      <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">Watch on tikoonz.tv</a>
-      <a class="btn ghost" href="https://tikoonz.shop" target="_blank" rel="noopener">Explore tikoonz.shop</a>
-      <a class="btn" href="./contact.html">Booking / Contact</a>
+      <a class="btn ghost" href="https://tikoonz.tv" target="_blank" rel="noopener">tikoonz.tv</a>
+      <a class="btn ghost" href="https://tikoonz.shop" target="_blank" rel="noopener">tikoonz.shop</a>
+      <a class="btn" href="./contact.html">Contact</a>
     </div>
 
   </div>

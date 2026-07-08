@@ -53,6 +53,7 @@
 }
 
 .brand{
+  cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -73,6 +74,7 @@ nav.primaryNav{
   flex-wrap:wrap;
 }
 nav.primaryNav a{
+  cursor:pointer;
   padding:8px 10px;
   border-radius:10px;
   border:1px solid transparent;
@@ -87,7 +89,8 @@ nav.primaryNav a:hover{
   .headInner{padding:18px 14px 14px; gap:12px;}
   .brand img{height:56px;}
   nav.primaryNav{gap:14px; font-size:13px;}
-  nav.primaryNav a{padding:6px 9px;}
+  nav.primaryNav a{
+  cursor:pointer;padding:6px 9px;}
 }
 
 .wrap{
@@ -159,8 +162,7 @@ nav.primaryNav a:hover{
     </a>
     <nav class="primaryNav">
       <a href="./about.html">About</a>
-      <a href="./artist.html">Artist</a>
-      <a href="./listen-stream.html">Releases</a>
+      <a href="./artist.html">Artists</a>
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
@@ -185,8 +187,13 @@ nav.primaryNav a:hover{
       </button>
     </div>
 
-    <div class="caption">
-      ICE UNICORN &lt;BLUESKY&gt;
+    
+    <div class="caption" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;">
+      <span>ICE UNICORN &lt;BLUESKY&gt;</span>
+      <span class="split">
+        <a href="./artist.html">Artists</a>
+        <a href="./partners.html">Partners</a>
+      </span>
     </div>
   </section>
 

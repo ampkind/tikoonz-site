@@ -31,7 +31,8 @@ header{
 }
 .brand img{ height:82px; }
 nav.primaryNav{ display:flex; gap:28px; color:var(--text2); }
-nav.primaryNav a{ padding:8px 10px; border-radius:10px; }
+nav.primaryNav a{
+  cursor:pointer; padding:8px 10px; border-radius:10px; }
 nav.primaryNav a.active{ border:1px solid var(--line2); }
 .wrap{ max-width:var(--max); margin:0 auto; padding:44px 24px 24px; }
 .card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); }
@@ -81,8 +82,7 @@ h1{ font-size:24px; margin:0 0 14px; }
     <a class="brand" href="./index.html"><img src="./assets/logo.png" alt="TIKOONZ"></a>
     <nav class="primaryNav">
       <a href="./about.html">About</a>
-      <a href="./artist.html">Artist</a>
-      <a href="./listen-stream.html" class="active">Releases</a>
+      <a href="./artist.html" class="active">Artists</a>
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
@@ -112,6 +112,7 @@ h1{ font-size:24px; margin:0 0 14px; }
       <a class="btn" href="https://ditto.fm/ice-crystal-ice-unicorn" target="_blank" rel="noopener">ICE CRYSTAL</a>
       <a class="btn" href="https://ditto.fm/ice-edm" target="_blank" rel="noopener">ICE EDM</a>
       <a class="btn" href="https://ditto.fm/ice-cosmoss" target="_blank" rel="noopener">ICE COSMOSS</a>
+      <a class="btn ghost" href="./watch-shop.html">Watch & Shop</a>
       <a class="btn ghost" href="./artist.html">Back to Artist</a>
     </div>
 
