@@ -396,28 +396,150 @@ nav.primaryNav a{
   }
 }
 
+
+/* ===== TIKOONZ FINAL unified header / language ===== */
+header.siteHeader{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(10px);
+  background:rgba(11,11,15,.72);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+.siteHeader .headInner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:34px 24px 26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  position:relative;
+}
+.siteHeader .brand{
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.siteHeader .brand img{
+  height:82px;
+  width:auto;
+  display:block;
+}
+.siteHeader nav.primaryNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  font-size:16px;
+  color:var(--text2);
+  flex-wrap:wrap;
+}
+.siteHeader nav.primaryNav a{
+  cursor:pointer;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+  text-decoration:none;
+  color:inherit;
+  transition:.16s ease;
+}
+.siteHeader nav.primaryNav a:hover,
+.siteHeader nav.primaryNav a.active{
+  border-color:rgba(255,255,255,.16);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.94);
+}
+.globalLang{
+  position:absolute;
+  top:34px;
+  right:24px;
+  display:flex;
+  gap:8px;
+  z-index:60;
+}
+.globalLang button{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.78);
+  padding:7px 9px;
+  border-radius:11px;
+  font-size:12px;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+.globalLang button[aria-pressed="true"]{
+  color:#fff;
+  border-color:rgba(255,255,255,.38);
+  background:rgba(255,255,255,.08);
+}
+.langToggle,
+.langInline{
+  display:none !important;
+}
+@media(max-width:640px){
+  .siteHeader .headInner{padding:18px 14px 14px;gap:12px;}
+  .siteHeader .brand img{height:56px;}
+  .siteHeader nav.primaryNav{gap:14px;font-size:13px;}
+  .siteHeader nav.primaryNav a{padding:6px 9px;}
+  .globalLang{top:12px;right:12px;}
+  .globalLang button{padding:6px 8px;font-size:11px;}
+}
+
 </style>
+
+<script>
+(function(){
+  window.TIKOONZ_LANG_KEY = 'tikoonz_lang';
+
+  window.getTikoonzLang = function(){
+    try{
+      const saved = localStorage.getItem(window.TIKOONZ_LANG_KEY);
+      if(saved === 'en' || saved === 'ko') return saved;
+    }catch(e){}
+    const nav = (navigator.language || 'ko').toLowerCase();
+    return nav.startsWith('en') ? 'en' : 'ko';
+  };
+
+  window.saveTikoonzLang = function(lang){
+    try{ localStorage.setItem(window.TIKOONZ_LANG_KEY, lang); }catch(e){}
+  };
+
+  window.updateLangButtons = function(lang){
+    const btnEn = document.getElementById('btnEn');
+    const btnKo = document.getElementById('btnKo');
+    if(btnEn) btnEn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    if(btnKo) btnKo.setAttribute('aria-pressed', lang === 'ko' ? 'true' : 'false');
+  };
+})();
+</script>
+
 </head>
 
 <body class="page-watch-shop">
-<header>
+
+<header class="siteHeader">
   <div class="headInner">
     <a class="brand" href="./index.html">
       <img src="./assets/logo.png" alt="TIKOONZ">
     </a>
-    <nav class="primaryNav">
+    <nav class="primaryNav" aria-label="Primary">
       <a href="./about.html">About</a>
       <a href="./artist.html" class="active">Artists</a>
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
-
     <div class="globalLang" role="group" aria-label="Language">
       <button id="btnEn" type="button" aria-pressed="false">EN</button>
-      <button id="btnKo" type="button" aria-pressed="true">KO</button>
+      <button id="btnKo" type="button" aria-pressed="false">KO</button>
     </div>
   </div>
 </header>
+
 
 <main class="wrap">
   <section class="card">
@@ -469,96 +591,50 @@ nav.primaryNav a{
 
 </main>
 
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
 const videoId = "1UTqafvnSNg";
-
-/*
-  제품과 장면 정보는 아래 products 배열에서 수정합니다.
-  start/end: 초 단위 타임코드
-  link: 제품 상세 또는 컬렉션 페이지 URL
-*/
 const products = [
-  {
-    start: 0, end: 29,
-    timeLabel: "00:00–00:29",
-    name: "TIKOONZ ICED OUT SILVER 925 5mm SQUARE RING",
-    descKo: "영상 초반에 등장하는 시그니처 5mm 스퀘어 링입니다.",
-    descEn: "Signature 5mm square ring featured in the opening scene.",
-    link: "https://tikoonz.shop/product/tikoonz-iced-out-silver-925-5mm-square-ring-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-5mm-%EC%8A%A4%ED%80%98%EC%96%B4-/702/category/26/display/1/"
-  },
-  {
-    start: 30, end: 59,
-    timeLabel: "00:30–00:59",
-    name: "TIKOONZ ICED OUT SILVER 925 STAR RING",
-    descKo: "스타 형태의 아이스아웃 실버 925 반지입니다.",
-    descEn: "Iced-out sterling silver 925 star ring.",
-    link: "https://tikoonz.shop/product/tikoonz-iced-out-silver-925-star-ring-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4-%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-%EC%8A%A4%ED%83%80-%EB%B0%98%EC%A7%80/960/category/369/display/1/"
-  },
-  {
-    start: 60, end: 89,
-    timeLabel: "01:00–01:29",
-    name: "TIKOONZ ICED OUT SILVER 925 TUPAC SHAKUR PENDANT",
-    descKo: "투팍 샤커 모티브의 아이스아웃 실버 925 펜던트입니다.",
-    descEn: "Iced-out sterling silver 925 Tupac Shakur pendant.",
-    link: "https://tikoonz.shop/product/tikoonz-iced-out-silver-925-tupac-shakur-pendant-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-%ED%88%AC%ED%8C%8D-/70/category/90/display/1/"
-  },
-  {
-    start: 90, end: 9999,
-    timeLabel: "01:30–End",
-    name: "Tikoonz MV Collection",
-    descKo: "MV에 등장한 전체 제품 컬렉션 보기.",
-    descEn: "Explore the full product collection featured in the music video.",
-    link: "https://tikoonz.shop"
-  }
+  {start:0,end:29,timeLabel:"00:00–00:29",name:"TIKOONZ ICED OUT SILVER 925 5mm SQUARE RING",descKo:"영상 초반에 등장하는 시그니처 5mm 스퀘어 링입니다.",descEn:"Signature 5mm square ring featured in the opening scene.",link:"https://tikoonz.shop/product/tikoonz-iced-out-silver-925-5mm-square-ring-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-5mm-%EC%8A%A4%ED%80%98%EC%96%B4-/702/category/26/display/1/"},
+  {start:30,end:59,timeLabel:"00:30–00:59",name:"TIKOONZ ICED OUT SILVER 925 STAR RING",descKo:"스타 형태의 아이스아웃 실버 925 반지입니다.",descEn:"Iced-out sterling silver 925 star ring.",link:"https://tikoonz.shop/product/tikoonz-iced-out-silver-925-star-ring-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4-%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-%EC%8A%A4%ED%83%80-%EB%B0%98%EC%A7%80/960/category/369/display/1/"},
+  {start:60,end:89,timeLabel:"01:00–01:29",name:"TIKOONZ ICED OUT SILVER 925 TUPAC SHAKUR PENDANT",descKo:"투팍 샤커 모티브의 아이스아웃 실버 925 펜던트입니다.",descEn:"Iced-out sterling silver 925 Tupac Shakur pendant.",link:"https://tikoonz.shop/product/tikoonz-iced-out-silver-925-tupac-shakur-pendant-%ED%83%80%EC%9D%B4%EC%BF%A4%EC%A6%88-%EC%95%84%EC%9D%B4%EC%8A%A4%EC%95%84%EC%9B%83-%EC%8B%A4%EB%B2%84-925-%ED%88%AC%ED%8C%8D-/70/category/90/display/1/"},
+  {start:90,end:9999,timeLabel:"01:30–End",name:"Tikoonz MV Collection",descKo:"MV에 등장한 전체 제품 컬렉션 보기.",descEn:"Explore the full product collection featured in the music video.",link:"https://tikoonz.shop"}
 ];
 
 let player;
 let currentIndex = -1;
-let currentLang = 'ko';
-
+let currentLang = "ko";
 const I18N = {
   ko: {"watch.kicker":"Interactive Commerce Prototype","watch.title":"ICE UNICORN — Watch & Shop","watch.lead":"뮤직비디오 장면과 제품을 연결하는 TIKOONZ의 인터랙티브 커머스 테스트입니다. 재생 시간에 따라 제품 카드가 자동으로 바뀌고, 원하는 장면으로 바로 이동할 수 있습니다.","watch.backArtist":"Back to ICE UNICORN","watch.now":"Now Showing","watch.viewProduct":"제품 보기","watch.jumpScene":"이 장면 보기","watch.productsTitle":"Products in this MV","watch.next":"Next","watch.end":"End of MV Collection"},
   en: {"watch.kicker":"Interactive Commerce Prototype","watch.title":"ICE UNICORN — Watch & Shop","watch.lead":"An interactive commerce experience connecting music video scenes with featured TIKOONZ products. Product cards update automatically as the video plays, and viewers can jump directly to each featured scene.","watch.backArtist":"Back to ICE UNICORN","watch.now":"Now Showing","watch.viewProduct":"View Product","watch.jumpScene":"Jump to Scene","watch.productsTitle":"Products in this MV","watch.next":"Next","watch.end":"End of MV Collection"}
 };
-function t(k){ return (I18N[currentLang]&&I18N[currentLang][k])||I18N.ko[k]||k; }
-function applyLang(lang){
-  currentLang = lang === 'en' ? 'en' : 'ko';
+function t(key){ return (I18N[currentLang] && I18N[currentLang][key]) || key; }
+function setLang(lang){
+  currentLang = lang === "en" ? "en" : "ko";
   document.documentElement.lang = currentLang;
-  document.getElementById('btnKo').setAttribute('aria-pressed', currentLang==='ko'?'true':'false');
-  document.getElementById('btnEn').setAttribute('aria-pressed', currentLang==='en'?'true':'false');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(t(k)) el.textContent=t(k); });
+  updateLangButtons(currentLang);
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(t(key)) el.textContent = t(key);
+  });
   saveTikoonzLang(currentLang);
   renderGrid();
   if(currentIndex >= 0) updateProduct(currentIndex); else updateProduct(0);
 }
-document.getElementById('btnKo').addEventListener('click',()=>applyLang('ko'));
-document.getElementById('btnEn').addEventListener('click',()=>applyLang('en'));
-
-function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady(){
   player = new YT.Player("player", {
     videoId,
-    playerVars: {
-      rel: 0,
-      modestbranding: 1,
-      playsinline: 1
-    },
-    events: {
-      onReady: () => {
-        renderGrid();
-        applyLang(getTikoonzLang());
-        setInterval(syncWithVideo, 500);
-      }
-    }
+    playerVars:{rel:0, modestbranding:1, playsinline:1},
+    events:{onReady:()=>{ setLang(getTikoonzLang()); setInterval(syncWithVideo,500); }}
   });
 }
-
 function syncWithVideo(){
   if(!player || typeof player.getCurrentTime !== "function") return;
-  const t = player.getCurrentTime();
-  const idx = products.findIndex(p => t >= p.start && t <= p.end);
+  const time = player.getCurrentTime();
+  const idx = products.findIndex(p => time >= p.start && time <= p.end);
   if(idx !== -1 && idx !== currentIndex) updateProduct(idx);
 }
-
 function updateProduct(idx){
   currentIndex = idx;
   const p = products[idx];
@@ -566,65 +642,41 @@ function updateProduct(idx){
   document.getElementById("nowName").textContent = p.name;
   document.getElementById("nowDesc").textContent = currentLang === "en" ? p.descEn : p.descKo;
   document.getElementById("buyLink").href = p.link;
-
   const next = products[idx+1];
-  document.getElementById("nextBox").innerHTML = next
-    ? `${t("watch.next")}: <strong>${next.name}</strong> at ${formatTime(next.start)}`
-    : `${t("watch.next")}: <strong>${t("watch.end")}</strong>`;
-
-  document.querySelectorAll(".item").forEach((el, i) => {
+  document.getElementById("nextBox").innerHTML = next ? `${t("watch.next")}: <strong>${next.name}</strong> at ${formatTime(next.start)}` : `${t("watch.next")}: <strong>${t("watch.end")}</strong>`;
+  document.querySelectorAll(".item").forEach((el,i)=>{
     el.style.borderColor = i === idx ? "rgba(255,255,255,.42)" : "var(--line)";
     el.style.background = i === idx ? "rgba(255,255,255,.05)" : "rgba(255,255,255,.02)";
   });
 }
-
 function renderGrid(){
   const grid = document.getElementById("productGrid");
+  if(!grid) return;
   grid.innerHTML = "";
-  products.forEach((p, idx) => {
+  products.forEach((p, idx)=>{
     const div = document.createElement("div");
     div.className = "item";
-    div.innerHTML = `
-      <div class="small">${p.timeLabel}</div>
-      <h3>${p.name}</h3>
-      <p>${currentLang === "en" ? p.descEn : p.descKo}</p>
-    `;
-    div.addEventListener("click", () => {
-      player.seekTo(p.start, true);
-      player.playVideo();
+    div.innerHTML = `<div class="small">${p.timeLabel}</div><h3>${p.name}</h3><p>${currentLang === "en" ? p.descEn : p.descKo}</p>`;
+    div.addEventListener("click",()=>{
+      if(player){ player.seekTo(p.start,true); player.playVideo(); }
       updateProduct(idx);
     });
     grid.appendChild(div);
   });
 }
-
 function formatTime(seconds){
   const m = Math.floor(seconds/60).toString().padStart(2,"0");
-  const s = Math.floor(seconds%60).toString().padStart(2,"0");
-  return `${m}:${s}`;
+  const sec = Math.floor(seconds%60).toString().padStart(2,"0");
+  return `${m}:${sec}`;
 }
-
-document.getElementById("sceneBtn").addEventListener("click", () => {
-  if(player && currentIndex >= 0){
-    player.seekTo(products[currentIndex].start, true);
-    player.playVideo();
-  }
+document.getElementById("btnEn").addEventListener("click",()=>setLang("en"));
+document.getElementById("btnKo").addEventListener("click",()=>setLang("ko"));
+document.getElementById("sceneBtn").addEventListener("click",()=>{
+  if(player && currentIndex >= 0){ player.seekTo(products[currentIndex].start,true); player.playVideo(); }
 });
+setLang(getTikoonzLang());
 </script>
-<script src="https://www.youtube.com/iframe_api"></script>
 
-<script>
-(function(){
-  window.TIKOONZ_LANG_KEY = 'tikoonz_lang';
-  window.getTikoonzLang = function(){
-    try { const v = localStorage.getItem(window.TIKOONZ_LANG_KEY); if(v === 'en' || v === 'ko') return v; } catch(e){}
-    return ((navigator.language || 'ko').toLowerCase().startsWith('en')) ? 'en' : 'ko';
-  };
-  window.saveTikoonzLang = function(lang){
-    try { localStorage.setItem(window.TIKOONZ_LANG_KEY, lang); } catch(e){}
-  };
-})();
-</script>
 
 </body>
 </html>

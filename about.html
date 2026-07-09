@@ -310,28 +310,150 @@ nav.primaryNav a{
   }
 }
 
+
+/* ===== TIKOONZ FINAL unified header / language ===== */
+header.siteHeader{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(10px);
+  background:rgba(11,11,15,.72);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+.siteHeader .headInner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:34px 24px 26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  position:relative;
+}
+.siteHeader .brand{
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.siteHeader .brand img{
+  height:82px;
+  width:auto;
+  display:block;
+}
+.siteHeader nav.primaryNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  font-size:16px;
+  color:var(--text2);
+  flex-wrap:wrap;
+}
+.siteHeader nav.primaryNav a{
+  cursor:pointer;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+  text-decoration:none;
+  color:inherit;
+  transition:.16s ease;
+}
+.siteHeader nav.primaryNav a:hover,
+.siteHeader nav.primaryNav a.active{
+  border-color:rgba(255,255,255,.16);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.94);
+}
+.globalLang{
+  position:absolute;
+  top:34px;
+  right:24px;
+  display:flex;
+  gap:8px;
+  z-index:60;
+}
+.globalLang button{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.78);
+  padding:7px 9px;
+  border-radius:11px;
+  font-size:12px;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+.globalLang button[aria-pressed="true"]{
+  color:#fff;
+  border-color:rgba(255,255,255,.38);
+  background:rgba(255,255,255,.08);
+}
+.langToggle,
+.langInline{
+  display:none !important;
+}
+@media(max-width:640px){
+  .siteHeader .headInner{padding:18px 14px 14px;gap:12px;}
+  .siteHeader .brand img{height:56px;}
+  .siteHeader nav.primaryNav{gap:14px;font-size:13px;}
+  .siteHeader nav.primaryNav a{padding:6px 9px;}
+  .globalLang{top:12px;right:12px;}
+  .globalLang button{padding:6px 8px;font-size:11px;}
+}
+
 </style>
+
+<script>
+(function(){
+  window.TIKOONZ_LANG_KEY = 'tikoonz_lang';
+
+  window.getTikoonzLang = function(){
+    try{
+      const saved = localStorage.getItem(window.TIKOONZ_LANG_KEY);
+      if(saved === 'en' || saved === 'ko') return saved;
+    }catch(e){}
+    const nav = (navigator.language || 'ko').toLowerCase();
+    return nav.startsWith('en') ? 'en' : 'ko';
+  };
+
+  window.saveTikoonzLang = function(lang){
+    try{ localStorage.setItem(window.TIKOONZ_LANG_KEY, lang); }catch(e){}
+  };
+
+  window.updateLangButtons = function(lang){
+    const btnEn = document.getElementById('btnEn');
+    const btnKo = document.getElementById('btnKo');
+    if(btnEn) btnEn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    if(btnKo) btnKo.setAttribute('aria-pressed', lang === 'ko' ? 'true' : 'false');
+  };
+})();
+</script>
+
 </head>
 
 <body>
-<header>
+
+<header class="siteHeader">
   <div class="headInner">
     <a class="brand" href="./index.html">
-      <img src="./assets/logo.png" alt="TIKOONZ" />
+      <img src="./assets/logo.png" alt="TIKOONZ">
     </a>
-    <nav class="primaryNav">
+    <nav class="primaryNav" aria-label="Primary">
       <a href="./about.html" class="active">About</a>
       <a href="./artist.html">Artists</a>
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
-
     <div class="globalLang" role="group" aria-label="Language">
       <button id="btnEn" type="button" aria-pressed="false">EN</button>
-      <button id="btnKo" type="button" aria-pressed="true">KO</button>
+      <button id="btnKo" type="button" aria-pressed="false">KO</button>
     </div>
   </div>
 </header>
+
 
 <main class="wrap">
   <section class="card">
@@ -405,44 +527,22 @@ nav.primaryNav a{
 
 
 
-<script>
-(function(){
-  window.TIKOONZ_LANG_KEY = 'tikoonz_lang';
-  window.getTikoonzLang = function(){
-    try {
-      const saved = localStorage.getItem(window.TIKOONZ_LANG_KEY);
-      if(saved === 'en' || saved === 'ko') return saved;
-    } catch(e){}
-    const nav = (navigator.language || 'ko').toLowerCase();
-    return nav.startsWith('en') ? 'en' : 'ko';
-  };
-  window.saveTikoonzLang = function(lang){
-    try { localStorage.setItem(window.TIKOONZ_LANG_KEY, lang); } catch(e){}
-  };
-})();
-</script>
-
-
 
 <script>
 (function(){
-  const btnKo = document.getElementById('btnKo');
-  const btnEn = document.getElementById('btnEn');
   const blocks = document.querySelectorAll('[data-lang-block]');
-
   function setLang(lang){
-    const isKo = lang === 'ko';
+    lang = lang === 'en' ? 'en' : 'ko';
     blocks.forEach(b => b.hidden = (b.getAttribute('data-lang-block') !== lang));
-    btnKo.setAttribute('aria-pressed', isKo ? 'true' : 'false');
-    btnEn.setAttribute('aria-pressed', isKo ? 'false' : 'true');
-    document.documentElement.lang = isKo ? 'ko' : 'en';
+    document.documentElement.lang = lang;
+    updateLangButtons(lang);
     saveTikoonzLang(lang);
   }
-
-  btnKo.addEventListener('click', () => setLang('ko'));
-  btnEn.addEventListener('click', () => setLang('en'));
+  document.getElementById('btnEn').addEventListener('click',()=>setLang('en'));
+  document.getElementById('btnKo').addEventListener('click',()=>setLang('ko'));
   setLang(getTikoonzLang());
 })();
 </script>
+
 </body>
 </html>
