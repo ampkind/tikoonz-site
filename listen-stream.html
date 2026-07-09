@@ -157,6 +157,55 @@ nav.primaryNav a{
   }
 }
 
+
+/* Synced language controls */
+.langToggle, .langInline{display:flex;gap:10px;align-items:center;margin:14px 0 16px;}
+.langToggle button, .langInline button{
+  appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.02);
+  color:rgba(255,255,255,.78);padding:8px 10px;border-radius:12px;font-size:13px;letter-spacing:.06em;cursor:pointer;
+}
+.langToggle button[aria-pressed="true"], .langInline button.active{
+  color:#fff;border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.06);
+}
+
+
+/* Global top-right language switch */
+.headInner{ position:relative; }
+.globalLang{
+  position:absolute;
+  top:34px;
+  right:24px;
+  display:flex;
+  gap:8px;
+  z-index:60;
+}
+.globalLang button{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.78);
+  padding:7px 9px;
+  border-radius:11px;
+  font-size:12px;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+.globalLang button[aria-pressed="true"]{
+  color:#fff;
+  border-color:rgba(255,255,255,.38);
+  background:rgba(255,255,255,.08);
+}
+@media(max-width:640px){
+  .globalLang{
+    top:12px;
+    right:12px;
+  }
+  .globalLang button{
+    padding:6px 8px;
+    font-size:11px;
+  }
+}
+
 </style>
 </head>
 <body class="page-artist">
@@ -169,6 +218,11 @@ nav.primaryNav a{
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
+
+    <div class="globalLang" role="group" aria-label="Language">
+      <button id="btnEn" type="button" aria-pressed="false">EN</button>
+      <button id="btnKo" type="button" aria-pressed="true">KO</button>
+    </div>
   </div>
 </header>
 <main class="wrap">
@@ -176,15 +230,15 @@ nav.primaryNav a{
 <div class="grid">
   <div class="logoBox"><img src="./assets/iceunicorn.png" alt="ICE UNICORN logo"></div>
   <div>
-    <div class="kicker">ICE UNICORN</div>
-    <h1>Official Releases</h1>
+<div class="kicker">ICE UNICORN</div>
+    <h1 data-i18n="rel.title">Official Releases</h1>
     <div class="tagRow"><span class="tag">Release</span><span class="tag">Streaming</span><span class="tag">TIKOONZ</span></div>
 
     <div id="ko" class="copy">
-      <p>ICE UNICORN의 공식 발매 음원을 감상할 수 있습니다.</p>
+      <p data-i18n="rel.desc">ICE UNICORN의 공식 발매 음원을 감상할 수 있습니다.</p>
     </div>
 
-    <div class="sectionTitle">Official Releases</div>
+    <div class="sectionTitle" data-i18n="rel.section">Official Releases</div>
     <table class="table">
       <tr><th>01</th><td>ICE UNICORN — ICE CRYSTAL <span class="tag" style="margin-left:8px;">Latest</span></td></tr>
       <tr><th>02</th><td>ICE UNICORN — ICE EDM</td></tr>
@@ -196,7 +250,7 @@ nav.primaryNav a{
       <a class="btn" href="https://ditto.fm/ice-edm" target="_blank" rel="noopener">ICE EDM</a>
       <a class="btn" href="https://ditto.fm/ice-cosmoss" target="_blank" rel="noopener">ICE COSMOSS</a>
       <a class="btn ghost" href="./watch-shop.html">Watch & Shop</a>
-      <a class="btn ghost" href="./artist.html">Back to Artist</a>
+      <a class="btn ghost" href="./artist.html"><span data-i18n="rel.back">Back to Artist</span></a>
     </div>
 
   </div>
@@ -213,5 +267,34 @@ nav.primaryNav a{
   </footer>
 
 </main>
+
+<script>
+(function(){
+  window.TIKOONZ_LANG_KEY = 'tikoonz_lang';
+  window.getTikoonzLang = function(){
+    try { const v = localStorage.getItem(window.TIKOONZ_LANG_KEY); if(v === 'en' || v === 'ko') return v; } catch(e){}
+    return ((navigator.language || 'ko').toLowerCase().startsWith('en')) ? 'en' : 'ko';
+  };
+  window.saveTikoonzLang = function(lang){
+    try { localStorage.setItem(window.TIKOONZ_LANG_KEY, lang); } catch(e){}
+  };
+})();
+</script>
+
+
+
+<script>
+const btnKo=document.getElementById('btnKo'), btnEn=document.getElementById('btnEn');
+const I18N={ko:{"rel.title":"Official Releases","rel.desc":"ICE UNICORN의 공식 발매 음원을 감상할 수 있습니다.","rel.section":"Official Releases","rel.back":"Back to Artist"},
+en:{"rel.title":"Official Releases","rel.desc":"Listen to official releases by ICE UNICORN.","rel.section":"Official Releases","rel.back":"Back to Artist"}};
+function setLang(lang){
+ const isKo=lang==='ko'; document.documentElement.lang=isKo?'ko':'en';
+ btnKo.setAttribute('aria-pressed',isKo?'true':'false'); btnEn.setAttribute('aria-pressed',isKo?'false':'true');
+ const dict=I18N[lang]||I18N.ko; document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(dict[k]) el.textContent=dict[k];});
+ saveTikoonzLang(lang);
+}
+btnKo.addEventListener('click',()=>setLang('ko')); btnEn.addEventListener('click',()=>setLang('en'));
+setLang(getTikoonzLang());
+</script>
 </body>
 </html>

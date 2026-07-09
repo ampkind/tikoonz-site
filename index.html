@@ -233,6 +233,55 @@ nav.primaryNav a{
   }
 }
 
+
+/* Synced language controls */
+.langToggle, .langInline{display:flex;gap:10px;align-items:center;margin:14px 0 16px;}
+.langToggle button, .langInline button{
+  appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.02);
+  color:rgba(255,255,255,.78);padding:8px 10px;border-radius:12px;font-size:13px;letter-spacing:.06em;cursor:pointer;
+}
+.langToggle button[aria-pressed="true"], .langInline button.active{
+  color:#fff;border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.06);
+}
+
+
+/* Global top-right language switch */
+.headInner{ position:relative; }
+.globalLang{
+  position:absolute;
+  top:34px;
+  right:24px;
+  display:flex;
+  gap:8px;
+  z-index:60;
+}
+.globalLang button{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.78);
+  padding:7px 9px;
+  border-radius:11px;
+  font-size:12px;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+.globalLang button[aria-pressed="true"]{
+  color:#fff;
+  border-color:rgba(255,255,255,.38);
+  background:rgba(255,255,255,.08);
+}
+@media(max-width:640px){
+  .globalLang{
+    top:12px;
+    right:12px;
+  }
+  .globalLang button{
+    padding:6px 8px;
+    font-size:11px;
+  }
+}
+
 </style>
 </head>
 
@@ -249,6 +298,11 @@ nav.primaryNav a{
       <a href="./partners.html">Partners</a>
       <a href="./contact.html">Contact</a>
     </nav>
+
+    <div class="globalLang" role="group" aria-label="Language">
+      <button id="btnEn" type="button" aria-pressed="false">EN</button>
+      <button id="btnKo" type="button" aria-pressed="true">KO</button>
+    </div>
   </div>
 </header>
 
@@ -321,5 +375,32 @@ nav.primaryNav a{
   });
 </script>
 
+
+<script>
+(function(){
+  window.TIKOONZ_LANG_KEY = 'tikoonz_lang';
+  window.getTikoonzLang = function(){
+    try { const v = localStorage.getItem(window.TIKOONZ_LANG_KEY); if(v === 'en' || v === 'ko') return v; } catch(e){}
+    return ((navigator.language || 'ko').toLowerCase().startsWith('en')) ? 'en' : 'ko';
+  };
+  window.saveTikoonzLang = function(lang){
+    try { localStorage.setItem(window.TIKOONZ_LANG_KEY, lang); } catch(e){}
+  };
+})();
+</script>
+
+
+<script>
+function setGlobalLangOnly(lang){
+  const isKo = lang === 'ko';
+  document.documentElement.lang = isKo ? 'ko' : 'en';
+  document.getElementById('btnKo').setAttribute('aria-pressed', isKo ? 'true' : 'false');
+  document.getElementById('btnEn').setAttribute('aria-pressed', isKo ? 'false' : 'true');
+  saveTikoonzLang(lang);
+}
+document.getElementById('btnKo').addEventListener('click',()=>setGlobalLangOnly('ko'));
+document.getElementById('btnEn').addEventListener('click',()=>setGlobalLangOnly('en'));
+setGlobalLangOnly(getTikoonzLang());
+</script>
 </body>
 </html>
