@@ -232,3 +232,45 @@ body.tong-profile .g3{background-image:url("./assets/tong-main.jpg")}
 /* FLAT DEPLOY FIX */
 .cover-wrap img{display:block;width:100%;height:100%;object-fit:cover}
 .cover-wrap{background:radial-gradient(circle at 45% 40%,#2b1115 0,#0a0a0c 58%,#050506 100%)}
+
+
+/* HOME HERO IMAGE — preserve original wide artwork */
+.hero-visual{
+  align-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+}
+.cover-wrap{
+  width:100%;
+  height:auto !important;
+  aspect-ratio:1983 / 793 !important;
+  max-height:none !important;
+  overflow:hidden;
+  background:#050506;
+}
+.cover-wrap img{
+  display:block;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+}
+.cover-code,
+.hero-visual > small,
+.hero-visual > .meta,
+.hero-visual figcaption{
+  display:none !important;
+}
+@media(max-width:1000px){
+  .cover-wrap{
+    aspect-ratio:1983 / 793 !important;
+  }
+}
+@media(max-width:700px){
+  .cover-wrap{
+    width:100%;
+    aspect-ratio:16 / 9 !important;
+  }
+}
