@@ -274,3 +274,237 @@ body.tong-profile .g3{background-image:url("./assets/tong-main.jpg")}
     aspect-ratio:16 / 9 !important;
   }
 }
+
+
+/* =========================================================
+   HOME V2 — FULL-WIDTH CINEMATIC IMAGE
+   Typography first, artwork full-width below.
+   ========================================================= */
+.home-hero,
+.hero{
+  display:block !important;
+  min-height:auto !important;
+  padding-top:0 !important;
+}
+
+/* Keep GOLDEN typography independent and large */
+.hero-copy{
+  width:100% !important;
+  max-width:none !important;
+  min-height:clamp(560px,62vh,760px);
+  padding:clamp(120px,14vh,190px) var(--pad) clamp(75px,9vh,115px) !important;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+  z-index:2;
+}
+.hero-copy h1,
+.hero-title{
+  font-size:clamp(108px,16vw,260px) !important;
+  line-height:.76 !important;
+  letter-spacing:-.075em !important;
+  max-width:100%;
+  margin-bottom:28px !important;
+}
+
+/* Artwork becomes its own full browser-width cinematic band */
+.hero-visual{
+  width:100vw !important;
+  max-width:none !important;
+  margin-left:calc(50% - 50vw) !important;
+  display:block !important;
+  padding:0 !important;
+  border:0 !important;
+}
+.cover-wrap{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:1983 / 793 !important;
+  max-height:none !important;
+  overflow:hidden !important;
+  border:0 !important;
+}
+.cover-wrap img{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+}
+.cover-code,.hero-visual small,.hero-visual figcaption{display:none !important}
+
+/* Tablet */
+@media(max-width:1000px){
+  .hero-copy{
+    min-height:520px;
+    padding-top:130px !important;
+    padding-bottom:70px !important;
+  }
+  .hero-copy h1,.hero-title{
+    font-size:clamp(92px,18vw,175px) !important;
+  }
+}
+
+/* Phone: retain a strong wide image without interfering with title */
+@media(max-width:700px){
+  .hero-copy{
+    min-height:500px;
+    padding-top:110px !important;
+    padding-bottom:55px !important;
+  }
+  .hero-copy h1,.hero-title{
+    font-size:clamp(72px,23vw,125px) !important;
+    line-height:.8 !important;
+  }
+  .cover-wrap{
+    aspect-ratio:16 / 9 !important;
+  }
+}
+
+
+/* =========================================================
+   WIDE EDITORIAL SYSTEM — HOME + ARTISTS + RED/TONG/REDTONG
+   ========================================================= */
+
+/* HOME: stronger first impression */
+.hero-copy{
+  min-height:72vh !important;
+  background:
+    radial-gradient(circle at 8% 92%,rgba(130,0,18,.18),transparent 34%),
+    #050506;
+}
+.hero-copy h1,.hero-title{
+  font-size:clamp(125px,18vw,300px) !important;
+  line-height:.72 !important;
+  letter-spacing:-.085em !important;
+}
+.hero-copy .eyebrow,.hero-copy .kicker{
+  letter-spacing:.34em;
+}
+.hero-visual .cover-wrap{
+  aspect-ratio:1983/793 !important;
+}
+
+/* Character pages: text first, full-width cinematic image second */
+.character-hero{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:auto !important;
+  overflow:visible !important;
+  border-bottom:1px solid var(--line);
+}
+.character-copy{
+  width:100% !important;
+  min-height:clamp(500px,60vh,720px) !important;
+  padding:clamp(120px,14vh,180px) var(--pad) clamp(70px,9vh,110px) !important;
+  justify-content:flex-end !important;
+}
+.character-copy h1{
+  font-size:clamp(110px,18vw,290px) !important;
+  line-height:.72 !important;
+  letter-spacing:-.085em !important;
+  margin:18px 0 34px !important;
+}
+.character-intro{
+  max-width:760px !important;
+  font-size:clamp(15px,1.3vw,19px) !important;
+  line-height:1.9 !important;
+}
+.character-visual{
+  width:100vw !important;
+  min-height:0 !important;
+  height:auto !important;
+  aspect-ratio:1672/941 !important;
+  margin-left:calc(50% - 50vw) !important;
+  background-size:cover !important;
+  background-position:center !important;
+  border:0 !important;
+}
+.duo-page .character-visual{
+  aspect-ratio:1983/793 !important;
+}
+
+/* Profile area remains restrained between large images */
+.character-info{
+  padding-top:clamp(80px,10vw,150px) !important;
+  padding-bottom:clamp(80px,10vw,150px) !important;
+}
+
+/* Gallery: no squares, one cinematic image per row */
+.concept-gallery{
+  padding:0 !important;
+  border-bottom:1px solid var(--line);
+}
+.concept-gallery .section-head{
+  padding:38px var(--pad) !important;
+}
+.gallery-strip{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:1px !important;
+}
+.gallery-crop{
+  width:100% !important;
+  aspect-ratio:1672/941 !important;
+  display:block !important;
+  background-size:cover !important;
+  background-position:center !important;
+  border:0 !important;
+}
+.duo-page .gallery-crop{
+  aspect-ratio:1672/941 !important;
+}
+.gallery-strip .g2,.gallery-strip .g3{
+  display:block !important;
+}
+
+/* ARTISTS listing: wide horizontal editorial rows */
+.artist-card,.artist-row{
+  border-radius:0 !important;
+}
+.artist-grid{
+  display:block !important;
+}
+.artist-card{
+  width:100% !important;
+  min-height:clamp(300px,34vw,540px);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+.artist-card img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  aspect-ratio:16/7 !important;
+}
+.artist-card h2,.artist-card h3{
+  letter-spacing:-.06em;
+}
+
+/* tablet / mobile preserve wide imagery rather than square crops */
+@media(max-width:1000px){
+  .hero-copy h1,.hero-title{font-size:clamp(100px,19vw,190px) !important}
+  .character-copy h1{font-size:clamp(100px,20vw,190px) !important}
+  .character-visual,.gallery-crop{aspect-ratio:16/9 !important}
+  .duo-page .character-visual{aspect-ratio:16/9 !important}
+}
+@media(max-width:700px){
+  .hero-copy{min-height:560px !important}
+  .hero-copy h1,.hero-title{font-size:clamp(78px,24vw,135px) !important}
+  .character-copy{min-height:470px !important}
+  .character-copy h1{font-size:clamp(82px,25vw,140px) !important}
+  .character-visual,.gallery-crop,.duo-page .character-visual{
+    aspect-ratio:16/9 !important;
+  }
+}
+
+.artist-wide-visual{
+  width:100%;
+  aspect-ratio:16/7;
+  background-size:cover;
+  background-position:center;
+  margin:34px 0 26px;
+}
+@media(max-width:700px){.artist-wide-visual{aspect-ratio:16/9}}

@@ -1,8 +1,11 @@
-UPLOAD THESE FILES TO THE REPOSITORY ROOT.
-Choose overwrite/replace for files with the same names.
+TIKOONZ WIDE EDITORIAL UPDATE
+Upload all files to the GitHub repository root and replace same-name files.
+Do not touch /assets.
 
-IMPORTANT:
-- Do NOT delete the existing assets folder.
-- The site now uses flat .html links for maximum GitHub Pages reliability.
-- The broken GOLDEN image reference has been replaced by assets/redtong-hero.jpg.
-- RED/TONG/REDTONG pages use the image files already uploaded to assets.
+Changes:
+- HOME GOLDEN typography enlarged for stronger impact.
+- HOME REDTONG artwork remains full browser width.
+- RED, TONG, REDTONG profile hero images are full-width cinematic images.
+- Character gallery images are no longer square grids; they appear one-by-one as wide editorial images.
+- ARTISTS page uses wide imagery.
+- Responsive rules retained for tablet/mobile.
