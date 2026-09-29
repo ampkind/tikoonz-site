@@ -228,3 +228,7 @@ body.tong-profile .g3{background-image:url("./assets/tong-main.jpg")}
 @media(max-width:1000px){
   .red-visual,.tong-visual,.duo-page .character-visual{background-position:center !important}
 }
+
+/* FLAT DEPLOY FIX */
+.cover-wrap img{display:block;width:100%;height:100%;object-fit:cover}
+.cover-wrap{background:radial-gradient(circle at 45% 40%,#2b1115 0,#0a0a0c 58%,#050506 100%)}

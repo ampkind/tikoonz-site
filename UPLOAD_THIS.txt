@@ -1,0 +1,8 @@
+UPLOAD THESE FILES TO THE REPOSITORY ROOT.
+Choose overwrite/replace for files with the same names.
+
+IMPORTANT:
+- Do NOT delete the existing assets folder.
+- The site now uses flat .html links for maximum GitHub Pages reliability.
+- The broken GOLDEN image reference has been replaced by assets/redtong-hero.jpg.
+- RED/TONG/REDTONG pages use the image files already uploaded to assets.

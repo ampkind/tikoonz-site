@@ -39,35 +39,3 @@ toggle.addEventListener("click",()=>{
  toggle.setAttribute("aria-expanded",String(open));
 });
 nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");toggle.setAttribute("aria-expanded","false")}));
-
-// Local preview uses flat .html pages; deployed tikoonz.com uses clean URLs.
-if (location.protocol !== "file:") {
-  const cleanMap = {
-    "artist.html": "/artists/",
-    "releases.html": "/releases/",
-    "listen-stream.html": "/releases/",
-    "videos.html": "/videos/",
-    "about.html": "/about/",
-    "partners.html": "/partners/",
-    "contact.html": "/contact/"
-  };
-  document.querySelectorAll("a[href]").forEach(a => {
-    const raw = a.getAttribute("href");
-    if (!raw) return;
-    const name = raw.split("/").pop().split("#")[0];
-    if (cleanMap[name]) {
-      const hash = raw.includes("#") ? "#" + raw.split("#")[1] : "";
-      a.setAttribute("href", cleanMap[name] + hash);
-    }
-  });
-}
-
-// Artist profile clean URLs
-if (location.protocol !== "file:") {
-  const artistCleanMap = {"red.html":"/red/","tong.html":"/tong/","redtong.html":"/redtong/"};
-  document.querySelectorAll("a[href]").forEach(a=>{
-    const raw=a.getAttribute("href"); if(!raw) return;
-    const name=raw.split("/").pop().split("#")[0];
-    if(artistCleanMap[name]) a.setAttribute("href",artistCleanMap[name]);
-  });
-}
