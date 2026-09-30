@@ -526,3 +526,47 @@ body.tong-profile .g3{background-image:url("./assets/tong-main.jpg")}
 .nav a{display:flex!important;align-items:center;min-height:68px;width:100%;border-bottom:1px solid rgba(255,255,255,.12);font-size:18px!important;letter-spacing:.1em!important;opacity:1!important;touch-action:manipulation}
 }
 @media(max-width:390px){.site-header{gap:12px!important;padding:0 16px!important}.wordmark{font-size:20px!important}.mobile-language-toggle{min-width:56px}}
+
+
+/* =========================================================
+   ICE UNICORN — PANORAMA ARTIST PAGE
+   Uses only the approved ICE UNICORN image set.
+   ========================================================= */
+.iu-main{padding-top:92px}
+.iu-hero{position:relative;min-height:78vh;overflow:hidden;border-bottom:1px solid var(--line);background:#050505}
+.iu-hero>img{width:100%;height:78vh;object-fit:cover;object-position:center;display:block}
+.iu-hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.76) 0%,rgba(0,0,0,.25) 48%,rgba(0,0,0,.08) 100%),linear-gradient(0deg,rgba(0,0,0,.68) 0%,transparent 45%)}
+.iu-hero-copy{position:absolute;left:var(--pad);bottom:8%;z-index:2;max-width:1100px}
+.iu-hero-copy h1{font-size:clamp(70px,10vw,175px);line-height:.78;letter-spacing:-.075em;margin:12px 0 26px}
+.iu-hero-copy>p:not(.page-kicker){font-size:11px;letter-spacing:.24em;color:#d5d5d2}
+.iu-hero-copy>a{display:inline-block;margin-top:22px;font-size:10px;letter-spacing:.17em;border-bottom:1px solid #fff;padding-bottom:6px}
+.iu-intro{padding:100px var(--pad);display:grid;grid-template-columns:120px 1.15fr .85fr;gap:5vw;align-items:start;border-bottom:1px solid var(--line)}
+.iu-intro h2{font-size:clamp(58px,8vw,130px);line-height:.8;letter-spacing:-.065em;margin:0}
+.iu-intro div:last-child{max-width:560px;color:#aaa;line-height:1.9;font-size:14px;word-break:keep-all}
+.iu-wide-section,.iu-profiles{padding:90px var(--pad);border-bottom:1px solid var(--line)}
+.iu-panorama{margin:0;width:100%;overflow:hidden;background:#080808}
+.iu-panorama img{display:block;width:100%;height:auto;object-fit:contain}
+.iu-profile-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.iu-duo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.iu-profile-grid figure,.iu-duo-grid figure{margin:0;min-width:0}
+.iu-profile-grid img,.iu-duo-grid img{display:block;width:100%;height:auto;object-fit:contain;background:#090909}
+.iu-profile-grid figcaption,.iu-duo-grid figcaption{padding:12px 2px 0;font-size:9px;letter-spacing:.14em;color:#8f8f8c}
+.iu-listing-visual{aspect-ratio:3/1!important;background-size:cover!important;background-position:center!important;margin-top:30px!important;margin-bottom:24px!important}
+@media(max-width:1100px){
+ .iu-profile-grid{grid-template-columns:repeat(3,1fr)}
+ .iu-intro{grid-template-columns:80px 1fr}.iu-intro>div:last-child{grid-column:2}
+}
+@media(max-width:700px){
+ .iu-main{padding-top:72px}
+ .iu-hero{min-height:auto}
+ .iu-hero>img{height:auto;aspect-ratio:2.4/1;object-fit:cover}
+ .iu-hero-copy{position:relative;left:auto;bottom:auto;padding:48px var(--pad) 60px;background:#050505}
+ .iu-hero-shade{display:none}
+ .iu-hero-copy h1{font-size:19vw}
+ .iu-intro{padding-top:70px;padding-bottom:70px;grid-template-columns:1fr;gap:24px}
+ .iu-intro>div:last-child{grid-column:auto}
+ .iu-wide-section,.iu-profiles{padding-top:64px;padding-bottom:64px}
+ .iu-profile-grid{grid-template-columns:repeat(2,1fr)}
+ .iu-duo-grid{grid-template-columns:1fr}
+ .iu-listing-visual{aspect-ratio:2.4/1!important}
+}
