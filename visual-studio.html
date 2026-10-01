@@ -37,9 +37,18 @@ padding:9px 10px;font:10px/1.2 Arial,sans-serif;letter-spacing:.04em;outline:non
 }
 body.fs{cursor:none} body.fs.show{cursor:auto}
 @media(pointer:coarse){button,label,select{min-height:40px}}
-</style></head>
+#mobileToggle{display:none}
+@media(max-width:680px){
+#ui{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-height:72vh;overflow:auto;padding:10px;transition:.28s ease;-webkit-overflow-scrolling:touch}
+#mobileToggle{display:block;position:sticky;top:0;z-index:20;width:100%;background:#fff;color:#000;border-color:#fff;padding:11px 12px;font-size:9px;letter-spacing:.14em;margin:0 0 9px}
+#controlBody{display:block}
+body.mobile-collapsed #ui{left:auto;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:auto;max-height:none;overflow:visible;padding:0;background:transparent;border-color:transparent;backdrop-filter:none}
+body.mobile-collapsed #controlBody{display:none}
+body.mobile-collapsed #mobileToggle{position:static;width:auto;margin:0;padding:12px 15px;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:999px;backdrop-filter:blur(10px)}
+body.mobile-collapsed .brand{opacity:.72}
+}</style></head>
 <body><canvas id="v"></canvas><div class="brand">TIKOONZ / VISUAL STUDIO 2.0 · AUDIO-REACTIVE ENGINE</div>
-<div id="ui"><div id="worlds"></div><div class="row">
+<div id="ui"><button id="mobileToggle" type="button" aria-expanded="true">CONTROLS −</button><div id="controlBody"><div id="worlds"></div><div class="row">
 <label>LOAD MUSIC<input id="music" type="file" accept="audio/*"></label>
 <button id="play">PLAY</button><button id="auto" class="on">AUTO: ON</button><button id="drive" class="on">DANCE DRIVE: HIGH</button>
 <select id="palette"><option>ICE PRISM</option><option>BLUE MAGENTA</option><option>ULTRA VIOLET</option><option>RED VIOLET</option><option>CYBER PRISM</option></select>
@@ -59,14 +68,14 @@ body.fs{cursor:none} body.fs.show{cursor:auto}
   </div>
   <div id="trackNow" class="tracknow">UPLOAD MUSIC 또는 ICE UNICORN 앨범을 선택하세요.</div>
 </div>
-<div id="status">ENGINE STARTING…</div><div id="section" style="margin-top:5px;color:#fff;font-size:9px;letter-spacing:.12em">CHOREOGRAPHY · CALM</div></div>
+<div id="status">ENGINE STARTING…</div><div id="section" style="margin-top:5px;color:#fff;font-size:9px;letter-spacing:.12em">CHOREOGRAPHY · CALM</div></div></div>
 <audio id="audio"></audio>
 <script>
 (()=>{'use strict';
 const C=document.getElementById('v'),X=C.getContext('2d'),worldBox=document.getElementById('worlds'),
 music=document.getElementById('music'),audio=document.getElementById('audio'),play=document.getElementById('play'),
 autoBtn=document.getElementById('auto'),driveBtn=document.getElementById('drive'),palette=document.getElementById('palette'),full=document.getElementById('full'),
-status=document.getElementById('status'),sectionEl=document.getElementById('section'),albumSelect=document.getElementById('albumSelect'),trackSelect=document.getElementById('trackSelect'),trackNow=document.getElementById('trackNow');
+status=document.getElementById('status'),sectionEl=document.getElementById('section'),albumSelect=document.getElementById('albumSelect'),trackSelect=document.getElementById('trackSelect'),trackNow=document.getElementById('trackNow'),mobileToggle=document.getElementById('mobileToggle');
 const names=['DEEP SPACE','CRYSTAL','LIQUID','CRYSTAL SHARDS','CRYSTAL BLOOM','PARTICLE','FRACTAL','CRYSTAL CORE'];
 const P=[
 [[0,245,255],[35,70,255],[255,0,225],[150,35,255],[255,70,225]],
@@ -85,6 +94,10 @@ function select(i,soft=false){
  status.textContent=names[i]+' · '+(soft?'MORPHING':'ACTIVE')
 }
 names.forEach((n,i)=>{let b=document.createElement('button');b.textContent=n;b.onclick=()=>{auto=false;autoBtn.textContent='AUTO: OFF';select(i,true)};worldBox.appendChild(b)});select(0);
+function isMobile(){return matchMedia('(max-width:680px)').matches}
+function setMobileCollapsed(v){if(!isMobile())v=false;document.body.classList.toggle('mobile-collapsed',v);if(mobileToggle){mobileToggle.textContent=v?'CONTROLS +':'CONTROLS −';mobileToggle.setAttribute('aria-expanded',String(!v))}}
+if(mobileToggle)mobileToggle.onclick=()=>setMobileCollapsed(!document.body.classList.contains('mobile-collapsed'));
+addEventListener('resize',()=>{if(!isMobile())setMobileCollapsed(false)});
 function audioSetup(){if(AC)return;AC=new(window.AudioContext||window.webkitAudioContext)();AN=AC.createAnalyser();AN.fftSize=512;AN.smoothingTimeConstant=.55;FREQ=new Uint8Array(AN.frequencyBinCount);SRC=AC.createMediaElementSource(audio);SRC.connect(AN);AN.connect(AC.destination)}
 
 albumSelect.onchange=()=>{
@@ -106,6 +119,7 @@ trackSelect.onchange=()=>{
 music.onchange=e=>{let f=e.target.files&&e.target.files[0];if(f){audio.pause();audio.src=URL.createObjectURL(f);audio.load();trackNow.textContent='UPLOAD · '+f.name+' · READY';status.textContent=f.name+' · READY'}};
 play.onclick=async()=>{audioSetup();if(AC.state==='suspended')await AC.resume();if(audio.src){if(!audio.paused){audio.pause();play.textContent='PLAY';status.textContent=names[scene]+' · PAUSED';return;}try{await audio.play();play.textContent='PAUSE';status.textContent=names[scene]+' · MUSIC ACTIVE';
  if(albumSelect.value && trackSelect.value!=='')trackNow.textContent='ICE UNICORN · '+ALBUM_NAMES[albumSelect.value]+' · '+MUSIC_LIBRARY[albumSelect.value][Number(trackSelect.value)][0]+' · PLAYING';
+ if(isMobile())setTimeout(()=>setMobileCollapsed(true),450);
  }catch(err){status.textContent='AUDIO FILE NOT FOUND / CHECK GITHUB PATH';trackNow.textContent='GitHub의 assets/audio 경로를 확인하세요.'}}};
 audio.addEventListener('ended',()=>{play.textContent='PLAY'});audio.addEventListener('pause',()=>{if(!audio.ended)play.textContent='PLAY'});audio.addEventListener('play',()=>{play.textContent='PAUSE'});
 autoBtn.onclick=()=>{auto=!auto;autoBtn.textContent='AUTO: '+(auto?'ON':'OFF');last=performance.now()};
