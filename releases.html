@@ -18,13 +18,17 @@
 .vs-stage:fullscreen .vs-stage-copy,.vs-stage.vs-fullscreen .vs-stage-copy{inset:auto 18px 18px}
 .vs-stage:fullscreen .vs-stage-copy strong,.vs-stage.vs-fullscreen .vs-stage-copy strong{opacity:.58;font-size:12px;letter-spacing:.16em}
 .vs-stage:fullscreen .vs-enter,.vs-stage.vs-fullscreen .vs-enter{background:rgba(0,0,0,.38);color:#fff;border-color:rgba(255,255,255,.55);backdrop-filter:blur(10px)}
+
+.vs-controls{position:absolute;z-index:4;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.vs-upload,.vs-play,.vs-enter{appearance:none;border:1px solid rgba(255,255,255,.7);background:rgba(0,0,0,.46);color:#fff;padding:12px 14px;font:700 9px/1 Arial,sans-serif;letter-spacing:.11em;cursor:pointer;white-space:nowrap;backdrop-filter:blur(10px)}.vs-upload input{display:none}.vs-enter{margin-left:auto;background:#fff;color:#000}.vs-track{font:700 9px/1.25 Arial,sans-serif;letter-spacing:.1em;opacity:.7;max-width:min(42vw,420px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.vs-stage-copy{top:22px;bottom:auto;align-items:center}.vs-stage:fullscreen .vs-controls,.vs-stage.vs-fullscreen .vs-controls{bottom:max(18px,env(safe-area-inset-bottom));left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right))}
 @media (max-width:700px){
   .visual-studio-entry{margin-top:70px;padding-top:32px}
   .visual-studio-entry .vs-title{font-size:clamp(44px,15vw,72px)}
   .vs-stage{display:block;aspect-ratio:16/9;min-height:0;margin-top:24px;touch-action:manipulation}
   .vs-stage-copy{inset:auto 14px 14px;align-items:center}
   .vs-stage-copy strong{font-size:18px}
-  .vs-enter{padding:12px 13px;font-size:9px}
+  .vs-enter,.vs-upload,.vs-play{padding:11px 10px;font-size:8px}
+  .vs-controls{left:12px;right:12px;bottom:12px;gap:5px}
+  .vs-track{order:4;width:100%;max-width:100%;font-size:8px}
 }
 </style>
 </head><body><header class="site-header">
@@ -51,7 +55,14 @@
   <p class="vs-sub" data-i18n="vs.sub">ICE UNICORN · AUDIO-REACTIVE VISUAL EXPERIENCE</p>
   <div class="vs-stage" id="vsStage" role="button" tabindex="0" aria-label="Enter TIKOONZ Visual Studio">
     <canvas id="vsPreview"></canvas>
-    <div class="vs-stage-copy"><strong data-i18n="vs.stage">VISUAL STUDIO</strong><button class="vs-enter" id="vsEnter" type="button" data-i18n="vs.enter">ENTER FULL SCREEN ↗</button></div>
+    <div class="vs-stage-copy"><strong data-i18n="vs.stage">VISUAL STUDIO</strong></div>
+    <div class="vs-controls">
+      <label class="vs-upload">UPLOAD MUSIC<input id="vsFile" type="file" accept="audio/*"></label>
+      <button class="vs-play" id="vsPlay" type="button">PLAY</button>
+      <span class="vs-track" id="vsTrack">UPLOAD YOUR MUSIC · OR USE THE OFFICIAL ICE UNICORN RELEASE LINKS ABOVE</span>
+      <button class="vs-enter" id="vsEnter" type="button">FULL SCREEN ↗</button>
+    </div>
+    <audio id="vsAudio" playsinline preload="metadata"></audio>
   </div>
 </section>
 </main><footer><div class="footer-brand">TIKOONZ</div><div class="footer-links">
@@ -61,20 +72,23 @@
 <script src="./site.js"></script>
 <script>
 (()=>{
- const c=document.getElementById('vsPreview'),stage=document.getElementById('vsStage'),enter=document.getElementById('vsEnter');
+ const c=document.getElementById('vsPreview'),stage=document.getElementById('vsStage'),enter=document.getElementById('vsEnter'),file=document.getElementById('vsFile'),play=document.getElementById('vsPlay'),audio=document.getElementById('vsAudio'),track=document.getElementById('vsTrack');
  if(!c||!stage)return;
- const x=c.getContext('2d'); let w=0,h=0,t=0,dpr=Math.min(devicePixelRatio||1,2),mode=0,lastSwitch=0;
+ const x=c.getContext('2d'); let w=0,h=0,t=0,dpr=Math.min(devicePixelRatio||1,2),mode=0,lastSwitch=0,ac,analyser,data,src,objURL;
  function size(){const q=stage.getBoundingClientRect();w=q.width;h=q.height;c.width=Math.max(1,w*dpr);c.height=Math.max(1,h*dpr);x.setTransform(dpr,0,0,dpr,0,0)}
- function glow(col,blur=18){x.shadowBlur=blur;x.shadowColor=col}
- function waves(){for(let j=0;j<12;j++){x.beginPath();for(let i=0;i<=120;i++){let px=w*i/120,yy=h*(.20+j*.052)+Math.sin(i*.10+t*1.35+j*.7)*h*.065+Math.sin(i*.035-t*.8+j)*h*.04;i?x.lineTo(px,yy):x.moveTo(px,yy)}let g=x.createLinearGradient(0,0,w,0);g.addColorStop(0,'rgba(0,210,255,.35)');g.addColorStop(.5,'rgba(255,0,220,.72)');g.addColorStop(1,'rgba(80,60,255,.35)');x.strokeStyle=g;x.lineWidth=1.4;glow('rgba(255,0,220,.7)');x.stroke()}}
- function rings(){x.save();x.translate(w/2,h/2);for(let r=0;r<16;r++){let rr=Math.min(w,h)*(.06+r*.035)*(1+.08*Math.sin(t*2+r));x.beginPath();for(let a=0;a<=Math.PI*2+.05;a+=.045){let k=rr*(1+.12*Math.sin(a*6+t*2+r));let px=Math.cos(a)*k,py=Math.sin(a)*k;a?x.lineTo(px,py):x.moveTo(px,py)}x.strokeStyle=`hsla(${190+r*10+t*25},100%,65%,${.16+r*.018})`;x.lineWidth=1.2;glow('rgba(90,120,255,.6)',14);x.stroke()}x.restore()}
- function tunnel(){x.save();x.translate(w/2,h/2);for(let i=0;i<34;i++){let z=(i/34+t*.12)%1,rr=(1-z)*Math.max(w,h)*.72;x.rotate(.015);x.strokeStyle=`hsla(${280-z*120+t*18},100%,62%,${.08+(1-z)*.5})`;x.lineWidth=1.2;x.strokeRect(-rr*.72,-rr*.42,rr*1.44,rr*.84)}x.restore()}
- function particles(){x.save();x.translate(w/2,h/2);for(let i=0;i<180;i++){let a=i*2.399+t*(.12+(i%7)*.006),r=(i%47)/47*Math.min(w,h)*.62*(.8+.2*Math.sin(t*1.7+i));let px=Math.cos(a)*r,py=Math.sin(a)*r*.58;let q=1+(i%4);x.fillStyle=`hsla(${180+(i*3+t*30)%170},100%,70%,${.18+(i%5)*.1})`;glow('rgba(0,220,255,.5)',10);x.fillRect(px,py,q,q)}x.restore()}
- function draw(now=0){t+=.012;if(now-lastSwitch>6500){mode=(mode+1)%4;lastSwitch=now}x.shadowBlur=0;x.fillStyle='rgba(0,0,0,.34)';x.fillRect(0,0,w,h);[waves,rings,tunnel,particles][mode]();requestAnimationFrame(draw)}
+ function setupAudio(){if(ac)return;ac=new (window.AudioContext||window.webkitAudioContext)();analyser=ac.createAnalyser();analyser.fftSize=512;analyser.smoothingTimeConstant=.82;data=new Uint8Array(analyser.frequencyBinCount);src=ac.createMediaElementSource(audio);src.connect(analyser);analyser.connect(ac.destination)}
+ function energy(){if(!analyser)return .18;analyser.getByteFrequencyData(data);let s=0;for(const v of data)s+=v;return Math.max(.06,s/(data.length*255))}
+ function glow(col,b=18){x.shadowBlur=b;x.shadowColor=col}
+ function waves(e){for(let j=0;j<12;j++){x.beginPath();for(let i=0;i<=120;i++){let px=w*i/120,yy=h*(.20+j*.052)+Math.sin(i*.10+t*(1.2+e*3)+j*.7)*h*(.035+e*.11)+Math.sin(i*.035-t*.8+j)*h*.04;i?x.lineTo(px,yy):x.moveTo(px,yy)}let g=x.createLinearGradient(0,0,w,0);g.addColorStop(0,`rgba(0,210,255,${.2+e*.7})`);g.addColorStop(.5,`rgba(255,0,220,${.3+e*.7})`);g.addColorStop(1,`rgba(80,60,255,${.2+e*.7})`);x.strokeStyle=g;x.lineWidth=1+e*2;glow('rgba(255,0,220,.7)',12+e*28);x.stroke()}}
+ function rings(e){x.save();x.translate(w/2,h/2);for(let r=0;r<16;r++){let rr=Math.min(w,h)*(.06+r*.035)*(1+e*.28*Math.sin(t*2+r));x.beginPath();for(let a=0;a<=Math.PI*2+.05;a+=.045){let k=rr*(1+(.06+e*.16)*Math.sin(a*6+t*2+r));let px=Math.cos(a)*k,py=Math.sin(a)*k;a?x.lineTo(px,py):x.moveTo(px,py)}x.strokeStyle=`hsla(${190+r*10+t*25},100%,65%,${.15+e*.65})`;x.lineWidth=1+e*1.6;glow('rgba(90,120,255,.6)',10+e*25);x.stroke()}x.restore()}
+ function tunnel(e){x.save();x.translate(w/2,h/2);for(let i=0;i<34;i++){let z=(i/34+t*(.08+e*.25))%1,rr=(1-z)*Math.max(w,h)*.72;x.rotate(.012+e*.025);x.strokeStyle=`hsla(${280-z*120+t*18},100%,62%,${.06+(1-z)*(.25+e*.65)})`;x.lineWidth=1+e*1.5;x.strokeRect(-rr*.72,-rr*.42,rr*1.44,rr*.84)}x.restore()}
+ function particles(e){x.save();x.translate(w/2,h/2);for(let i=0;i<180;i++){let a=i*2.399+t*(.08+e*.45),r=(i%47)/47*Math.min(w,h)*(.42+e*.35)*(1+.2*Math.sin(t*1.7+i));let px=Math.cos(a)*r,py=Math.sin(a)*r*.58,q=1+(i%4)+e*3;x.fillStyle=`hsla(${180+(i*3+t*30)%170},100%,70%,${.14+e*.75})`;glow('rgba(0,220,255,.5)',8+e*18);x.fillRect(px,py,q,q)}x.restore()}
+ function draw(now=0){t+=.012;const e=energy();if(now-lastSwitch>6200){mode=(mode+1)%4;lastSwitch=now}x.shadowBlur=0;x.fillStyle='rgba(0,0,0,.38)';x.fillRect(0,0,w,h);[waves,rings,tunnel,particles][mode](e);requestAnimationFrame(draw)}
+ file.addEventListener('change',()=>{const f=file.files&&file.files[0];if(!f)return;if(objURL)URL.revokeObjectURL(objURL);objURL=URL.createObjectURL(f);audio.src=objURL;track.textContent=f.name;play.textContent='PLAY'});
+ play.addEventListener('click',async e=>{e.stopPropagation();if(!audio.src){file.click();return}setupAudio();if(ac.state==='suspended')await ac.resume();if(audio.paused){try{await audio.play();play.textContent='PAUSE'}catch(_){}}else{audio.pause();play.textContent='PLAY'}});audio.addEventListener('ended',()=>play.textContent='PLAY');
  function isFull(){return document.fullscreenElement===stage||stage.classList.contains('vs-fullscreen')}
- async function toggleFull(){if(!isFull()){try{if(stage.requestFullscreen)await stage.requestFullscreen();else stage.classList.add('vs-fullscreen')}catch(e){stage.classList.add('vs-fullscreen')}enter.textContent='EXIT FULL SCREEN ×';try{screen.orientation&&screen.orientation.lock&&await screen.orientation.lock('landscape')}catch(e){}setTimeout(size,120)}else{try{if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen();else stage.classList.remove('vs-fullscreen')}catch(e){stage.classList.remove('vs-fullscreen')}enter.textContent='ENTER FULL SCREEN ↗';setTimeout(size,120)}}
- addEventListener('resize',size);document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){stage.classList.remove('vs-fullscreen');enter.textContent='ENTER FULL SCREEN ↗'}setTimeout(size,100)});size();requestAnimationFrame(draw);
- stage.addEventListener('click',e=>{if(e.target!==enter)toggleFull()});stage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleFull()}});enter.addEventListener('click',e=>{e.stopPropagation();toggleFull()});
+ async function toggleFull(){if(!isFull()){try{if(stage.requestFullscreen)await stage.requestFullscreen();else stage.classList.add('vs-fullscreen')}catch(e){stage.classList.add('vs-fullscreen')}enter.textContent='EXIT FULL SCREEN ×';try{screen.orientation&&screen.orientation.lock&&await screen.orientation.lock('landscape')}catch(e){}setTimeout(size,120)}else{try{if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen();else stage.classList.remove('vs-fullscreen')}catch(e){stage.classList.remove('vs-fullscreen')}enter.textContent='FULL SCREEN ↗';setTimeout(size,120)}}
+ enter.addEventListener('click',e=>{e.stopPropagation();toggleFull()});stage.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===stage){e.preventDefault();toggleFull()}});document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){stage.classList.remove('vs-fullscreen');enter.textContent='FULL SCREEN ↗'}setTimeout(size,100)});addEventListener('resize',size);size();requestAnimationFrame(draw);
 })();
 </script>
 </body></html>
