@@ -18,7 +18,7 @@ body.fs #ui,body.fs .brand{opacity:0;pointer-events:none}body.fs.show #ui,body.f
 padding:9px 10px;font:10px/1.2 Arial,sans-serif;letter-spacing:.04em;outline:none}
 .musicselect:focus{border-color:#fff}
 .tracknow{margin-top:8px;color:#fff;font-size:9px;line-height:1.45;min-height:26px}
-@media(max-width:680px){
+@media(max-width:980px), (pointer:coarse){
  .brand{top:12px;left:12px;right:12px;font-size:8px;letter-spacing:.14em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
  #ui{left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));padding:10px;max-height:62vh;overflow:auto;-webkit-overflow-scrolling:touch;border-color:rgba(255,255,255,.2)}
  #worlds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
@@ -46,7 +46,20 @@ body.mobile-collapsed #ui{left:auto;right:12px;bottom:calc(12px + env(safe-area-
 body.mobile-collapsed #controlBody{display:none}
 body.mobile-collapsed #mobileToggle{position:static;width:auto;margin:0;padding:12px 15px;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:999px;backdrop-filter:blur(10px)}
 body.mobile-collapsed .brand{opacity:.72}
-}</style></head>
+}
+@media (orientation:landscape) and (max-height:600px), (orientation:landscape) and (pointer:coarse){
+  #ui{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));max-height:82vh}
+  body.mobile-collapsed #ui{
+    left:auto;right:calc(10px + env(safe-area-inset-right));
+    bottom:calc(8px + env(safe-area-inset-bottom));
+    width:auto;max-height:none;
+  }
+  body.mobile-collapsed #mobileToggle{
+    min-width:0;width:auto;padding:9px 12px;font-size:8px;letter-spacing:.12em;
+  }
+}
+
+</style></head>
 <body><canvas id="v"></canvas><div class="brand">TIKOONZ / VISUAL STUDIO 2.0 · AUDIO-REACTIVE ENGINE</div>
 <div id="ui"><button id="mobileToggle" type="button" aria-expanded="true">CONTROLS −</button><div id="controlBody"><div id="worlds"></div><div class="row">
 <label>LOAD MUSIC<input id="music" type="file" accept="audio/*"></label>
@@ -94,7 +107,7 @@ function select(i,soft=false){
  status.textContent=names[i]+' · '+(soft?'MORPHING':'ACTIVE')
 }
 names.forEach((n,i)=>{let b=document.createElement('button');b.textContent=n;b.onclick=()=>{auto=false;autoBtn.textContent='AUTO: OFF';select(i,true)};worldBox.appendChild(b)});select(0);
-function isMobile(){return matchMedia('(max-width:680px)').matches}
+function isMobile(){return matchMedia('(max-width:980px), (pointer:coarse)').matches}
 function setMobileCollapsed(v){if(!isMobile())v=false;document.body.classList.toggle('mobile-collapsed',v);if(mobileToggle){mobileToggle.textContent=v?'CONTROLS +':'CONTROLS −';mobileToggle.setAttribute('aria-expanded',String(!v))}}
 if(mobileToggle)mobileToggle.onclick=()=>setMobileCollapsed(!document.body.classList.contains('mobile-collapsed'));
 addEventListener('resize',()=>{if(!isMobile())setMobileCollapsed(false)});
