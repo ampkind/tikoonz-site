@@ -30,6 +30,13 @@
   .vs-controls{left:12px;right:12px;bottom:12px;gap:5px}
   .vs-track{order:4;width:100%;max-width:100%;font-size:8px}
 }
+
+/* RELEASES keeps its original page design; only this preview opens the full studio. */
+.vs-controls,.vs-music-select,.vs-upload,.vs-play,.vs-track,.vs-stage audio{display:none!important}
+.vs-stage-copy{position:absolute;z-index:4;left:28px;right:28px;top:auto;bottom:25px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.vs-stage-copy strong{font-size:clamp(20px,3vw,42px);letter-spacing:-.035em}
+.vs-enter{margin-left:auto;background:#fff;color:#000;border:1px solid rgba(255,255,255,.9);padding:13px 18px;font:700 10px/1 Arial,sans-serif;letter-spacing:.12em;cursor:pointer;white-space:nowrap}
+@media(max-width:700px){.vs-stage-copy{left:14px;right:14px;bottom:14px}.vs-stage-copy strong{font-size:16px}.vs-enter{padding:11px 12px;font-size:8px}}
 </style>
 </head><body><header class="site-header">
 <a class="wordmark" href="./index.html">TIKOONZ</a>
@@ -50,22 +57,12 @@
 <a class="release-line" href="https://ditto.fm/ice-cosmoss" target="_blank" rel="noopener"><small>06</small><strong>ICE COSMOSS</strong><span>ICE UNICORN · ARCHIVE</span><b class="listen">LISTEN ↗</b></a>
 </div>
 <section class="visual-studio-entry" aria-labelledby="vs-title">
-  <p class="vs-kicker" data-i18n="vs.kicker">TIKOONZ / VISUAL STUDIO</p>
-  <h2 class="vs-title" id="vs-title" data-i18n="vs.title">MUSIC<br>BECOMES VISUAL.</h2>
-  <p class="vs-sub" data-i18n="vs.sub">ICE UNICORN · AUDIO-REACTIVE VISUAL EXPERIENCE</p>
+  <p class="vs-kicker">TIKOONZ / VISUAL STUDIO</p>
+  <h2 class="vs-title" id="vs-title">MUSIC<br>BECOMES VISUAL.</h2>
+  <p class="vs-sub">ICE UNICORN · AUDIO-REACTIVE VISUAL EXPERIENCE</p>
   <div class="vs-stage" id="vsStage" role="button" tabindex="0" aria-label="Enter TIKOONZ Visual Studio">
     <canvas id="vsPreview"></canvas>
-    <div class="vs-stage-copy"><strong data-i18n="vs.stage">VISUAL STUDIO</strong></div>
-    <div class="vs-controls">
-      <select class="vs-music-select" id="vsAlbum" aria-label="ICE UNICORN album"><option value="cosmos">COSMOS</option><option value="golden">GOLDEN</option><option value="ice-crystal">ICE CRYSTAL</option></select>
-      <select class="vs-music-select" id="vsSong" aria-label="ICE UNICORN song"></select>
-      <button class="vs-play" id="vsOfficialPlay" type="button">PLAY ICE UNICORN</button>
-      <label class="vs-upload">UPLOAD YOUR MUSIC<input id="vsFile" type="file" accept="audio/*,.m4a,.mp3,.wav,.aac"></label>
-      <button class="vs-play" id="vsPlay" type="button">PLAY / PAUSE</button>
-      <span class="vs-track" id="vsTrack">ICE UNICORN · SELECT A TRACK OR UPLOAD YOUR MUSIC</span>
-      <button class="vs-enter" id="vsEnter" type="button">FULL SCREEN ↗</button>
-    </div>
-    <audio id="vsAudio" playsinline preload="metadata"></audio>
+    <div class="vs-stage-copy"><strong>VISUAL STUDIO</strong><button class="vs-enter" id="vsEnter" type="button">ENTER VISUAL STUDIO ↗</button></div>
   </div>
 </section>
 </main><footer><div class="footer-brand">TIKOONZ</div><div class="footer-links">
@@ -74,36 +71,18 @@
 <a href="mailto:info@akenm.com">INFO@AKENM.COM</a></div><p>© 2026 TIKOONZ. ALL RIGHTS RESERVED.</p></footer>
 <script src="./site.js"></script>
 <script>
-(()=>{
- const c=document.getElementById('vsPreview'),stage=document.getElementById('vsStage'),enter=document.getElementById('vsEnter'),file=document.getElementById('vsFile'),play=document.getElementById('vsPlay'),officialPlay=document.getElementById('vsOfficialPlay'),album=document.getElementById('vsAlbum'),song=document.getElementById('vsSong'),audio=document.getElementById('vsAudio'),track=document.getElementById('vsTrack');
- if(!c||!stage)return;
- const x=c.getContext('2d'); let w=0,h=0,t=0,dpr=Math.min(devicePixelRatio||1,2),mode=0,lastSwitch=0,ac,analyser,data,src,objURL;
- function size(){const q=stage.getBoundingClientRect();w=q.width;h=q.height;c.width=Math.max(1,w*dpr);c.height=Math.max(1,h*dpr);x.setTransform(dpr,0,0,dpr,0,0)}
- function setupAudio(){if(ac)return;ac=new (window.AudioContext||window.webkitAudioContext)();analyser=ac.createAnalyser();analyser.fftSize=512;analyser.smoothingTimeConstant=.82;data=new Uint8Array(analyser.frequencyBinCount);src=ac.createMediaElementSource(audio);src.connect(analyser);analyser.connect(ac.destination)}
- function energy(){if(!analyser)return .18;analyser.getByteFrequencyData(data);let s=0;for(const v of data)s+=v;return Math.max(.06,s/(data.length*255))}
- function glow(col,b=18){x.shadowBlur=b;x.shadowColor=col}
- function waves(e){for(let j=0;j<12;j++){x.beginPath();for(let i=0;i<=120;i++){let px=w*i/120,yy=h*(.20+j*.052)+Math.sin(i*.10+t*(1.2+e*3)+j*.7)*h*(.035+e*.11)+Math.sin(i*.035-t*.8+j)*h*.04;i?x.lineTo(px,yy):x.moveTo(px,yy)}let g=x.createLinearGradient(0,0,w,0);g.addColorStop(0,`rgba(0,210,255,${.2+e*.7})`);g.addColorStop(.5,`rgba(255,0,220,${.3+e*.7})`);g.addColorStop(1,`rgba(80,60,255,${.2+e*.7})`);x.strokeStyle=g;x.lineWidth=1+e*2;glow('rgba(255,0,220,.7)',12+e*28);x.stroke()}}
- function rings(e){x.save();x.translate(w/2,h/2);for(let r=0;r<16;r++){let rr=Math.min(w,h)*(.06+r*.035)*(1+e*.28*Math.sin(t*2+r));x.beginPath();for(let a=0;a<=Math.PI*2+.05;a+=.045){let k=rr*(1+(.06+e*.16)*Math.sin(a*6+t*2+r));let px=Math.cos(a)*k,py=Math.sin(a)*k;a?x.lineTo(px,py):x.moveTo(px,py)}x.strokeStyle=`hsla(${190+r*10+t*25},100%,65%,${.15+e*.65})`;x.lineWidth=1+e*1.6;glow('rgba(90,120,255,.6)',10+e*25);x.stroke()}x.restore()}
- function tunnel(e){x.save();x.translate(w/2,h/2);for(let i=0;i<34;i++){let z=(i/34+t*(.08+e*.25))%1,rr=(1-z)*Math.max(w,h)*.72;x.rotate(.012+e*.025);x.strokeStyle=`hsla(${280-z*120+t*18},100%,62%,${.06+(1-z)*(.25+e*.65)})`;x.lineWidth=1+e*1.5;x.strokeRect(-rr*.72,-rr*.42,rr*1.44,rr*.84)}x.restore()}
- function particles(e){x.save();x.translate(w/2,h/2);for(let i=0;i<180;i++){let a=i*2.399+t*(.08+e*.45),r=(i%47)/47*Math.min(w,h)*(.42+e*.35)*(1+.2*Math.sin(t*1.7+i));let px=Math.cos(a)*r,py=Math.sin(a)*r*.58,q=1+(i%4)+e*3;x.fillStyle=`hsla(${180+(i*3+t*30)%170},100%,70%,${.14+e*.75})`;glow('rgba(0,220,255,.5)',8+e*18);x.fillRect(px,py,q,q)}x.restore()}
- function draw(now=0){t+=.012;const e=energy();if(now-lastSwitch>6200){mode=(mode+1)%4;lastSwitch=now}x.shadowBlur=0;x.fillStyle='rgba(0,0,0,.38)';x.fillRect(0,0,w,h);[waves,rings,tunnel,particles][mode](e);requestAnimationFrame(draw)}
- const catalog={
-  'cosmos':[
-   ['BLUE SKY','ice-unicorn-cosmos-blue-sky.m4a'],['BLUEBERRY','ice-unicorn-cosmos-blueberry.m4a'],['CHILLING','ice-unicorn-cosmos-chilling.m4a'],['COSMOS','ice-unicorn-cosmos-cosmos.m4a'],['DRIVE','ice-unicorn-cosmos-drive.m4a'],['DYE GOLD','ice-unicorn-cosmos-dye-gold.m4a'],['GLOW FOREST','ice-unicorn-cosmos-glow-forest.m4a'],['LOVELY AMON','ice-unicorn-cosmos-lovely-amon.m4a'],['MORNING COFFEE','ice-unicorn-cosmos-morning-coffee.m4a'],['REDEEM','ice-unicorn-cosmos-redeem.m4a'],['SUMMER LOVE','ice-unicorn-cosmos-summer-love.m4a'],['SUNSHINE','ice-unicorn-cosmos-sunshine.m4a']],
-  'golden':[
-   ['EDM feat. RED','ice-unicorn-golden-edm-feat-red.m4a'],['EDM feat. REDTONG','ice-unicorn-golden-edm-feat-redtong.m4a'],['EDM feat. TONG','ice-unicorn-golden-edm-feat-tong.m4a'],['EDM','ice-unicorn-golden-edm.m4a'],['HIPHOP feat. RED','ice-unicorn-golden-hiphop-feat-red.m4a'],['HIPHOP feat. REDTONG','ice-unicorn-golden-hiphop-feat-redtong.m4a'],['HIPHOP feat. TONG','ice-unicorn-golden-hiphop-feat-tong.m4a']],
-  'ice-crystal':[
-   ['AURORA','ice-unicorn-ice-crystal-aurora.m4a'],['BOOM BOOM BOOM','ice-unicorn-ice-crystal-boom-boom-boom.m4a'],['BURST','ice-unicorn-ice-crystal-burst.m4a'],['CRYSTAL','ice-unicorn-ice-crystal-crystal.m4a'],['EXPLORE','ice-unicorn-ice-crystal-explore.m4a'],['PLOSIVE','ice-unicorn-ice-crystal-plosive.m4a'],['RAVE','ice-unicorn-ice-crystal-rave.m4a'],['SPACE 9','ice-unicorn-ice-crystal-space-9.m4a']]
- };
- function fillSongs(){song.innerHTML='';for(const [name,fn] of catalog[album.value]){const o=document.createElement('option');o.value=fn;o.textContent=name;song.appendChild(o)}track.textContent='ICE UNICORN · '+album.options[album.selectedIndex].text+' · '+song.options[song.selectedIndex].textContent}
- function selectOfficial(){if(objURL){URL.revokeObjectURL(objURL);objURL=null}audio.pause();audio.src='./assets/audio/ice-unicorn/'+album.value+'/'+song.value;track.textContent='ICE UNICORN · '+album.options[album.selectedIndex].text+' · '+song.options[song.selectedIndex].textContent;play.textContent='PLAY / PAUSE';officialPlay.textContent='PLAY ICE UNICORN'}
- album.addEventListener('change',()=>{fillSongs();selectOfficial()});song.addEventListener('change',selectOfficial);fillSongs();selectOfficial();
- officialPlay.addEventListener('click',async e=>{e.stopPropagation();selectOfficial();setupAudio();if(ac.state==='suspended')await ac.resume();try{await audio.play();officialPlay.textContent='PLAYING';play.textContent='PAUSE'}catch(_){track.textContent+=' · TAP PLAY AGAIN'} });
- file.addEventListener('change',()=>{const f=file.files&&file.files[0];if(!f)return;if(objURL)URL.revokeObjectURL(objURL);objURL=URL.createObjectURL(f);audio.src=objURL;track.textContent='YOUR MUSIC · '+f.name;play.textContent='PLAY';officialPlay.textContent='PLAY ICE UNICORN'});
- play.addEventListener('click',async e=>{e.stopPropagation();if(!audio.src){file.click();return}setupAudio();if(ac.state==='suspended')await ac.resume();if(audio.paused){try{await audio.play();play.textContent='PAUSE'}catch(_){}}else{audio.pause();play.textContent='PLAY'}});audio.addEventListener('ended',()=>{play.textContent='PLAY';officialPlay.textContent='PLAY ICE UNICORN'});
- function isFull(){return document.fullscreenElement===stage||stage.classList.contains('vs-fullscreen')}
- async function toggleFull(){if(!isFull()){try{if(stage.requestFullscreen)await stage.requestFullscreen();else stage.classList.add('vs-fullscreen')}catch(e){stage.classList.add('vs-fullscreen')}enter.textContent='EXIT FULL SCREEN ×';try{screen.orientation&&screen.orientation.lock&&await screen.orientation.lock('landscape')}catch(e){}setTimeout(size,120)}else{try{if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen();else stage.classList.remove('vs-fullscreen')}catch(e){stage.classList.remove('vs-fullscreen')}enter.textContent='FULL SCREEN ↗';setTimeout(size,120)}}
- enter.addEventListener('click',e=>{e.stopPropagation();toggleFull()});stage.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===stage){e.preventDefault();toggleFull()}});document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){stage.classList.remove('vs-fullscreen');enter.textContent='FULL SCREEN ↗'}setTimeout(size,100)});addEventListener('resize',size);size();requestAnimationFrame(draw);
+(()=>{'use strict';
+const c=document.getElementById('vsPreview'),stage=document.getElementById('vsStage'),enter=document.getElementById('vsEnter');if(!c||!stage||!enter)return;
+const x=c.getContext('2d');let w=0,h=0,t=0,d=Math.min(devicePixelRatio||1,2),mode=0,last=0,prev=0,mix=1;
+function size(){const r=stage.getBoundingClientRect();w=r.width;h=r.height;c.width=Math.max(1,Math.round(w*d));c.height=Math.max(1,Math.round(h*d));x.setTransform(d,0,0,d,0,0)}
+function waves(a){for(let j=0;j<12;j++){x.beginPath();for(let i=0;i<=120;i++){let px=w*i/120,py=h*(.2+j*.052)+Math.sin(i*.1+t*1.5+j*.7)*h*.055+Math.sin(i*.035-t*.8+j)*h*.035;i?x.lineTo(px,py):x.moveTo(px,py)}let g=x.createLinearGradient(0,0,w,0);g.addColorStop(0,'rgba(0,215,255,'+.18*a+')');g.addColorStop(.5,'rgba(255,0,220,'+.48*a+')');g.addColorStop(1,'rgba(90,60,255,'+.25*a+')');x.strokeStyle=g;x.lineWidth=1.1;x.shadowBlur=18;x.shadowColor='rgba(255,0,220,.5)';x.stroke()}}
+function crystal(a){x.save();x.translate(w/2,h/2);for(let i=0;i<28;i++){let q=i*.79+t*.06*(i%2?1:-1),r=30+(i%8)*Math.min(w,h)*.055;x.beginPath();x.moveTo(0,0);x.lineTo(Math.cos(q)*r,Math.sin(q)*r*.72);x.strokeStyle='hsla('+(185+i*8+t*20)+',100%,70%,'+((.08+(i%5)*.025)*a)+')';x.lineWidth=.7;x.shadowBlur=14;x.shadowColor='rgba(80,180,255,.45)';x.stroke()}x.restore()}
+function tunnel(a){x.save();x.translate(w/2,h/2);for(let i=0;i<30;i++){let z=(i/30+t*.075)%1,r=(1-z)*Math.max(w,h)*.7;x.rotate(.011);x.strokeStyle='hsla('+(285-z*115+t*15)+',100%,64%,'+((.05+(1-z)*.28)*a)+')';x.lineWidth=1;x.strokeRect(-r*.72,-r*.4,r*1.44,r*.8)}x.restore()}
+function particles(a){x.save();x.translate(w/2,h/2);for(let i=0;i<160;i++){let q=i*2.399+t*.12,r=(i%43)/43*Math.min(w,h)*.48*(1+.12*Math.sin(t+i)),px=Math.cos(q)*r,py=Math.sin(q)*r*.58,z=1+(i%3);x.fillStyle='hsla('+(180+(i*3+t*24)%170)+',100%,70%,'+((.1+(i%5)*.035)*a)+')';x.fillRect(px,py,z,z)}x.restore()}
+const scenes=[waves,crystal,tunnel,particles];
+function frame(now){t+=.012;if(now-last>5600){prev=mode;mode=(mode+1)%scenes.length;mix=0;last=now}mix=Math.min(1,mix+.018);x.shadowBlur=0;x.fillStyle='rgba(0,0,0,.34)';x.fillRect(0,0,w,h);if(mix<1)scenes[prev](1-mix);scenes[mode](mix);requestAnimationFrame(frame)}
+function openStudio(){location.href='./visual-studio.html'}enter.onclick=e=>{e.stopPropagation();openStudio()};stage.onclick=e=>{if(e.target===stage||e.target===c)openStudio()};stage.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openStudio()}};
+addEventListener('resize',size);size();requestAnimationFrame(frame);
 })();
 </script>
 </body></html>
