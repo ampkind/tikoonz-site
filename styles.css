@@ -570,3 +570,7 @@ body.tong-profile .g3{background-image:url("./assets/tong-main.jpg")}
  .iu-duo-grid{grid-template-columns:1fr}
  .iu-listing-visual{aspect-ratio:2.4/1!important}
 }
+
+/* Language control touch hardening */
+.mobile-language-toggle,.mobile-language-menu button,.languages button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media(max-width:900px){.mobile-language-menu{z-index:300}.mobile-language-menu button{cursor:pointer;pointer-events:auto}}
